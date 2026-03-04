@@ -1,0 +1,78 @@
+// GREY
+
+$grey-light: #ffffff;
+$grey-light-hover: #ffffff;
+$grey-light-active: #ffffff;
+$grey-normal: #ffffff;
+$grey-normal-hover: #e6e6e6;
+$grey-normal-active: #cccccc;
+$grey-dark: #bfbfbf;
+$grey-dark-hover: #999999;
+$grey-dark-active: #737373;
+$grey-darker: #595959;
+
+// BLUE
+
+$blue-light: #e7e7ed;
+$blue-light-hover: #dbdbe4;
+$blue-light-active: #b4b5c7;
+$blue-normal: #0e1049;
+$blue-normal-hover: #0d0e42;
+$blue-normal-active: #0b0d3a;
+$blue-dark: #0b0c37;
+$blue-dark-hover: #080a2c;
+$blue-dark-active: #060721;
+$blue-darker: #05061a;
+
+// BLACK
+
+$black-light: #e7e7e7;
+$black-light-hover: #dadadb;
+$black-light-active: #b3b3b4;
+$black-normal: #0b0b0d;
+$black-normal-hover: #0a0a0c;
+$black-normal-active: #09090a;
+$black-dark: #08080a;
+$black-dark-hover: #070708;
+$black-dark-active: #050506;
+$black-darker: #040405;
+
+// CSS Custom Props
+
+:root {
+  /* GREY */
+  --grey-light: #{$grey-light};
+  --grey-light-hover: #{$grey-light-hover};
+  --grey-light-active: #{$grey-light-active};
+  --grey-normal: #{$grey-normal};
+  --grey-normal-hover: #{$grey-normal-hover};
+  --grey-normal-active: #{$grey-normal-active};
+  --grey-dark: #{$grey-dark};
+  --grey-dark-hover: #{$grey-dark-hover};
+  --grey-dark-active: #{$grey-dark-active};
+  --grey-darker: #{$grey-darker};
+
+  /* BLUE */
+  --blue-light: #{$blue-light};
+  --blue-light-hover: #{$blue-light-hover};
+  --blue-light-active: #{$blue-light-active};
+  --blue-normal: #{$blue-normal};
+  --blue-normal-hover: #{$blue-normal-hover};
+  --blue-normal-active: #{$blue-normal-active};
+  --blue-dark: #{$blue-dark};
+  --blue-dark-hover: #{$blue-dark-hover};
+  --blue-dark-active: #{$blue-dark-active};
+  --blue-darker: #{$blue-darker};
+
+  /* BLACK */
+  --black-light: #{$black-light};
+  --black-light-hover: #{$black-light-hover};
+  --black-light-active: #{$black-light-active};
+  --black-normal: #{$black-normal};
+  --black-normal-hover: #{$black-normal-hover};
+  --black-normal-active: #{$black-normal-active};
+  --black-dark: #{$black-dark};
+  --black-dark-hover: #{$black-dark-hover};
+  --black-dark-active: #{$black-dark-active};
+  --black-darker: #{$black-darker};
+}

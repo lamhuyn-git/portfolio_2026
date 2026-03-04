@@ -1,7 +1,24 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  width: 100%;
+
+  /* Font Variables */
+  --font-primary: "Inter", sans-serif;
+  --font-felipa: "Felipa", cursive;
+
+  font-family: var(--font-primary);
   line-height: 1.5;
   font-weight: 400;
+
+  /* Color Variables */
+  --grey-normal: #ffffff;
+  --grey-dark: #bfbfbf;
+  --grey-darker: #595959;
+
+  --blue-normal: #0e1049;
+  --blue-darker: #05061a;
+
+  --black-normal: #333333;
+  --black-darker: #000000;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -13,56 +30,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Font Face Declaration for Local Felipa Font */
+@font-face {
+  font-family: "Felipa";
+  src: url("/fonts/Felipa-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
-a:hover {
-  color: #535bf2;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#root {
+  width: 100%;
+  height: 100vh;
+  background-color: #242424;
 }
