@@ -1,4 +1,5 @@
 .hero {
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -25,6 +26,7 @@
     backdrop-filter: blur(16px);
   }
   &-container {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
@@ -87,4 +89,66 @@
       }
     }
   }
+}
+
+// Animation classes for entrance effects
+.animate-out {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.content-animate-out {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+}
+
+.content-animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+}
+
+// Staggered animations for individual elements
+.left-animate-out {
+  opacity: 0;
+  transform: translateY(30px) translateX(-20px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
+
+.left-animate-in {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
+
+.right-animate-out {
+  opacity: 0;
+  transform: translateY(30px) translateX(20px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
+}
+
+.right-animate-in {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
+}
+
+.circle-animate-out {
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s;
+}
+
+.circle-animate-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s;
 }

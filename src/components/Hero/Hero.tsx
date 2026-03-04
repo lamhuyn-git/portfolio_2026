@@ -1,6 +1,18 @@
+import { useState, useEffect } from 'react';
 import styles from "./Hero.module.scss";
 
 export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300); // Small delay for smooth entry
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className={styles.hero}>
       {/*Background Video */}
@@ -12,9 +24,9 @@ export default function Hero() {
       <div className={styles["hero-overlay"]} />
 
       {/* Content layer */}
-      <div className={styles["hero-container"]}>
-        <div className={styles["hero-content"]}>
-          <div className={styles.left}>
+      <div className={`${styles["hero-container"]} ${isVisible ? styles['animate-in'] : styles['animate-out']}`}>
+        <div className={`${styles["hero-content"]} ${isVisible ? styles['content-animate-in'] : styles['content-animate-out']}`}>
+          <div className={`${styles.left} ${isVisible ? styles['left-animate-in'] : styles['left-animate-out']}`}>
             <svg
               width="734"
               height="244"
@@ -88,8 +100,8 @@ export default function Hero() {
               </defs>
             </svg>
           </div>
-          <div className={styles.circle}></div>
-          <div className={styles.right}>
+          <div className={`${styles.circle} ${isVisible ? styles['circle-animate-in'] : styles['circle-animate-out']}`}></div>
+          <div className={`${styles.right} ${isVisible ? styles['right-animate-in'] : styles['right-animate-out']}`}>
             <svg
               width="588"
               height="244"
