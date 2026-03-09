@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import styles from "./Hero.module.scss";
+import Button from "../Button/Button";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,12 +25,17 @@ export default function Hero() {
       <div className={styles["hero-overlay"]} />
 
       {/* Content layer */}
-      <div className={`${styles["hero-container"]} ${isVisible ? styles['animate-in'] : styles['animate-out']}`}>
-        <div className={`${styles["hero-content"]} ${isVisible ? styles['content-animate-in'] : styles['content-animate-out']}`}>
-          <div className={`${styles.left} ${isVisible ? styles['left-animate-in'] : styles['left-animate-out']}`}>
+      <div
+        className={`${styles["hero-container"]} ${isVisible ? styles["animate-in"] : styles["animate-out"]}`}
+      >
+        <div
+          className={`${styles["hero-content"]} ${isVisible ? styles["content-animate-in"] : styles["content-animate-out"]}`}
+        >
+          <div
+            className={`${styles.left} ${isVisible ? styles["left-animate-in"] : styles["left-animate-out"]}`}
+          >
             <svg
               width="734"
-              height="244"
               viewBox="0 0 734 244"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -100,11 +106,14 @@ export default function Hero() {
               </defs>
             </svg>
           </div>
-          <div className={`${styles.circle} ${isVisible ? styles['circle-animate-in'] : styles['circle-animate-out']}`}></div>
-          <div className={`${styles.right} ${isVisible ? styles['right-animate-in'] : styles['right-animate-out']}`}>
+          <div
+            className={`${styles.circle} ${isVisible ? styles["circle-animate-in"] : styles["circle-animate-out"]}`}
+          ></div>
+          <div
+            className={`${styles.right} ${isVisible ? styles["right-animate-in"] : styles["right-animate-out"]}`}
+          >
             <svg
               width="588"
-              height="244"
               viewBox="0 0 588 244"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +173,12 @@ export default function Hero() {
         <div className={styles["hero-text"]}>
           <div className={styles["left"]}>
             <p>HOCHIMINH</p>
-            <p>{new Date().getHours()}</p>
+            <p>
+              {new Date().getHours()} :{" "}
+              {new Date().getMinutes() < 10
+                ? `0${new Date().getMinutes()}`
+                : new Date().getMinutes()}
+            </p>
             <p>{new Date().getHours() >= 12 ? "PM" : "AM"}</p>
           </div>
           <div className={styles["mid"]}>
@@ -172,21 +186,7 @@ export default function Hero() {
             <p>/</p>
             <p>FRONTEND DEVELOPER</p>
           </div>
-          <div className={styles["right"]}>
-            <p> See my project</p>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.50002 2.66666C8.50002 2.39051 8.27616 2.16666 8.00002 2.16666C7.72388 2.16666 7.50002 2.39051 7.50002 2.66666L7.50002 12.6873C7.42896 12.6437 7.35008 12.5875 7.26049 12.5156C6.98481 12.2942 6.65944 11.967 6.18669 11.49L5.02181 10.3147C4.82743 10.1186 4.51085 10.1171 4.31471 10.3115C4.11858 10.5059 4.11717 10.8225 4.31156 11.0186L5.49742 12.2151C5.94405 12.6658 6.30908 13.0341 6.63433 13.2953C6.97254 13.5669 7.31584 13.7635 7.72791 13.8161C7.90859 13.8391 8.09144 13.8391 8.27213 13.8161C8.6842 13.7635 9.0275 13.5669 9.36571 13.2953C9.69096 13.0341 10.056 12.6658 10.5026 12.2151L11.6885 11.0186C11.8829 10.8225 11.8815 10.5059 11.6853 10.3115C11.4892 10.1171 11.1726 10.1186 10.9782 10.3147L9.81335 11.49C9.3406 11.967 9.01523 12.2942 8.73955 12.5156C8.64996 12.5875 8.57108 12.6437 8.50002 12.6873L8.50002 2.66666Z"
-                fill="white"
-              />
-            </svg>
-          </div>
+          <Button text="See my project" className={styles["right"]} />
         </div>
       </div>
     </section>

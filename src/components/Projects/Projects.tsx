@@ -85,12 +85,12 @@ const Projects: React.FC = () => {
       </div>
 
       {/* Projects count */}
-      <div className={styles.projects__count_bar}>
+      {/* <div className={styles.projects__count_bar}>
         <span className={styles.projects__count_label}>5 PROJECTS</span>
-      </div>
+      </div> */}
 
       {/* Projects grid */}
-      <div className={styles.projects__grid}>
+      {/* <div className={styles.projects__grid}>
         {projects.map((project: Project) => (
           <div
             key={project.id}
@@ -130,7 +130,7 @@ const Projects: React.FC = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };
