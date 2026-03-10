@@ -1,178 +1,187 @@
-interface MyThinkingProps {
-  // Define any props if needed
-  classname?: string;
+interface DecorationProps {
+  className?: string;
 }
-const Decoration = ({ classname }: MyThinkingProps) => {
+const Decoration = ({ className }: DecorationProps) => {
   return (
-    <div className={classname}>
-      <svg
-        width="768"
-        height="1177"
-        viewBox="0 0 768 1177"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g filter="url(#filter0_g_303_31)">
-          <circle
-            cx="378.867"
-            cy="798"
-            r="309"
-            fill="url(#paint0_radial_303_31)"
+    <svg
+      width="472"
+      height="765"
+      viewBox="0 0 472 765"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <g clip-path="url(#clip0_414_227)">
+        <g filter="url(#filter0_g_414_227)">
+          <ellipse
+            cx="209.642"
+            cy="552.055"
+            rx="208.951"
+            ry="213.378"
+            fill="url(#paint0_radial_414_227)"
           />
         </g>
         <path
-          d="M347.867 675L347.867 1099"
-          stroke="url(#paint1_linear_303_31)"
+          d="M188.679 467.117L188.679 759.908"
+          stroke="url(#paint1_linear_414_227)"
+          stroke-width="0.690544"
         />
         <path
-          d="M247.867 675L247.867 836"
-          stroke="url(#paint2_linear_303_31)"
+          d="M121.057 467.117L121.057 578.295"
+          stroke="url(#paint2_linear_414_227)"
+          stroke-width="0.690544"
         />
-        <path d="M83.8672 836H347.867" stroke="url(#paint3_linear_303_31)" />
-        <path d="M767.867 675H507.867" stroke="url(#paint4_linear_303_31)" />
-        <path d="M84.8672 675H440.867" stroke="url(#paint5_linear_303_31)" />
         <path
-          d="M84.8672 1099L84.8672 283"
-          stroke="url(#paint6_linear_303_31)"
+          d="M0.811029 578.295H179.333"
+          stroke="url(#paint3_linear_414_227)"
+          stroke-width="0.690544"
         />
-        <g opacity="0.9" clip-path="url(#clip0_303_31)">
-          <path
-            d="M83.8672 -6C461.934 -6 767.867 300.195 767.867 678.585V676.974C767.867 910.248 579.276 1099 346.201 1099C201.193 1099 83.8672 981.574 83.8672 836.442V838.052C83.8672 749.024 155.856 676.974 244.808 676.974C300.848 676.974 346.201 722.366 346.201 778.453V776.843C346.201 810.669 318.841 838.052 285.044 838.052C262.802 838.052 244.808 820.044 244.808 797.783C244.808 787.103 254.159 778.453 265.731 778.453"
-            stroke="white"
-            stroke-opacity="0.05"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+        <path
+          d="M472.691 467.117H296.874"
+          stroke="url(#paint4_linear_414_227)"
+          stroke-width="0.690544"
+        />
+        <path
+          d="M0.599019 467.117H241.333"
+          stroke="url(#paint5_linear_414_227)"
+          stroke-width="0.690544"
+        />
+        <path
+          d="M0.3323 759.908L0.332275 196.424"
+          stroke="url(#paint6_linear_414_227)"
+          stroke-width="0.690544"
+        />
+        <path
+          d="M0.000131369 0C261.072 0 472.333 211.441 472.333 472.736V471.624C472.333 632.71 342.102 763.052 181.153 763.052C81.019 763.052 0.000131369 681.964 0.000131369 581.743V582.856C0.000131369 521.378 49.7117 471.624 111.137 471.624C149.835 471.624 181.153 502.969 181.153 541.7V540.588C181.153 563.946 162.26 582.856 138.921 582.856C123.562 582.856 111.137 570.42 111.137 555.048C111.137 547.673 117.594 541.7 125.585 541.7"
+          stroke="white"
+          stroke-opacity="0.05"
+          stroke-width="2.07163"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_g_414_227"
+          x="-47.5556"
+          y="290.43"
+          width="514.395"
+          height="523.249"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
           />
-        </g>
-        <defs>
-          <filter
-            id="filter0_g_303_31"
-            x="0"
-            y="419.133"
-            width="757.734"
-            height="757.734"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
-          >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
-            />
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.99900001287460327 0.99900001287460327"
-              numOctaves="3"
-              seed="4729"
-            />
-            <feDisplacementMap
-              in="shape"
-              scale="139.73440551757812"
-              xChannelSelector="R"
-              yChannelSelector="G"
-              result="displacedImage"
-              width="100%"
-              height="100%"
-            />
-            <feMerge result="effect1_texture_303_31">
-              <feMergeNode in="displacedImage" />
-            </feMerge>
-          </filter>
-          <radialGradient
-            id="paint0_radial_303_31"
-            cx="0"
-            cy="0"
-            r="1"
-            gradientUnits="userSpaceOnUse"
-            gradientTransform="translate(378.867 798) rotate(90) scale(309)"
-          >
-            <stop offset="0.0677345" stop-color="#83D3F1" />
-            <stop offset="0.135469" stop-color="#1FC6E6" />
-            <stop offset="0.494333" stop-color="#0577B0" />
-            <stop offset="0.866587" stop-color="#0E1049" />
-            <stop offset="1" stop-color="#05061A" />
-          </radialGradient>
-          <linearGradient
-            id="paint1_linear_303_31"
-            x1="347.867"
-            y1="674.191"
-            x2="347.867"
-            y2="1098.19"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
-          </linearGradient>
-          <linearGradient
-            id="paint2_linear_303_31"
-            x1="247.867"
-            y1="674.693"
-            x2="247.867"
-            y2="835.693"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
-          </linearGradient>
-          <linearGradient
-            id="paint3_linear_303_31"
-            x1="83.3634"
-            y1="836"
-            x2="347.363"
-            y2="836"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
-          </linearGradient>
-          <linearGradient
-            id="paint4_linear_303_31"
-            x1="768.363"
-            y1="675"
-            x2="508.363"
-            y2="675"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
-          </linearGradient>
-          <linearGradient
-            id="paint5_linear_303_31"
-            x1="84.1878"
-            y1="675"
-            x2="440.188"
-            y2="675"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
-          </linearGradient>
-          <linearGradient
-            id="paint6_linear_303_31"
-            x1="84.8672"
-            y1="1100.56"
-            x2="84.8672"
-            y2="284.557"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="white" stop-opacity="0" />
-            <stop offset="0.400681" stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
-          </linearGradient>
-          <clipPath id="clip0_303_31">
-            <rect
-              width="1101"
-              height="683"
-              fill="white"
-              transform="matrix(0 1 -1 0 767.867 0)"
-            />
-          </clipPath>
-        </defs>
-      </svg>
-    </div>
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.99900001287460327 0.99900001287460327"
+            numOctaves="3"
+            seed="4729"
+          />
+          <feDisplacementMap
+            in="shape"
+            scale="96.492820739746094"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="displacedImage"
+            width="100%"
+            height="100%"
+          />
+          <feMerge result="effect1_texture_414_227">
+            <feMergeNode in="displacedImage" />
+          </feMerge>
+        </filter>
+        <radialGradient
+          id="paint0_radial_414_227"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(209.642 552.054) rotate(90) scale(213.378 208.951)"
+        >
+          <stop offset="0.0677345" stop-color="#83D3F1" />
+          <stop offset="0.135469" stop-color="#1FC6E6" />
+          <stop offset="0.494333" stop-color="#0577B0" />
+          <stop offset="0.866587" stop-color="#0E1049" />
+          <stop offset="1" stop-color="#05061A" />
+        </radialGradient>
+        <linearGradient
+          id="paint1_linear_414_227"
+          x1="188.679"
+          y1="466.559"
+          x2="188.679"
+          y2="759.349"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop offset="1" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient
+          id="paint2_linear_414_227"
+          x1="121.057"
+          y1="466.905"
+          x2="121.057"
+          y2="578.083"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop offset="1" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient
+          id="paint3_linear_414_227"
+          x1="0.470341"
+          y1="578.295"
+          x2="178.992"
+          y2="578.295"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop offset="1" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient
+          id="paint4_linear_414_227"
+          x1="473.026"
+          y1="467.117"
+          x2="297.21"
+          y2="467.117"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop offset="1" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient
+          id="paint5_linear_414_227"
+          x1="0.139593"
+          y1="467.117"
+          x2="240.873"
+          y2="467.117"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" />
+          <stop offset="1" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient
+          id="paint6_linear_414_227"
+          x1="0.3323"
+          y1="760.984"
+          x2="0.332274"
+          y2="197.499"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="white" stop-opacity="0" />
+          <stop offset="0.400681" stop-color="white" />
+          <stop offset="1" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <clipPath id="clip0_414_227">
+          <rect width="472" height="765" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
   );
 };
 

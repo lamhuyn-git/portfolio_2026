@@ -1,7 +1,63 @@
-.hero {
+// ─── Scroll wrapper: creates 250vh scroll space while hero stays sticky ───────
+.scroll-wrapper {
   position: relative;
+  height: 250vh;
+}
+
+// ─── Reveal panel: slides up from below as user scrolls ───────────────────────
+.reveal-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 6, 26, 0) 0%,
+    #03040f 14.3%,
+    #010103 100%
+  );
+
+  padding: 20rem 0;
+  transform: translateY(100%); // starts fully below viewport
+  will-change: transform;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; // click-through until fully revealed
+}
+
+.reveal-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0.6;
+}
+
+.reveal-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--grey-normal));
+}
+
+.reveal-label {
+  text-transform: uppercase;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--grey-normal);
+}
+
+// ─── Hero section ─────────────────────────────────────────────────────────────
+.hero {
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -13,6 +69,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    // không animate — background cố định tuyệt đối
   }
   &-overlay {
     position: absolute;
@@ -23,7 +80,7 @@
       rgba(97, 97, 115, 0.01) 56.31%,
       #05061a 94.38%
     );
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(1rem);
   }
   &-container {
     position: relative;
@@ -34,7 +91,21 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 2rem;
+    z-index: 10;
+    // Không animate container — chỉ dùng cho entrance animation (class-based)
   }
+
+  // ── Scroll animation target: bao quanh nội dung thực, không phải container 100vh
+  // transform-origin: center top → scale neo tại điểm 24px từ top, phình xuống + ra ngang
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    will-change: transform;
+    transform-origin: center top;
+  }
+
   &-content {
     display: flex;
     flex-direction: row;
@@ -116,41 +187,4 @@
   opacity: 1;
   transform: translateY(0);
   transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
-}
-
-// Staggered animations for individual elements
-.left-animate-out {
-  opacity: 0;
-  transform: translateY(30px) translateX(-20px);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-}
-
-.left-animate-in {
-  opacity: 1;
-  transform: translateY(0) translateX(0);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-}
-
-.right-animate-out {
-  opacity: 0;
-  transform: translateY(30px) translateX(20px);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
-}
-
-.right-animate-in {
-  opacity: 1;
-  transform: translateY(0) translateX(0);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
-}
-
-.circle-animate-out {
-  opacity: 0;
-  transform: translateY(20px) scale(0.8);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s;
-}
-
-.circle-animate-in {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.9s;
 }
