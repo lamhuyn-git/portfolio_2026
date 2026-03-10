@@ -1,3 +1,4 @@
+import AboutMe from "./components/AboutMe/AboutMe";
 import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
 
@@ -6,8 +7,8 @@ function App() {
     <div>
       {/* <Logo /> */}
       <Hero />
-      {/* <MyThinking />
       <AboutMe />
+      {/* <MyThinking />
       <Projects /> */}
       <Footer />
     </div>
