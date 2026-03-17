@@ -1,88 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
-import MyThinking from "../MyThinking/MyThinking";
 import styles from "./Hero.module.scss";
-
-// ─── Easing ───────────────────────────────────────────────────────────────────
-const easeInOut = (t: number): number =>
-  t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
-
-  // Refs for scroll-driven animation
-  const scrollWrapperRef = useRef<HTMLDivElement>(null);
-  const heroContainerRef = useRef<HTMLDivElement>(null);
-  const heroInnerRef = useRef<HTMLDivElement>(null); // animation target (actual content, not full-height container)
   const videoRef = useRef<HTMLVideoElement>(null);
-  const revealRef = useRef<HTMLDivElement>(null);
-  const maxTYRef = useRef<number | null>(null); // cached max translateY
+  const heroRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // ── Entrance animation ──────────────────────────────────────────────────
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
 
-    // ── Scroll-pinned reveal animation ──────────────────────────────────────
+    // Fade out content as user scrolls down
     let rafId: number;
-    let transitionDisabled = false;
-
-    // Đo vị trí thực của heroInner để tính maxTY chính xác (chỉ đo một lần)
-    const getMaxTY = (): number => {
-      if (maxTYRef.current !== null) return maxTYRef.current;
-      const el = heroInnerRef.current;
-      if (!el) return 300;
-      const rect = el.getBoundingClientRect();
-      maxTYRef.current = Math.max(rect.top - 24, 0);
-      return maxTYRef.current;
-    };
-
-    // translateY dừng tại PHASE_SPLIT, scale chạy toàn bộ từ scroll = 0
-    const PHASE_SPLIT = 0.42;
-
-    const updateScroll = () => {
-      const wrapper = scrollWrapperRef.current;
-      if (!wrapper) return;
-
-      const scrollY = window.scrollY;
-      const maxScroll = wrapper.offsetHeight - window.innerHeight;
-      if (maxScroll <= 0) return;
-
-      const rawProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
-      const maxTY = getMaxTY();
-
-      // translateY: chỉ active trong phase 1, lock tại top+24px sau đó
-      let ty: number;
-      if (rawProgress <= PHASE_SPLIT) {
-        ty = -maxTY * easeInOut(rawProgress / PHASE_SPLIT);
-      } else {
-        ty = -maxTY;
-      }
-
-      // scale: bắt đầu NGAY từ scroll = 0, chạy xuyên suốt đến cuối
-      const scale = 1 + 2.5 * easeInOut(rawProgress); // 1 → 3.5
-
-      // Animate heroInner (wrapper content thực, không phải container 100vh)
-      if (heroInnerRef.current) {
-        heroInnerRef.current.style.transform = `translateY(${ty}px) scale(${scale})`;
-      }
-
-      // Reveal panel trượt lên từ dưới
-      if (revealRef.current) {
-        const revealP = easeInOut(rawProgress);
-        revealRef.current.style.transform = `translateY(${(1 - revealP) * 100}%)`;
-      }
-    };
-
     const onScroll = () => {
-      // Tắt CSS transition của heroContainer khi scroll bắt đầu
-      if (!transitionDisabled && heroContainerRef.current) {
-        heroContainerRef.current.style.transition = "none";
-        transitionDisabled = true;
-      }
       cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateScroll);
+      rafId = requestAnimationFrame(() => {
+        const el = heroRef.current;
+        const content = contentRef.current;
+        if (!el || !content) return;
+
+        const rect = el.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, -rect.top / (rect.height * 0.5)));
+        content.style.opacity = `${1 - progress}`;
+      });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -95,9 +38,7 @@ export default function Hero() {
   }, []);
 
   return (
-    // ── Scroll wrapper: 250vh = 100vh hero + 150vh scroll space ───────────────
-    <div ref={scrollWrapperRef} className={styles["scroll-wrapper"]}>
-      <section className={styles.hero}>
+    <section ref={heroRef} className={styles.hero}>
         {/*Background Video — parallaxes at 30% scroll speed */}
         <video
           ref={videoRef}
@@ -115,11 +56,9 @@ export default function Hero() {
 
         {/* Content layer — entrance animation target */}
         <div
-          ref={heroContainerRef}
+          ref={contentRef}
           className={`${styles["hero-container"]} ${isVisible ? styles["animate-in"] : styles["animate-out"]}`}
         >
-          {/* hero-inner: scroll animation target — chỉ bao quanh nội dung thực */}
-          <div ref={heroInnerRef} className={styles["hero-inner"]}>
             <div
               className={`${styles["hero-content"]} ${isVisible ? styles["content-animate-in"] : styles["content-animate-out"]}`}
             >
@@ -147,7 +86,11 @@ export default function Hero() {
                       }}
                     ></div>
                   </foreignObject>
-                  <g data-figma-bg-blur-radius="5">
+                  <g
+                    data-figma-bg-blur-radius="5"
+                    className={`${styles["shift-group"]} ${isVisible ? styles["shift-animate"] : ""}`}
+                    style={{ "--shift-base": "0.4s" } as React.CSSProperties}
+                  >
                     <path
                       d="M64.3352 192.943H19V46.0341H66.3438C80.5947 46.0341 92.7893 48.9751 102.928 54.8572C113.066 60.6915 120.837 69.0843 126.241 80.0355C131.645 90.9389 134.347 103.994 134.347 119.202C134.347 134.505 131.621 147.68 126.169 158.727C120.717 169.726 112.779 178.19 102.354 184.12C91.9285 190.002 79.2557 192.943 64.3352 192.943ZM36.7898 177.162H63.1875C75.3343 177.162 85.4008 174.819 93.3871 170.132C101.373 165.446 107.327 158.774 111.249 150.119C115.17 141.463 117.131 131.157 117.131 119.202C117.131 107.342 115.194 97.1319 111.32 88.5717C107.447 79.9638 101.66 73.3643 93.9609 68.7734C86.2616 64.1347 76.6733 61.8153 65.196 61.8153H36.7898V177.162Z"
                       fill="white"
@@ -199,7 +142,7 @@ export default function Hero() {
                 </svg>
               </div>
               <div
-                className={`${styles.circle} ${isVisible ? styles["circle-animate-in"] : styles["circle-animate-out"]}`}
+                className={styles.circle}
               ></div>
               <div
                 className={`${styles.right} ${isVisible ? styles["right-animate-in"] : styles["right-animate-out"]}`}
@@ -220,7 +163,11 @@ export default function Hero() {
                       }}
                     ></div>
                   </foreignObject>
-                  <g data-figma-bg-blur-radius="5">
+                  <g
+                    data-figma-bg-blur-radius="5"
+                    className={`${styles["shift-group"]} ${isVisible ? styles["shift-animate"] : ""}`}
+                    style={{ "--shift-base": "0.92s" } as React.CSSProperties}
+                  >
                     <path
                       d="M43.7767 196C42.2743 196 41.5231 195.25 41.5231 193.749C41.5231 193.749 41.5231 193.655 41.5231 193.467C41.5231 193.467 41.617 193.374 41.8048 193.186C43.3072 189.997 44.3402 186.808 44.9036 183.619C45.467 180.242 45.8426 176.584 46.0304 172.644C46.406 170.956 47.2511 170.206 48.5658 170.393C48.9414 167.392 49.8804 162.233 51.3828 154.917C52.8853 147.601 54.5755 139.065 56.4535 129.31C58.5194 119.368 60.5852 109.05 62.6511 98.357C64.9047 87.6641 66.9706 77.534 68.8486 67.9667C70.7267 58.2118 72.2291 49.8638 73.3559 42.9228C74.4828 35.9818 75.0462 31.3858 75.0462 29.1346C74.1071 28.5719 71.6657 28.1967 67.7218 28.0091C63.7779 27.8215 59.2706 27.7277 54.1999 27.7277C48.5658 27.7277 42.7438 27.8215 36.7341 28.0091C30.7243 28.1967 25.278 28.3843 20.3951 28.5719C15.7 28.5719 12.3195 28.5719 10.2537 28.5719C8.75122 28.5719 8 27.8215 8 26.3207C8 24.0696 9.50244 22.6626 12.5073 22.0998C15.5122 21.3495 17.6719 20.8805 18.9866 20.6929C21.8036 20.5053 26.217 20.4115 32.2268 20.4115C38.2365 20.2239 44.8097 20.1301 51.9462 20.1301C59.0828 19.9425 65.7499 19.8487 71.9474 19.8487C78.3328 19.8487 83.1218 19.8487 86.3144 19.8487H149.417C150.919 19.8487 151.67 20.4115 151.67 21.5371C151.67 23.2254 150.637 24.6324 148.572 25.7579C146.694 26.6959 145.097 27.2587 143.783 27.4463C142.468 27.6339 140.59 27.8215 138.148 28.0091C135.895 28.1967 133.453 28.2905 130.824 28.2905C127.068 28.2905 122.655 28.1967 117.584 28.0091C112.513 27.8215 107.818 27.7277 103.499 27.7277C100.306 27.7277 97.4888 27.8215 95.0473 28.0091C92.7937 28.1967 91.1973 28.5719 90.2583 29.1346C88.7559 35.1377 86.9718 42.6414 84.9059 51.646C82.8401 60.6505 80.6803 70.3116 78.4267 80.6293C76.173 90.7595 74.0133 100.796 71.9474 110.738C70.0694 120.681 68.2852 129.685 66.595 137.752C65.0925 145.818 63.8718 152.103 62.9328 156.605C61.6182 163.734 60.5852 170.581 59.834 177.147C59.2706 183.525 58.9889 187.558 58.9889 189.247C58.9889 189.997 58.0499 190.747 56.1718 191.498C54.2938 192.248 52.3218 192.905 50.256 193.467C48.1901 194.03 46.7816 194.405 46.0304 194.593C45.6548 195.531 44.9036 196 43.7767 196Z"
                       fill="white"
@@ -280,15 +227,7 @@ export default function Hero() {
               </div>
               <Button text="See my project" className={styles["right"]} />
             </div>
-          </div>{" "}
-          {/* /hero-inner */}
-        </div>
-
-        {/* Reveal panel — slides up from below as user scrolls */}
-        <div ref={revealRef} className={styles["reveal-panel"]}>
-          <MyThinking />
         </div>
       </section>
-    </div>
   );
 }

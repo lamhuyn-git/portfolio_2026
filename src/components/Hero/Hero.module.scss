@@ -1,60 +1,6 @@
-// ─── Scroll wrapper: creates 250vh scroll space while hero stays sticky ───────
-.scroll-wrapper {
-  position: relative;
-  height: 250vh;
-}
-
-// ─── Reveal panel: slides up from below as user scrolls ───────────────────────
-.reveal-panel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 6, 26, 0) 0%,
-    #03040f 14.3%,
-    #010103 100%
-  );
-
-  padding: 20rem 0;
-  transform: translateY(100%); // starts fully below viewport
-  will-change: transform;
-  z-index: 15;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none; // click-through until fully revealed
-}
-
-.reveal-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  opacity: 0.6;
-}
-
-.reveal-line {
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent, var(--grey-normal));
-}
-
-.reveal-label {
-  text-transform: uppercase;
-  font-size: 0.55rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  color: var(--grey-normal);
-}
-
 // ─── Hero section ─────────────────────────────────────────────────────────────
 .hero {
-  position: sticky;
-  top: 0;
+  position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -88,7 +34,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     padding-bottom: 2rem;
     z-index: 10;
@@ -113,17 +59,16 @@
     gap: 1rem;
     align-items: flex-end;
     z-index: 10;
-    width: 45%;
+    width: 100%;
 
     & .left {
-      width: 45%;
+      width: 50%;
       height: fit-content;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     & .right {
-      width: 35%;
       height: fit-content;
       display: flex;
       align-items: center;
@@ -134,11 +79,11 @@
       aspect-ratio: 1/1;
       background: #fff;
       border-radius: 100%;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
     }
   }
   &-text {
-    width: 40%;
+    width: 95%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -149,14 +94,14 @@
     & .left,
     & .right,
     & .mid {
-      width: 35%;
+      width: calc(1 / 3);
       display: flex;
       flex-direction: row;
       gap: 0.25rem;
       width: max-content;
       p {
         text-transform: uppercase;
-        font-size: 0.5rem;
+        font-size: 0.85rem;
         font-weight: 500;
         color: var(--grey-normal);
       }
@@ -188,3 +133,36 @@
   transform: translateY(0);
   transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
 }
+
+// ─── Shift animation for SVG letter paths (Canva-style stagger reveal) ───────
+@keyframes shift-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.shift-group {
+  > path {
+    opacity: 0;
+  }
+}
+
+.shift-animate {
+  > path {
+    animation: shift-in 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @for $i from 1 through 10 {
+    > path:nth-child(#{$i}) {
+      animation-delay: calc(var(--shift-base, 0.4s) + #{($i - 1) * 0.09}s);
+    }
+  }
+}
+
