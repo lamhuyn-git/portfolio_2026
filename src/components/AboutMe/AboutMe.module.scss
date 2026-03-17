@@ -1,7 +1,7 @@
 // ─── Wrapper — wheel events are intercepted for snap navigation ──────────
 .about-wrapper {
   position: relative;
-  height: 400vh;
+  height: 160vh;
 }
 
 // ─── Pinned section ───────────────────────────────────────────────────────
@@ -12,22 +12,22 @@
   height: 100vh;
   overflow: hidden; // clips SVG that extends beyond viewport
   background: linear-gradient(180deg, #010103 0%, #05061a 100%);
-  padding: 2rem 2rem 4rem 2rem;
+  padding: 3rem 2rem 1rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
   // ── Container for header text — sits above the SVG decoration ────────
   &_container {
     position: relative;
-    z-index: 2;
     display: flex;
-    width: 90%;
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 32px;
+    align-items: flex-start;
+    justify-content: space-between;
   }
 
   // ── Header ────────────────────────────────────────────────────────────
@@ -36,17 +36,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
-    text-align: center;
     overflow: hidden;
 
     & .title {
       p {
         width: 100%;
         color: #fff;
-        font-size: 3rem;
-        font-style: normal;
+        font-size: 4rem;
         font-weight: 500;
         line-height: normal;
         letter-spacing: -3.239px;
@@ -67,74 +65,59 @@
 
     & .text-line {
       opacity: 0;
-      will-change: transform, opacity;
-    }
-
-    & .slide-from-left {
-      transform: translateX(-100%);
-    }
-
-    & .slide-from-right {
-      transform: translateX(100%);
+      will-change: transform, opacity, filter;
+      transform: translateY(40px);
+      filter: blur(8px);
     }
   }
-
-  // ── Decoration layer — covers entire sticky section ───────────────────
-  // translateY is applied via JS to "pan" the camera following the orb
   &_content {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    will-change: transform;
-
-    & .decoration {
-      width: 100%;
-
-      svg {
-        width: 100%;
-        height: auto;
-        display: block;
-        overflow: visible;
-      }
-    }
-  }
-
-  // ── Info label — follows orb position via JS ────────────────────────────
-  &_info {
-    position: absolute;
-    will-change: left, top;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-    padding-right: 1rem;
-    border-right: 2px solid rgba(255, 255, 255, 0.3);
-    text-align: right;
-    transform: translateX(-100%);
-    pointer-events: auto;
-  }
+    justify-content: flex-end;
+    align-items: flex-end;
+    &_item {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding-block: 1.5rem;
+      border-top: 0.5px solid var(--Grey-Dark, rgb(191, 191, 191, 0.5));
+      opacity: 0.1;
+      transition: opacity 0.5s ease;
 
-  &_info_dot {
-    position: absolute;
-    right: -5px;
-    top: -12px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #fff;
-  }
+      &--active {
+        opacity: 1;
+      }
+    }
+    & .detail {
+      color: var(--Grey-Dark, #bfbfbf);
+      font-size: 0.85rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 130%; /* 14.574px */
+      letter-spacing: -0.448px;
+    }
+    & .title {
+      p {
+        color: var(--Grey-Normal, #fff);
+        font-size: 0.85rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -0.5px;
+        text-transform: uppercase;
+      }
+    }
 
-  &_info_type {
-    color: #1ca4f8;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  &_info_detail {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.75rem;
-    line-height: 1.5;
+    & .subtitle {
+      color: #1ca4f8;
+      font-size: 0.85rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+    }
   }
 }

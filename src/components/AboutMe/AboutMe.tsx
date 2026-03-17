@@ -3,28 +3,29 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./AboutMe.module.scss";
 import Decorate from "./Decorate";
 
-// ── 4 content sections that appear at each scroll stop ──────────────────────
+// ── 3 content sections that appear at each scroll stop ──────────────────────
 const sections = [
   {
-    type: "INFORMATION TECHNOLOGY",
-    detail: "University of Transport and Communications\nCampus in Ho Chi Minh City",
+    type: "EDUCATION",
+    title: "INFORMATION TECHNOLOGY",
+    detail:
+      "University of Transport and Communications\nCampus in Ho Chi Minh City",
   },
   {
     type: "CERTIFICATIONS",
+    title: "Google UX Design Professional Certificate",
     detail: "Google UX Design Professional Certificate\nCompleted May 21, 2024",
   },
   {
     type: "EXPERIENCE",
-    detail: "UX/UI Designer & Frontend Developer\nFreelance & Personal Projects",
-  },
-  {
-    type: "SKILLS",
-    detail: "Figma · React · TypeScript\nSCSS · Motion Design",
+    title: "UX/UI Designer & Frontend Developer",
+    detail:
+      "UX/UI Designer & Frontend Developer\nFreelance & Personal Projects",
   },
 ];
 
-// 4 stops on the path (0 → 1), evenly spaced
-const STOPS = [0, 0.33, 0.66, 1];
+// 3 stops on the path (0 → 1), matching 3 sections
+const STOPS = [0, 0.5, 1];
 
 const SVG_VIEWBOX_W = 1326;
 
@@ -54,13 +55,14 @@ const AboutMe: React.FC = () => {
 
           textLines.forEach((el, i) => {
             const elem = el as HTMLElement;
-            elem.style.transitionProperty = "transform, opacity";
-            elem.style.transitionDuration = "0.75s, 0.75s";
+            elem.style.transitionProperty = "transform, opacity, filter";
+            elem.style.transitionDuration = "1.3s";
             elem.style.transitionTimingFunction =
-              "cubic-bezier(0.16, 1, 0.3, 1), ease";
-            elem.style.transitionDelay = `${i * 0.18}s, ${i * 0.18}s`;
-            elem.style.transform = "translateX(0)";
+              "cubic-bezier(0.16, 1, 0.3, 1)";
+            elem.style.transitionDelay = `${0.4 + i * 0.09}s`;
+            elem.style.transform = "translateY(0)";
             elem.style.opacity = "1";
+            elem.style.filter = "blur(0)";
           });
 
           observer.disconnect();
@@ -219,22 +221,17 @@ const AboutMe: React.FC = () => {
               </p>
             </div>
           </div>
-        </div>
-
-        <div ref={decorateRef} className={styles.about_content}>
-          <Decorate classname={styles.decoration} svgRef={decorateSvgRef} />
-
-          <div ref={infoRef} className={styles.about_info} key={activeSection}>
-            <div className={styles.about_info_dot} />
-            <p className={styles.about_info_type}>{current.type}</p>
-            <p className={styles.about_info_detail}>
-              {current.detail.split("\n").map((line, i) => (
-                <React.Fragment key={i}>
-                  {i > 0 && <br />}
-                  {line}
-                </React.Fragment>
-              ))}
-            </p>
+          <div className={styles["about_content"]}>
+            {sections.map((section, i) => (
+              <div
+                key={i}
+                className={`${styles["about_content_item"]} ${i === activeSection ? styles["about_content_item--active"] : ""}`}
+              >
+                <p className={styles.title}>{section.type}</p>
+                <p className={styles.subtitle}>{section.title}</p>
+                <p className={styles.detail}>{section.detail}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
