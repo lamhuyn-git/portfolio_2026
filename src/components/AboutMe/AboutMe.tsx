@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import styles from "./AboutMe.module.scss";
-import Decorate from "./Decorate";
 
 // ── 3 content sections that appear at each scroll stop ──────────────────────
 const sections = [
@@ -10,17 +9,23 @@ const sections = [
     title: "INFORMATION TECHNOLOGY",
     detail:
       "University of Transport and Communications\nCampus in Ho Chi Minh City",
+    startTime: "2020",
+    endTime: "2024",
   },
   {
     type: "CERTIFICATIONS",
     title: "Google UX Design Professional Certificate",
     detail: "Google UX Design Professional Certificate\nCompleted May 21, 2024",
+    startTime: "2020",
+    endTime: "2024",
   },
   {
     type: "EXPERIENCE",
     title: "UX/UI Designer & Frontend Developer",
     detail:
       "UX/UI Designer & Frontend Developer\nFreelance & Personal Projects",
+    startTime: "2020",
+    endTime: "2024",
   },
 ];
 
@@ -48,6 +53,9 @@ const AboutMe: React.FC = () => {
 
     if (header && wrapper) {
       const textLines = header.querySelectorAll(`.${styles["text-line"]}`);
+      const contentItems = wrapper.querySelectorAll(
+        `.${styles["about_content_item"]}`,
+      );
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -64,6 +72,18 @@ const AboutMe: React.FC = () => {
             elem.style.opacity = "1";
             elem.style.filter = "blur(0)";
           });
+
+          const firstItem = contentItems[0] as HTMLElement | undefined;
+          if (firstItem) {
+            const baseDelay = 0.4 + textLines.length * 0.09;
+            firstItem.style.transitionProperty = "transform, filter";
+            firstItem.style.transitionDuration = "1.3s";
+            firstItem.style.transitionTimingFunction =
+              "cubic-bezier(0.16, 1, 0.3, 1)";
+            firstItem.style.transitionDelay = `${baseDelay}s`;
+            firstItem.style.transform = "translateY(0)";
+            firstItem.style.filter = "blur(0)";
+          }
 
           observer.disconnect();
         },
@@ -202,23 +222,13 @@ const AboutMe: React.FC = () => {
       <section ref={aboutRef} className={styles.about}>
         <div className={styles.about_container}>
           <div ref={headerRef} className={styles.about_header}>
-            <p
-              className={`${styles.subtitle} ${styles["text-line"]} ${styles["slide-from-left"]}`}
-            >
+            <p className={`${styles.subtitle} ${styles["text-line"]}`}>
               Something about me
             </p>
             <div className={styles.title}>
-              <p
-                className={`${styles["text-line"]} ${styles["slide-from-left"]}`}
-              >
-                {" "}
-                A journey of turning
-              </p>
-              <p
-                className={`${styles["text-line"]} ${styles["slide-from-right"]}`}
-              >
-                small ideas into creative value
-              </p>
+              <p className={styles["text-line"]}> A journey of turning</p>
+              <p className={styles["text-line"]}>small ideas into</p>
+              <p className={styles["text-line"]}>creative value</p>
             </div>
           </div>
           <div className={styles["about_content"]}>
@@ -227,9 +237,15 @@ const AboutMe: React.FC = () => {
                 key={i}
                 className={`${styles["about_content_item"]} ${i === activeSection ? styles["about_content_item--active"] : ""}`}
               >
-                <p className={styles.title}>{section.type}</p>
-                <p className={styles.subtitle}>{section.title}</p>
-                <p className={styles.detail}>{section.detail}</p>
+                <div className={styles.left}>
+                  <p className={styles.title}>{section.type}</p>
+                  <p className={styles.subtitle}>{section.title}</p>
+                  <p className={styles.detail}>{section.detail}</p>
+                </div>
+                <div className={styles.right}>
+                  <p className={styles.start}>{section.startTime}</p>-
+                  <p className={styles.end}>{section.endTime}</p>
+                </div>
               </div>
             ))}
           </div>

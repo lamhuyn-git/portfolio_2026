@@ -22,7 +22,7 @@
   &_container {
     position: relative;
     display: flex;
-    width: 98%;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
     flex-direction: column;
@@ -79,45 +79,64 @@
     &_item {
       width: 35%;
       display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
+      justify-content: space-between;
+      align-items: flex-start;
       padding-block: 1.5rem;
-      border-top: 0.5px solid var(--Grey-Dark, rgb(191, 191, 191, 0.5));
       opacity: 0.1;
-      transition: opacity 0.5s ease;
+      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 
+      &:first-child {
+        transform: translateY(40px);
+        filter: blur(8px);
+        will-change: transform, filter;
+      }
+      // border-bottom: 0.5px solid var(--Grey-Dark, rgb(191, 191, 191, 0.5));
+      & .left {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        & .title {
+          font-size: 0.75rem;
+          color: var(--grey-dark);
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+        & .subtitle {
+          color: #1ca4f8;
+          font-size: 0.75rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+          letter-spacing: -0.5px;
+          text-transform: uppercase;
+        }
+        & .detail {
+          color: var(--grey-dark);
+          font-size: 0.75rem;
+          font-weight: 500;
+          line-height: 1.55;
+        }
+      }
+      & .right {
+        display: flex;
+        flex-direction: row;
+        gap: 0.35rem;
+        align-items: center;
+        & .start {
+          color: var(--Grey-Dark);
+          font-size: 0.75rem;
+          font-weight: 200;
+        }
+        & .end {
+          color: var(--Grey-Normal);
+          font-size: 0.75rem;
+          font-weight: 500;
+        }
+      }
       &--active {
         opacity: 1;
       }
-    }
-    & .detail {
-      color: var(--Grey-Dark, #bfbfbf);
-      font-size: 0.85rem;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 130%; /* 14.574px */
-      letter-spacing: -0.448px;
-    }
-    & .title {
-      p {
-        color: var(--Grey-Normal, #fff);
-        font-size: 0.85rem;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-        letter-spacing: -0.5px;
-        text-transform: uppercase;
-      }
-    }
-
-    & .subtitle {
-      color: #1ca4f8;
-      font-size: 0.85rem;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      letter-spacing: -0.5px;
-      text-transform: uppercase;
     }
   }
 }
