@@ -8,12 +8,12 @@ const LINES = ["I Design Solutions", "Not just interfaces"];
 const projectsData = [
   {
     title: "Melody - A Music Player Application",
-    img: "https://ik.imagekit.io/mku5dcybr/Me.png?updatedAt=1753894222146",
+    img: "https://zeyna.pethemes.com/wp-content/uploads/2026/01/showcase_webgl_carousel-scaled.webp",
     tags: ["React", "TypeScript", "SCSS", "Application Design"],
   },
   {
     title: "Project Two",
-    img: "https://zeyna.pethemes.com/wp-content/uploads/2026/01/showcase_webgl_carousel-scaled.webp",
+    img: "https://ik.imagekit.io/mku5dcybr/Me.png?updatedAt=1753894222146",
     tags: ["JavaScript", "HTML", "CSS"],
   },
   {
@@ -102,8 +102,10 @@ const Projects = () => {
             Math.min(1, (rawProgress - cardStart) / (cardEnd - cardStart)),
           );
 
-          // Float up
-          const translateY = (1 - cardProgress) * 100;
+          // Float up: first card starts at 40% (already partially visible at ~2/3 screen)
+          // Other cards start at 100% (fully offscreen)
+          const startY = i === 0 ? 40 : 100;
+          const translateY = (1 - cardProgress) * startY;
 
           // top: 10% when not scrolled → -10% when fully scrolled in
           const top = 10 - cardProgress * 20;
