@@ -20,6 +20,7 @@ const Projects = () => {
   const projects = projectsData;
   const contentRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
   const showcaseRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -63,6 +64,18 @@ const Projects = () => {
         const wh = window.innerHeight;
         const scrollable = rect.height - wh;
         const rawProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
+
+        // Fade out projects_top synced with first card's scroll progress
+        const topEl = topRef.current;
+        if (topEl) {
+          const firstCardStart = textPhase;
+          const firstCardEnd = textPhase + (1 / totalCards) * cardPhase;
+          const firstCardProgress = Math.max(
+            0,
+            Math.min(1, (rawProgress - firstCardStart) / (firstCardEnd - firstCardStart)),
+          );
+          topEl.style.opacity = `${1 - firstCardProgress}`;
+        }
 
         showcaseRefs.current.forEach((card, i) => {
           if (!card) return;
@@ -115,7 +128,7 @@ const Projects = () => {
     <div ref={wrapperRef} className={styles["projects-wrapper"]}>
       <div className={styles.projects}>
         <div className={styles.projects_container}>
-          <div className={styles.projects_top}>
+          <div ref={topRef} className={styles.projects_top}>
             <div className={styles.projects_top_wrapper}>
               <div ref={contentRef} className={styles.projects_top_content}>
                 {LINES.map((line, lineIdx) => (
