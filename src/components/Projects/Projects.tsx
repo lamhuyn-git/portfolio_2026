@@ -1,18 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import Button from "../Button/Button";
+import Showcase from "./Showcase";
 import styles from "./Projects.module.scss";
 
 const LINES = ["I Design Solutions", "Not just interfaces"];
 
 const projectsData = [
   {
-    title: "Project One",
+    title: "Melody - A Music Player Application",
+    img: "https://ik.imagekit.io/mku5dcybr/Me.png?updatedAt=1753894222146",
+    tags: ["React", "TypeScript", "SCSS", "Application Design"],
   },
   {
     title: "Project Two",
+    img: "https://zeyna.pethemes.com/wp-content/uploads/2026/01/showcase_webgl_carousel-scaled.webp",
+    tags: ["JavaScript", "HTML", "CSS"],
   },
   {
     title: "Project Three",
+    img: "https://zeyna.pethemes.com/wp-content/uploads/2026/01/showcase_webgl_carousel-scaled.webp",
+    tags: ["Python", "Django", "PostgreSQL"],
   },
 ];
 
@@ -72,7 +79,10 @@ const Projects = () => {
           const firstCardEnd = textPhase + (1 / totalCards) * cardPhase;
           const firstCardProgress = Math.max(
             0,
-            Math.min(1, (rawProgress - firstCardStart) / (firstCardEnd - firstCardStart)),
+            Math.min(
+              1,
+              (rawProgress - firstCardStart) / (firstCardEnd - firstCardStart),
+            ),
           );
           const opacity = 1 - firstCardProgress;
           const scale = 1 - firstCardProgress * 0.1;
@@ -155,8 +165,8 @@ const Projects = () => {
               </div>
               <div className={styles.projects_top_desc}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy text
-                ever since the
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the
               </div>
               <div className={styles.projects_top_button}>
                 <svg
@@ -171,7 +181,7 @@ const Projects = () => {
                     fill="white"
                   />
                 </svg>
-                <Button text="View Projects" />
+                <Button text="Scroll To View Projects" />
                 <svg
                   width="5"
                   height="19"
@@ -190,24 +200,16 @@ const Projects = () => {
 
           {/* Each project is its own showcase card that floats up */}
           {projects.map((project, index) => (
-            <div
+            <Showcase
               key={index}
-              ref={(el) => {
+              title={project.title}
+              index={index}
+              img={project.img}
+              tags={project.tags}
+              showcaseRef={(el) => {
                 showcaseRefs.current[index] = el;
               }}
-              className={styles.projects_showcase}
-              style={{
-                zIndex: 2 + index,
-                background: index % 2 === 0 ? "#1d1f21" : "#ececec",
-              }}
-            >
-              <div className={styles.projects_showcase_image}></div>
-              <div className={styles.projects_showcase_info}>
-                <p className={styles.projects_showcase_title}>
-                  {project.title}
-                </p>
-              </div>
-            </div>
+            />
           ))}
 
           {/* Bottom nav stays on top */}

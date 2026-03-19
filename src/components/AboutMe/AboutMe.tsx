@@ -9,28 +9,34 @@ const sections = [
     title: "INFORMATION TECHNOLOGY",
     detail:
       "University of Transport and Communications\nCampus in Ho Chi Minh City",
-    startTime: "2020",
-    endTime: "2024",
+    startTime: "2023",
+    endTime: "Now",
   },
   {
     type: "CERTIFICATIONS",
     title: "Google UX Design Professional Certificate",
     detail: "Google UX Design Professional Certificate\nCompleted May 21, 2024",
-    startTime: "2020",
-    endTime: "2024",
+    startTime: "February 2024",
+    endTime: "June 2024",
   },
   {
     type: "EXPERIENCE",
-    title: "UX/UI Designer & Frontend Developer",
-    detail:
-      "UX/UI Designer & Frontend Developer\nFreelance & Personal Projects",
-    startTime: "2020",
-    endTime: "2024",
+    title: "UX & Operation Intern",
+    detail: "Website Administrator & Designer – Charm Inc",
+    startTime: "June 2024",
+    endTime: "September 2024",
+  },
+  {
+    type: "EXPERIENCE",
+    title: "UX/UI Desisgner Intern",
+    detail: "Design Intern at T-Design Center (TMA Solutions)",
+    startTime: "September 2025",
+    endTime: "February 2026",
   },
 ];
 
-// 3 stops on the path (0 → 1), matching 3 sections
-const STOPS = [0, 0.5, 1];
+// 4 stops on the path (0 → 1), matching 4 sections
+const STOPS = [0, 0.33, 0.67, 1];
 
 const SVG_VIEWBOX_W = 1326;
 
@@ -41,6 +47,7 @@ const AboutMe: React.FC = () => {
   const decorateRef = useRef<HTMLDivElement>(null);
   const decorateSvgRef = useRef<SVGSVGElement | null>(null);
   const infoRef = useRef<HTMLDivElement>(null);
+  const contentListRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState(0);
 
   useEffect(() => {
@@ -215,6 +222,29 @@ const AboutMe: React.FC = () => {
     };
   }, []);
 
+  // Slide content list so active item is centered among 3 visible slots
+  useEffect(() => {
+    const list = contentListRef.current;
+    if (!list) return;
+    const items = list.querySelectorAll(`.${styles["about_content_item"]}`);
+    if (items.length === 0) return;
+
+    // Calculate real item height including padding
+    const itemEl = items[0] as HTMLElement;
+    const itemHeight = itemEl.offsetHeight;
+
+    // Shift list so active item is always at the top of the visible area
+    // active=0 → shift=0
+    // active=1 → shift=-1*itemHeight
+    // active=2 → shift=-2*itemHeight
+    // active=3 → shift=-3*itemHeight (clamped so last 3 items stay visible)
+    const maxShift = Math.max(0, items.length - 3);
+    const offset = Math.min(activeSection, maxShift);
+    const shift = -offset * itemHeight;
+
+    list.style.transform = `translateY(${shift}px)`;
+  }, [activeSection]);
+
   const current = sections[activeSection];
 
   return (
@@ -232,22 +262,24 @@ const AboutMe: React.FC = () => {
             </div>
           </div>
           <div className={styles["about_content"]}>
-            {sections.map((section, i) => (
-              <div
-                key={i}
-                className={`${styles["about_content_item"]} ${i === activeSection ? styles["about_content_item--active"] : ""}`}
-              >
-                <div className={styles.left}>
-                  <p className={styles.title}>{section.type}</p>
-                  <p className={styles.subtitle}>{section.title}</p>
-                  <p className={styles.detail}>{section.detail}</p>
+            <div ref={contentListRef} className={styles["about_content_inner"]}>
+              {sections.map((section, i) => (
+                <div
+                  key={i}
+                  className={`${styles["about_content_item"]} ${i === activeSection ? styles["about_content_item--active"] : ""}`}
+                >
+                  <div className={styles.left}>
+                    <p className={styles.title}>{section.type}</p>
+                    <p className={styles.subtitle}>{section.title}</p>
+                    <p className={styles.detail}>{section.detail}</p>
+                  </div>
+                  <div className={styles.right}>
+                    <p className={styles.start}>{section.startTime}</p>-
+                    <p className={styles.end}>{section.endTime}</p>
+                  </div>
                 </div>
-                <div className={styles.right}>
-                  <p className={styles.start}>{section.startTime}</p>-
-                  <p className={styles.end}>{section.endTime}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
