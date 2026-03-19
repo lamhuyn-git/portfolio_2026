@@ -90,7 +90,7 @@ const AboutMe: React.FC = () => {
         { threshold: 0, rootMargin: "0px 0px 0px 0px" },
       );
 
-      observer.observe(wrapper);
+      observer.observe(header);
     }
 
     // ── Orb animation: snap between 4 stops via wheel ──────────────────

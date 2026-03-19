@@ -4,42 +4,61 @@ import styles from "./MyThinking.module.scss";
 import DecorateImage from "../../assets/images/thinking_decorate.png";
 import Decoration from "./Decoration";
 
+const QUOTE_WORDS = [
+  "DESIGN", "IS", "NOT", "DECORATION.",
+  "IT", "IS", "THE", "ART", "OF",
+  "SHAPING", "EXPERIENCES",
+  "ENGAGING,", "INTENTIONAL,", "AND",
+  "DEEPLY", "IMPACTFUL.",
+];
+
 const MyThinking: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     let rafId: number;
 
-    const updateScale = () => {
+    const update = () => {
       if (!sectionRef.current || !containerRef.current) return;
 
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const windowCenter = windowHeight / 2;
 
-      // Tính center của element
       const elementCenter = rect.top + rect.height / 2;
-
-      // Khoảng cách từ center (normalized từ 0 đến 1)
-      const maxDistance = windowHeight * 0.6; // Max distance để scale
+      const maxDistance = windowHeight * 0.6;
       const distanceFromCenter = Math.abs(elementCenter - windowCenter);
       const normalizedDistance = Math.min(distanceFromCenter / maxDistance, 1);
 
-      // Scale từ 0.65 (xa center) đến 1.0 (tại center)
+      // Scale
       const scale = 1 - normalizedDistance * 0.25;
-
-      // Apply transform trực tiếp, không qua state
       containerRef.current.style.transform = `scale(${scale})`;
+
+      // Word-by-word reveal: tính scroll progress từ 0 → 1
+      // khi section đi từ dưới viewport lên center
+      const scrollProgress = Math.max(0, Math.min(1, 1 - (rect.top / (windowHeight * 0.8))));
+      const totalWords = QUOTE_WORDS.length;
+
+      wordRefs.current.forEach((span, i) => {
+        if (!span) return;
+        // Mỗi từ có 1 "window" riêng để chuyển từ mờ → sáng
+        const wordStart = i / totalWords;
+        const wordEnd = (i + 1) / totalWords;
+        const wordProgress = Math.max(0, Math.min(1, (scrollProgress - wordStart) / (wordEnd - wordStart)));
+        const opacity = 0.2 + wordProgress * 0.8;
+        span.style.opacity = `${opacity}`;
+      });
     };
 
     const onScroll = () => {
       cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateScale);
+      rafId = requestAnimationFrame(update);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    updateScale(); // Initial call
+    update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -51,26 +70,27 @@ const MyThinking: React.FC = () => {
     <section ref={sectionRef} className={styles.thinking}>
       <div ref={containerRef} className={styles.thinking__container}>
         <Decoration className={styles.thinking__decoration} />
-        <div className={styles.image}>
-          <img src={DecorateImage} alt="Decorative design element" />
-        </div>
+        <img
+          src={DecorateImage}
+          alt="Decorative design element"
+          className={styles.thinking__image}
+        />
         <div className={styles.thinking__inner}>
           <div className={styles.thinking__top}>
             <p className={styles.thinking__label}>MY THINKING</p>
             <p className={styles.thinking__quote}>
-              DESIGN IS NOT
-              <br />
-              DECORATION.
-              <br />
-              IT IS THE ART OF
-              <br />
-              SHAPING EXPERIENCES
-              <br />
-              ENGAGING,
-              <br />
-              INTENTIONAL, AND
-              <br />
-              DEEPLY IMPACTFUL.
+              {QUOTE_WORDS.map((word, i) => (
+                <React.Fragment key={i}>
+                  <span
+                    ref={(el) => { wordRefs.current[i] = el; }}
+                    className={styles.thinking__word}
+                  >
+                    {word}
+                  </span>
+                  {/* Line breaks sau các từ cuối mỗi dòng */}
+                  {(i === 2 || i === 3 || i === 8 || i === 10 || i === 11 || i === 13) ? <br /> : " "}
+                </React.Fragment>
+              ))}
             </p>
           </div>
           <div className={styles.thinking__bottom}>
