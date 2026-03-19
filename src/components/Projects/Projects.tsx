@@ -1,137 +1,232 @@
-import React from "react";
-
+import React, { useEffect, useRef } from "react";
+import Button from "../Button/Button";
 import styles from "./Projects.module.scss";
-import Decorate from "./Decorate";
-import Circle from "./Circle";
 
-interface Project {
-  id: string;
-  tag: string;
-  title: string;
-  description: string;
-  accent: string;
-  bg: string;
-  featured: boolean;
-}
+const LINES = ["I Design Solutions", "Not just interfaces"];
 
-const projects: Project[] = [
+const projectsData = [
   {
-    id: "01",
-    tag: "Fitness website",
-    title: "BUILD STRENGTH. BUILD YOU.",
-    description:
-      "Brand identity and landing page for a performance fitness brand.",
-    accent: "#ff3333",
-    bg: "#111111",
-    featured: true,
+    title: "Project One",
   },
   {
-    id: "02",
-    tag: "Creative website",
-    title: "Orbit Visual",
-    description: "A creative studio portfolio exploring bold spatial design.",
-    accent: "#ffffff",
-    bg: "#0a0a0a",
-    featured: false,
+    title: "Project Two",
   },
   {
-    id: "03",
-    tag: "Finance website",
-    title: "Finova",
-    description: "Modern fintech dashboard and marketing site.",
-    accent: "#00ccff",
-    bg: "#050510",
-    featured: false,
-  },
-  {
-    id: "04",
-    tag: "Creative portfolio",
-    title: "NOIR",
-    description: "Dark editorial photography portfolio.",
-    accent: "#ffffff",
-    bg: "#0d0d0d",
-    featured: false,
-  },
-  {
-    id: "05",
-    tag: "Mobile app",
-    title: "TripAI",
-    description: "AI-powered travel planning mobile app UI.",
-    accent: "#ff8800",
-    bg: "#0a0805",
-    featured: false,
+    title: "Project Three",
   },
 ];
 
-const Projects: React.FC = () => {
+const Projects = () => {
+  const projects = projectsData;
+  const contentRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const showcaseRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Letter shift-in animation — observe the text content directly
+    const el = contentRef.current;
+    if (el) {
+      const letters = el.querySelectorAll(`.${styles.letter}`);
+
+      const letterObserver = new IntersectionObserver(
+        (entries) => {
+          if (!entries[0].isIntersecting) return;
+
+          letters.forEach((span) => {
+            const s = span as HTMLElement;
+            s.style.transform = "translateY(0)";
+            s.style.opacity = "1";
+            s.style.filter = "blur(0)";
+          });
+
+          letterObserver.disconnect();
+        },
+        { threshold: 0.1 },
+      );
+
+      letterObserver.observe(el);
+    }
+
+    // Showcases float-up on scroll — each card rolls up from bottom
+    const totalCards = projectsData.length;
+    // First 30% of scroll = text visible, remaining 70% = cards float up
+    const textPhase = 0.3;
+    const cardPhase = 1 - textPhase;
+    let rafId: number;
+
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!wrapperRef.current) return;
+
+        const rect = wrapperRef.current.getBoundingClientRect();
+        const wh = window.innerHeight;
+        const scrollable = rect.height - wh;
+        const rawProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
+
+        showcaseRefs.current.forEach((card, i) => {
+          if (!card) return;
+
+          // Cards only start after text phase
+          const cardStart = textPhase + (i / totalCards) * cardPhase;
+          const cardEnd = textPhase + ((i + 1) / totalCards) * cardPhase;
+          const cardProgress = Math.max(
+            0,
+            Math.min(1, (rawProgress - cardStart) / (cardEnd - cardStart)),
+          );
+
+          // Float up
+          const translateY = (1 - cardProgress) * 100;
+
+          // top: 10% when not scrolled → -10% when fully scrolled in
+          const top = 10 - cardProgress * 20;
+          card.style.top = `${top}%`;
+
+          // Scale down when next card is coming in
+          let scale = 1;
+          if (i < totalCards - 1) {
+            const nextStart = textPhase + ((i + 1) / totalCards) * cardPhase;
+            const nextEnd = textPhase + ((i + 2) / totalCards) * cardPhase;
+            const nextProgress = Math.max(
+              0,
+              Math.min(1, (rawProgress - nextStart) / (nextEnd - nextStart)),
+            );
+            scale = 1 - nextProgress * 0.15;
+          }
+
+          card.style.transform = `translateY(${translateY}%) scale(${scale})`;
+        });
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // Count total letters across all lines for continuous stagger
+  let globalIndex = 0;
+
   return (
-    <section className={styles.projects} id="projects">
-      {/* Solutions headline */}
-      <div className={styles.projects__headline_wrap}>
-        <Decorate classname={styles.projects__decorate} />
-        <Circle classname={styles.projects__orb} />
-        <div className={styles.projects__headline_text}>
-          <p className={styles.projects__desc}>
-            That gap people think — it is my pain.
-            <br />
-            Hunt clients who are worthy, seek magic.
-            <br />
-            Lived dream, being deeply impactful.
-          </p>
-          <a href="#projects" className={styles.projects__btn}>
-            SEE MY PROJECT <span>↗</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Projects count */}
-      {/* <div className={styles.projects__count_bar}>
-        <span className={styles.projects__count_label}>5 PROJECTS</span>
-      </div> */}
-
-      {/* Projects grid */}
-      {/* <div className={styles.projects__grid}>
-        {projects.map((project: Project) => (
-          <div
-            key={project.id}
-            className={`${styles.project_card} ${project.featured ? styles["project_card--featured"] : ""}`}
-            style={{ background: project.bg }}
-          >
-            <div className={styles.project_card__inner}>
-              <div className={styles.project_card__header}>
-                <span className={styles.project_card__tag}>{project.tag}</span>
-                <span className={styles.project_card__id}>{project.id}</span>
+    <div ref={wrapperRef} className={styles["projects-wrapper"]}>
+      <div className={styles.projects}>
+        <div className={styles.projects_container}>
+          <div className={styles.projects_top}>
+            <div className={styles.projects_top_wrapper}>
+              <div ref={contentRef} className={styles.projects_top_content}>
+                {LINES.map((line, lineIdx) => (
+                  <p key={lineIdx}>
+                    {line.split("").map((char, charIdx) => {
+                      const delay = 0.03 * globalIndex;
+                      globalIndex++;
+                      return (
+                        <span
+                          key={charIdx}
+                          className={styles.letter}
+                          style={{ transitionDelay: `${delay}s` }}
+                        >
+                          {char === " " ? "\u00A0" : char}
+                        </span>
+                      );
+                    })}
+                  </p>
+                ))}
               </div>
-              <div className={styles.project_card__body}>
-                {project.featured ? (
-                  <h3
-                    className={`${styles.project_card__title} ${styles["project_card__title--featured"]}`}
-                    style={{ color: project.accent }}
-                  >
-                    {project.title}
-                  </h3>
-                ) : (
-                  <h3 className={styles.project_card__title}>
-                    {project.title}
-                  </h3>
-                )}
-                <p className={styles.project_card__desc}>
-                  {project.description}
-                </p>
+              <div className={styles.projects_top_desc}>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy text
+                ever since the
               </div>
-              <div className={styles.project_card__footer}>
-                <button
-                  className={styles.project_card__link}
-                  aria-label={`View ${project.title}`}
+              <div className={styles.projects_top_button}>
+                <svg
+                  width="5"
+                  height="19"
+                  viewBox="0 0 5 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  VIEW →
-                </button>
+                  <path
+                    d="M0 19V0H5V1.76519H2.17656V17.2348H5V19H0Z"
+                    fill="white"
+                  />
+                </svg>
+                <Button text="View Projects" />
+                <svg
+                  width="5"
+                  height="19"
+                  viewBox="0 0 5 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 19V0H1.22086e-07V1.76519H2.82344V17.2348H1.22086e-07V19H5Z"
+                    fill="white"
+                  />
+                </svg>
               </div>
             </div>
           </div>
-        ))}
-      </div> */}
-    </section>
+
+          {/* Each project is its own showcase card that floats up */}
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                showcaseRefs.current[index] = el;
+              }}
+              className={styles.projects_showcase}
+              style={{
+                zIndex: 2 + index,
+                background: index % 2 === 0 ? "#1d1f21" : "#ececec",
+              }}
+            >
+              <div className={styles.projects_showcase_image}></div>
+              <div className={styles.projects_showcase_info}>
+                <p className={styles.projects_showcase_title}>
+                  {project.title}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          {/* Bottom nav stays on top */}
+          <div className={styles.projects_bottom}>
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className={`${styles.projects_item} ${index === 0 ? styles["projects_item--active"] : ""}`}
+              >
+                <p>{project.title}</p>
+              </div>
+            ))}
+            <div className={styles.projects_contact}>
+              <span>Contact Me</span>
+              <div className={styles.projects_contact_circle}>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
