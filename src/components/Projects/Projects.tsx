@@ -74,7 +74,11 @@ const Projects = () => {
             0,
             Math.min(1, (rawProgress - firstCardStart) / (firstCardEnd - firstCardStart)),
           );
-          topEl.style.opacity = `${1 - firstCardProgress}`;
+          const opacity = 1 - firstCardProgress;
+          const scale = 1 - firstCardProgress * 0.1;
+          const pushDown = firstCardProgress * 60;
+          topEl.style.opacity = `${opacity}`;
+          topEl.style.transform = `scale(${scale}) translateY(${pushDown}px)`;
         }
 
         showcaseRefs.current.forEach((card, i) => {
