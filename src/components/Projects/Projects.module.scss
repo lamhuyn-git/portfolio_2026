@@ -86,7 +86,7 @@
     left: 0;
     right: 5%;
     bottom: -10%;
-    transform: translateY(100%);
+    // transform: translateY(100%);
     will-change: transform;
     border-radius: 1rem;
     overflow: hidden;
@@ -379,6 +379,13 @@
   }
 }
 
+.shift-element {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(8px);
+  will-change: transform, opacity, filter;
+}
+
 .letter {
   display: inline-block;
   opacity: 0;
@@ -389,4 +396,223 @@
     opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1),
     filter 1.3s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity, filter;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+// Large desktop (≥1600px)
+@media (min-width: 1600px) {
+  .projects {
+    padding-top: 10rem;
+    &_container {
+      width: 85%;
+    }
+    &_top {
+      &_content p {
+        font-size: 5rem;
+      }
+      &_desc {
+        font-size: 0.85rem;
+      }
+    }
+    &_showcase {
+      &.odd,
+      &.even {
+        & .info {
+          padding: 5rem 4rem 4rem 4rem;
+          h3 {
+            font-size: 3.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Laptop (≤1024px)
+@media (max-width: 1024px) {
+  .projects {
+    padding-top: 5rem;
+    &_top {
+      width: 80%;
+      &_content p {
+        font-size: 3rem;
+        letter-spacing: -2px;
+      }
+      &_desc {
+        width: 65%;
+      }
+    }
+    &_showcase {
+      &.odd,
+      &.even {
+        & .info {
+          padding: 2rem 2rem 2rem 2rem;
+          h3 {
+            font-size: 2rem;
+          }
+          p {
+            font-size: 0.75rem;
+          }
+          & .tags {
+            font-size: 0.65rem;
+            & .tag {
+              padding: 0.35rem 0.75rem;
+            }
+          }
+        }
+      }
+    }
+    &_item p {
+      font-size: 10px;
+    }
+    &_contact span {
+      font-size: 10px;
+    }
+  }
+}
+
+// Tablet (≤768px)
+@media (max-width: 768px) {
+  .projects-wrapper {
+    height: 250vh;
+  }
+  .projects {
+    padding-top: 4rem;
+    &_container {
+      width: 95%;
+    }
+    &_top {
+      width: 90%;
+      &_content p {
+        font-size: 2.2rem;
+        letter-spacing: -1.5px;
+      }
+      &_desc {
+        width: 80%;
+        font-size: 0.65rem;
+      }
+    }
+    &_showcase {
+      &.odd,
+      &.even {
+        & .wrapper {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        & .image {
+          width: 100%;
+          height: 50%;
+          border-radius: 0.75rem 0.75rem 0 0;
+          padding: 4px 4px 0 4px;
+          img {
+            border-radius: 0.5rem 0.5rem 0 0;
+          }
+        }
+        & .info {
+          width: 100%;
+          height: 50%;
+          padding: 1.5rem;
+          h3 {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+    &_bottom {
+      flex-wrap: wrap;
+      gap: 2px;
+      padding: 0.2rem 0.35rem;
+    }
+    &_item {
+      padding: 0.35rem 0.8rem;
+      p {
+        font-size: 9px;
+      }
+    }
+    &_contact {
+      padding: 0.2rem 0.2rem 0.2rem 0.6rem;
+      gap: 0.5rem;
+      span {
+        font-size: 9px;
+      }
+      &_circle {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}
+
+// Mobile (≤480px)
+@media (max-width: 480px) {
+  .projects-wrapper {
+    height: 220vh;
+  }
+  .projects {
+    padding-top: 3rem;
+    padding-bottom: 0.5rem;
+    &_top {
+      width: 100%;
+      &_content p {
+        font-size: 1.6rem;
+        letter-spacing: -1px;
+      }
+      &_desc {
+        width: 90%;
+        font-size: 0.6rem;
+      }
+      &_button {
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+    }
+    &_showcase {
+      &.odd,
+      &.even {
+        & .info {
+          padding: 1rem;
+          h3 {
+            font-size: 1.2rem;
+          }
+          p {
+            font-size: 0.65rem;
+          }
+          & .tags {
+            gap: 0.3rem;
+            font-size: 0.55rem;
+            & .tag {
+              padding: 0.25rem 0.5rem;
+              border-radius: 0.35rem;
+            }
+          }
+        }
+      }
+    }
+    &_bottom {
+      border-radius: 1rem;
+      padding: 0.15rem 0.25rem;
+    }
+    &_item {
+      padding: 0.3rem 0.6rem;
+      p {
+        font-size: 8px;
+      }
+    }
+    &_contact {
+      padding: 0.15rem 0.15rem 0.15rem 0.5rem;
+      gap: 0.35rem;
+      span {
+        font-size: 8px;
+      }
+      &_circle {
+        width: 1.25rem;
+        height: 1.25rem;
+        svg {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+  }
 }

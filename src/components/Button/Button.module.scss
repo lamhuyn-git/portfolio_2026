@@ -59,3 +59,22 @@
     transition: fill 0.3s ease;
   }
 }
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .button {
+    border-radius: 40px;
+    p {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    border-radius: 30px;
+    p {
+      font-size: 0.65rem;
+    }
+  }
+}

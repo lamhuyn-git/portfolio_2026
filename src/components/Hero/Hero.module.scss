@@ -166,3 +166,133 @@
   }
 }
 
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+// Large desktop (≥1600px)
+@media (min-width: 1600px) {
+  .hero {
+    &-container {
+      padding-bottom: 3rem;
+    }
+    &-content {
+      gap: 1.5rem;
+      & .circle {
+        margin-bottom: 4rem;
+      }
+    }
+    &-text {
+      padding-inline: 1.5rem;
+      & .left,
+      & .right,
+      & .mid {
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Laptop (≤1024px)
+@media (max-width: 1024px) {
+  .hero {
+    &-content {
+      gap: 0.5rem;
+      & .left {
+        width: 45%;
+        svg {
+          width: 100%;
+          height: auto;
+        }
+      }
+      & .right {
+        svg {
+          width: 100%;
+          height: auto;
+        }
+      }
+      & .circle {
+        margin-bottom: 2rem;
+      }
+    }
+    &-text {
+      width: 100%;
+      padding-inline: 0.5rem;
+      & .left,
+      & .right,
+      & .mid {
+        p {
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+// Tablet (≤768px)
+@media (max-width: 768px) {
+  .hero {
+    &-container {
+      padding-bottom: 1.5rem;
+    }
+    &-content {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      & .left {
+        width: 80%;
+      }
+      & .right {
+        width: 80%;
+      }
+      & .circle {
+        width: 4%;
+        margin-bottom: 1rem;
+      }
+    }
+    &-text {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      & .left,
+      & .right,
+      & .mid {
+        p {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+}
+
+// Mobile (≤480px)
+@media (max-width: 480px) {
+  .hero {
+    &-container {
+      padding-bottom: 1rem;
+    }
+    &-content {
+      & .left {
+        width: 95%;
+      }
+      & .right {
+        width: 95%;
+      }
+      & .circle {
+        width: 6%;
+        margin-bottom: 0.5rem;
+      }
+    }
+    &-text {
+      padding-inline: 0.25rem;
+      & .left,
+      & .right,
+      & .mid {
+        p {
+          font-size: 0.6rem;
+        }
+      }
+    }
+  }
+}
+

@@ -150,3 +150,142 @@
     }
   }
 }
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+// Large desktop (≥1600px)
+@media (min-width: 1600px) {
+  .about {
+    padding: 4rem 3rem 2rem 3rem;
+
+    &_header {
+      & .title p {
+        font-size: 5rem;
+      }
+      & .subtitle {
+        font-size: 1rem;
+      }
+    }
+    &_content_item {
+      & .left {
+        & .title,
+        & .subtitle,
+        & .detail {
+          font-size: 0.85rem;
+        }
+      }
+      & .right {
+        & .start,
+        & .end {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+}
+
+// Laptop (≤1024px)
+@media (max-width: 1024px) {
+  .about {
+    padding: 2rem 1.5rem 1rem 1.5rem;
+
+    &_header {
+      width: 80%;
+      & .title p {
+        font-size: 3rem;
+        letter-spacing: -2px;
+      }
+    }
+    &_content {
+      max-height: 20rem;
+      &_item {
+        width: 45%;
+      }
+    }
+  }
+}
+
+// Tablet (≤768px)
+@media (max-width: 768px) {
+  .about-wrapper {
+    height: 180vh;
+  }
+  .about {
+    padding: 2rem 1rem 1rem 1rem;
+
+    &_header {
+      width: 100%;
+      & .title p {
+        font-size: 2.2rem;
+        letter-spacing: -1.5px;
+      }
+      & .subtitle {
+        font-size: 0.75rem;
+      }
+    }
+    &_content {
+      max-height: 18rem;
+      &_item {
+        width: 60%;
+        padding-block: 1rem;
+      }
+    }
+  }
+}
+
+// Mobile (≤480px)
+@media (max-width: 480px) {
+  .about-wrapper {
+    height: 170vh;
+  }
+  .about {
+    padding: 1.5rem 0.75rem 0.75rem 0.75rem;
+
+    &_container {
+      justify-content: flex-start;
+      gap: 2rem;
+    }
+
+    &_header {
+      width: 100%;
+      gap: 0.25rem;
+      & .title p {
+        font-size: 1.6rem;
+        letter-spacing: -1px;
+      }
+      & .subtitle {
+        font-size: 0.65rem;
+      }
+    }
+    &_content {
+      max-height: 16rem;
+      align-items: flex-start;
+      &_inner {
+        align-items: flex-start;
+      }
+      &_item {
+        width: 100%;
+        padding-block: 0.75rem;
+
+        & .left {
+          width: 70%;
+          & .title {
+            font-size: 0.65rem;
+          }
+          & .subtitle {
+            font-size: 0.65rem;
+          }
+          & .detail {
+            font-size: 0.65rem;
+          }
+        }
+        & .right {
+          & .start,
+          & .end {
+            font-size: 0.65rem;
+          }
+        }
+      }
+    }
+  }
+}

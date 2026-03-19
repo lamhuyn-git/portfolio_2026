@@ -123,3 +123,98 @@
     height: auto;
   }
 }
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+// Large desktop (≥1600px)
+@media (min-width: 1600px) {
+  .thinking {
+    &__container {
+      width: 30%;
+      padding-top: 10rem;
+      padding-bottom: 18rem;
+    }
+    &__quote {
+      font-size: 1.8rem;
+    }
+  }
+  .thinking__bottom .desc {
+    font-size: 0.75rem;
+  }
+}
+
+// Laptop (≤1024px)
+@media (max-width: 1024px) {
+  .thinking {
+    &__container {
+      width: 50%;
+      padding-top: 6rem;
+      padding-bottom: 12rem;
+    }
+    &__quote {
+      font-size: 1.35rem;
+    }
+  }
+}
+
+// Tablet (≤768px)
+@media (max-width: 768px) {
+  .thinking {
+    &__container {
+      width: 70%;
+      padding-top: 4rem;
+      padding-bottom: 8rem;
+
+      img {
+        width: 5rem;
+      }
+    }
+    &__quote {
+      font-size: 1.2rem;
+    }
+    &__image {
+      transform: translate(60%, -200%);
+    }
+  }
+  .thinking__bottom .desc {
+    width: 50%;
+    font-size: 0.6rem;
+  }
+  .thinking__svg {
+    width: 80%;
+  }
+}
+
+// Mobile (≤480px)
+@media (max-width: 480px) {
+  .thinking {
+    &__container {
+      width: 90%;
+      padding-top: 3rem;
+      padding-bottom: 6rem;
+
+      img {
+        width: 4rem;
+      }
+    }
+    &__quote {
+      font-size: 1rem;
+    }
+    &__decoration {
+      transform: translate(0, -5%);
+    }
+    &__image {
+      transform: translate(50%, -150%);
+    }
+  }
+  .thinking__inner {
+    gap: 3rem;
+  }
+  .thinking__bottom .desc {
+    width: 70%;
+    font-size: 0.55rem;
+  }
+  .thinking__svg {
+    width: 100%;
+  }
+}

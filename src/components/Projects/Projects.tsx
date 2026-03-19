@@ -28,11 +28,17 @@ const Projects = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
+  const descRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
   const showcaseRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    // Letter shift-in animation — observe the text content directly
+    // Shift-in animation — observe the text content, then animate all elements
     const el = contentRef.current;
+    const shiftElements = [descRef.current, buttonRef.current, bottomRef.current];
+    const totalLetters = LINES.join("").length;
+
     if (el) {
       const letters = el.querySelectorAll(`.${styles.letter}`);
 
@@ -40,11 +46,26 @@ const Projects = () => {
         (entries) => {
           if (!entries[0].isIntersecting) return;
 
+          // Animate letters
           letters.forEach((span) => {
             const s = span as HTMLElement;
             s.style.transform = "translateY(0)";
             s.style.opacity = "1";
             s.style.filter = "blur(0)";
+          });
+
+          // Animate other elements with staggered delay after letters finish
+          const baseDelay = totalLetters * 0.03 + 0.1;
+          shiftElements.forEach((elem, i) => {
+            if (!elem) return;
+            const delay = baseDelay + i * 0.12;
+            elem.style.transitionProperty = "transform, opacity, filter";
+            elem.style.transitionDuration = "1.3s";
+            elem.style.transitionTimingFunction = "cubic-bezier(0.16, 1, 0.3, 1)";
+            elem.style.transitionDelay = `${delay}s`;
+            elem.style.transform = "translateY(0)";
+            elem.style.opacity = "1";
+            elem.style.filter = "blur(0)";
           });
 
           letterObserver.disconnect();
@@ -57,8 +78,8 @@ const Projects = () => {
 
     // Showcases float-up on scroll — each card rolls up from bottom
     const totalCards = projectsData.length;
-    // First 30% of scroll = text visible, remaining 70% = cards float up
-    const textPhase = 0.3;
+    // First 10% of scroll = text visible, remaining 90% = cards float up
+    const textPhase = 0.1;
     const cardPhase = 1 - textPhase;
     let rafId: number;
 
@@ -102,10 +123,8 @@ const Projects = () => {
             Math.min(1, (rawProgress - cardStart) / (cardEnd - cardStart)),
           );
 
-          // Float up: first card starts at 40% (already partially visible at ~2/3 screen)
-          // Other cards start at 100% (fully offscreen)
-          const startY = i === 0 ? 40 : 100;
-          const translateY = (1 - cardProgress) * startY;
+          // All cards start fully offscreen below
+          const translateY = (1 - cardProgress) * 100;
 
           // top: 10% when not scrolled → -10% when fully scrolled in
           const top = 10 - cardProgress * 20;
@@ -165,12 +184,12 @@ const Projects = () => {
                   </p>
                 ))}
               </div>
-              <div className={styles.projects_top_desc}>
+              <div ref={descRef} className={`${styles.projects_top_desc} ${styles["shift-element"]}`}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the
               </div>
-              <div className={styles.projects_top_button}>
+              <div ref={buttonRef} className={`${styles.projects_top_button} ${styles["shift-element"]}`}>
                 <svg
                   width="5"
                   height="19"
@@ -215,7 +234,7 @@ const Projects = () => {
           ))}
 
           {/* Bottom nav stays on top */}
-          <div className={styles.projects_bottom}>
+          <div ref={bottomRef} className={`${styles.projects_bottom} ${styles["shift-element"]}`}>
             {projects.map((project, index) => (
               <div
                 key={index}
