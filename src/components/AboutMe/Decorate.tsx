@@ -2,11 +2,8 @@ import React from "react";
 
 interface DecorationProps {
   classname?: string;
-  svgRef?: React.RefObject<SVGSVGElement | null>;
+  svgRef?: React.Ref<SVGSVGElement>;
 }
-
-const PATH_D =
-  "M81 261.444C475.964 262.277 1277.41 306.944 1323.5 478.944C1381.11 693.944 303.5 667.944 303.5 924.444C295.5 1217.67 1107.5 1074.44 1107.5 1269.94C1107.5 1443.46 838.545 1449.61 676 1475.94";
 
 const MASK_PATH_D =
   "M81 261.444C475.964 262.277 1277.41 306.944 1323.5 478.944C1362.1 622.999 891.064 658.861 576 743.997";

@@ -51,8 +51,9 @@ const AboutMe: React.FC = () => {
   const [activeSection, setActiveSection] = useState(0);
 
   useEffect(() => {
-    const easeInOut = (t: number): number =>
+    const _easeInOut = (t: number): number =>
       t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    void _easeInOut;
 
     // ── Header: fires once via IntersectionObserver ──────────────────────
     const header = headerRef.current;
@@ -245,7 +246,8 @@ const AboutMe: React.FC = () => {
     list.style.transform = `translateY(${shift}px)`;
   }, [activeSection]);
 
-  const current = sections[activeSection];
+  const _current = sections[activeSection];
+  void _current;
 
   return (
     <div ref={wrapperRef} className={styles["about-wrapper"]}>

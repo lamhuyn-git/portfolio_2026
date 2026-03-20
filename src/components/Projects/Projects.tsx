@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Button from "../Button/Button";
 import Showcase from "./Showcase";
 import styles from "./Projects.module.scss";
