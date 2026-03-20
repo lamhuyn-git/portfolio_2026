@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Package manager lock files (using npm, not bun)
+bun.lock
+bun.lockb
+
 # Vercel
 .vercel
 
