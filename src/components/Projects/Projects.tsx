@@ -7,17 +7,20 @@ const LINES = ["I Design Solutions", "Not just interfaces"];
 
 const projectsData = [
   {
-    title: "Melody - A Music Player Application",
-    img: "https://zeyna.pethemes.com/wp-content/uploads/2026/01/showcase_webgl_carousel-scaled.webp",
+    title: "Yup - A Food Delivery Application",
+    desc: "A sleek and intuitive food delivery application designed to provide users with a seamless ordering experience.",
+    img: "https://ik.imagekit.io/mku5dcybr/Yup!%20Everything%20on%20Your%20Phone!%20(1).svg?updatedAt=1753927203711",
     tags: ["React", "TypeScript", "SCSS", "Application Design"],
   },
   {
-    title: "Project Two",
+    title: "Melody - A Music Player Application",
+    desc: "A modern web application built with React and TypeScript, featuring a responsive design and a clean user interface",
     img: "https://ik.imagekit.io/mku5dcybr/Me.png?updatedAt=1753894222146",
     tags: ["JavaScript", "HTML", "CSS"],
   },
   {
     title: "Project Three",
+    desc: "A sleek and intuitive music player application designed to provide users with a seamless listening experience.",
     img: "https://zeyna.pethemes.com/wp-content/uploads/2026/01/showcase_webgl_carousel-scaled.webp",
     tags: ["Python", "Django", "PostgreSQL"],
   },
@@ -36,7 +39,11 @@ const Projects = () => {
   useEffect(() => {
     // Shift-in animation — observe the text content, then animate all elements
     const el = contentRef.current;
-    const shiftElements = [descRef.current, buttonRef.current, bottomRef.current];
+    const shiftElements = [
+      descRef.current,
+      buttonRef.current,
+      bottomRef.current,
+    ];
     const totalLetters = LINES.join("").length;
 
     if (el) {
@@ -44,31 +51,48 @@ const Projects = () => {
 
       const letterObserver = new IntersectionObserver(
         (entries) => {
-          if (!entries[0].isIntersecting) return;
+          if (entries[0].isIntersecting) {
+            // Animate letters in
+            letters.forEach((span) => {
+              const s = span as HTMLElement;
+              s.style.transition = "";
+              s.style.transform = "translateY(0)";
+              s.style.opacity = "1";
+              s.style.filter = "blur(0)";
+            });
 
-          // Animate letters
-          letters.forEach((span) => {
-            const s = span as HTMLElement;
-            s.style.transform = "translateY(0)";
-            s.style.opacity = "1";
-            s.style.filter = "blur(0)";
-          });
-
-          // Animate other elements with staggered delay after letters finish
-          const baseDelay = totalLetters * 0.03 + 0.1;
-          shiftElements.forEach((elem, i) => {
-            if (!elem) return;
-            const delay = baseDelay + i * 0.12;
-            elem.style.transitionProperty = "transform, opacity, filter";
-            elem.style.transitionDuration = "1.3s";
-            elem.style.transitionTimingFunction = "cubic-bezier(0.16, 1, 0.3, 1)";
-            elem.style.transitionDelay = `${delay}s`;
-            elem.style.transform = "translateY(0)";
-            elem.style.opacity = "1";
-            elem.style.filter = "blur(0)";
-          });
-
-          letterObserver.disconnect();
+            // Animate shift elements with staggered delay after letters finish
+            const baseDelay = totalLetters * 0.03 + 0.1;
+            shiftElements.forEach((elem, i) => {
+              if (!elem) return;
+              const delay = baseDelay + i * 0.12;
+              elem.style.transitionProperty = "transform, opacity, filter";
+              elem.style.transitionDuration = "1.3s";
+              elem.style.transitionTimingFunction =
+                "cubic-bezier(0.16, 1, 0.3, 1)";
+              elem.style.transitionDelay = `${delay}s`;
+              elem.style.transform = "translateY(0)";
+              elem.style.opacity = "1";
+              elem.style.filter = "blur(0)";
+            });
+          } else {
+            // Reset instantly while out of view
+            letters.forEach((span) => {
+              const s = span as HTMLElement;
+              s.style.transition = "none";
+              s.style.transform = "translateY(100%)";
+              s.style.opacity = "0";
+              s.style.filter = "blur(8px)";
+            });
+            shiftElements.forEach((elem) => {
+              if (!elem) return;
+              elem.style.transition = "none";
+              elem.style.transitionDelay = "0s";
+              elem.style.transform = "translateY(40px)";
+              elem.style.opacity = "0";
+              elem.style.filter = "blur(8px)";
+            });
+          }
         },
         { threshold: 0.1 },
       );
@@ -184,12 +208,18 @@ const Projects = () => {
                   </p>
                 ))}
               </div>
-              <div ref={descRef} className={`${styles.projects_top_desc} ${styles["shift-element"]}`}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the
+              <div
+                ref={descRef}
+                className={`${styles.projects_top_desc} ${styles["shift-element"]}`}
+              >
+                I’m a UX/UI Designer focused on creating clear, usable, and
+                visually engaging products by combining user research and modern
+                interface design.
               </div>
-              <div ref={buttonRef} className={`${styles.projects_top_button} ${styles["shift-element"]}`}>
+              <div
+                ref={buttonRef}
+                className={`${styles.projects_top_button} ${styles["shift-element"]}`}
+              >
                 <svg
                   width="5"
                   height="19"
@@ -202,7 +232,10 @@ const Projects = () => {
                     fill="white"
                   />
                 </svg>
-                <Button text="Scroll To View Projects" />
+                <Button
+                  text="Scroll To View Projects"
+                  className={styles.button}
+                />
                 <svg
                   width="5"
                   height="19"
@@ -224,6 +257,7 @@ const Projects = () => {
             <Showcase
               key={index}
               title={project.title}
+              desc={project.desc}
               index={index}
               img={project.img}
               tags={project.tags}
@@ -234,7 +268,10 @@ const Projects = () => {
           ))}
 
           {/* Bottom nav stays on top */}
-          <div ref={bottomRef} className={`${styles.projects_bottom} ${styles["shift-element"]}`}>
+          <div
+            ref={bottomRef}
+            className={`${styles.projects_bottom} ${styles["shift-element"]}`}
+          >
             {projects.map((project, index) => (
               <div
                 key={index}

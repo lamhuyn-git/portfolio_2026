@@ -2,12 +2,13 @@
   width: 100%;
 
   /* Font Variables */
-  --font-primary: "Inter", sans-serif;
+  --font-primary: "DM Sans", sans-serif;
   --font-felipa: "Felipa", cursive;
 
   font-family: var(--font-primary);
   line-height: 1.5;
   font-weight: 400;
+  letter-spacing: 0;
 
   /* Color Variables */
   --grey-normal: #ffffff;

@@ -1,15 +1,81 @@
+import { useEffect, useRef } from "react";
 import Circle from "./Circle";
 import Decorate from "./Decorate";
 import styles from "./Footer.module.scss";
 
+const LINES = [
+  "Let's collaborate to bring",
+  "impactful digital products to life!",
+];
+
 const Footer = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+
+    const letters = el.querySelectorAll(`.${styles.letter}`);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Animate in — remove inline transition override, let CSS class take over
+          letters.forEach((span) => {
+            const s = span as HTMLElement;
+            s.style.transition = "";
+            s.style.transform = "translateY(0)";
+            s.style.opacity = "1";
+            s.style.filter = "blur(0)";
+          });
+        } else {
+          // Reset instantly while out of view
+          letters.forEach((span) => {
+            const s = span as HTMLElement;
+            s.style.transition = "none";
+            s.style.transform = "translateY(100%)";
+            s.style.opacity = "0";
+            s.style.filter = "blur(8px)";
+          });
+        }
+      },
+      { threshold: 0.3 },
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
+  let globalIndex = 0;
+
   return (
     <div className={styles.footer}>
       <div className={styles.footer_container}>
         <div className={styles.footer_top}>
           <Decorate className={styles.line} />
           <Circle className={styles.circle} />
-          <p>Let’s collaborate to bring impactful digital products to life!</p>
+
+          <div ref={contentRef} className={styles.footer_top_content}>
+            {LINES.map((line, lineIdx) => (
+              <p key={lineIdx}>
+                {line.split("").map((char, charIdx) => {
+                  const delay = 0.03 * globalIndex;
+                  globalIndex++;
+                  return (
+                    <span
+                      key={charIdx}
+                      className={styles.letter}
+                      style={{ transitionDelay: `${delay}s` }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  );
+                })}
+              </p>
+            ))}
+          </div>
+
           <svg
             width="24"
             height="44"
@@ -25,7 +91,7 @@ const Footer = () => {
               rx="11.3333"
               transform="rotate(90 23.1667 0.500001)"
               fill="white"
-              fill-opacity="0.15"
+              fillOpacity="0.15"
             />
             <rect
               x="23.1667"
