@@ -154,28 +154,33 @@
 // Large desktop (≥1600px)
 @media (min-width: 1600px) {
   .about {
-    padding: 4rem 3rem 2rem 3rem;
+    padding: 6rem;
 
     &_header {
+      gap: 0.5rem;
       & .title p {
-        font-size: 5rem;
+        font-size: 6rem;
       }
       & .subtitle {
         font-size: 1rem;
       }
     }
+    &_content {
+      max-height: 32rem;
+    }
     &_content_item {
+      width: 45%;
       & .left {
         & .title,
         & .subtitle,
         & .detail {
-          font-size: 0.85rem;
+          font-size: 1.5rem;
         }
       }
       & .right {
         & .start,
         & .end {
-          font-size: 0.85rem;
+          font-size: 1.5rem;
         }
       }
     }

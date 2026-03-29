@@ -465,26 +465,70 @@
 // Large desktop (≥1600px)
 @media (min-width: 1600px) {
   .projects {
-    padding-top: 10rem;
+    padding-top: 12rem;
+    padding-bottom: 6rem;
     &_container {
       width: 85%;
     }
     &_top {
       &_content p {
-        font-size: 5rem;
+        font-size: 6rem;
       }
       &_desc {
-        font-size: 0.85rem;
+        width: 65%;
+        font-size: 1.5rem;
+      }
+    }
+    &_bottom {
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+    }
+    &_item {
+      padding: 0.5rem 1.5rem;
+      p {
+        font-size: 1.5rem;
       }
     }
     &_showcase {
       &.odd,
       &.even {
         & .info {
-          padding: 5rem 4rem 4rem 4rem;
+          padding: 7rem 4rem 4rem 4rem;
           h3 {
             font-size: 3.5rem;
           }
+          span {
+            width: 90%;
+            font-size: 1.5rem;
+          }
+          p {
+            font-size: 1rem;
+          }
+          & .text {
+            gap: 0.75rem;
+          }
+          & .tags {
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            & .tag {
+              padding: 0.75rem 1.25rem;
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+    &_contact {
+      padding: 0.5rem 1rem 0.5rem 1.5rem;
+      span {
+        font-size: 1.5rem;
+      }
+      &_circle {
+        width: 3rem;
+        height: 3rem;
+        svg {
+          width: 50%;
+          height: 50%;
         }
       }
     }

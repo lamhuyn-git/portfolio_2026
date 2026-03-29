@@ -11,7 +11,7 @@ const Decoration = ({ className }: DecorationProps) => {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <g clip-path="url(#clip0_414_227)">
+      <g clipPath="url(#clip0_414_227)">
         <g filter="url(#filter0_g_414_227)">
           <ellipse
             cx="209.642"
@@ -24,40 +24,40 @@ const Decoration = ({ className }: DecorationProps) => {
         <path
           d="M188.679 467.117L188.679 759.908"
           stroke="url(#paint1_linear_414_227)"
-          stroke-width="0.690544"
+          strokeWidth="0.690544"
         />
         <path
           d="M121.057 467.117L121.057 578.295"
           stroke="url(#paint2_linear_414_227)"
-          stroke-width="0.690544"
+          strokeWidth="0.690544"
         />
         <path
           d="M0.811029 578.295H179.333"
           stroke="url(#paint3_linear_414_227)"
-          stroke-width="0.690544"
+          strokeWidth="0.690544"
         />
         <path
           d="M472.691 467.117H296.874"
           stroke="url(#paint4_linear_414_227)"
-          stroke-width="0.690544"
+          strokeWidth="0.690544"
         />
         <path
           d="M0.599019 467.117H241.333"
           stroke="url(#paint5_linear_414_227)"
-          stroke-width="0.690544"
+          strokeWidth="0.690544"
         />
         <path
           d="M0.3323 759.908L0.332275 196.424"
           stroke="url(#paint6_linear_414_227)"
-          stroke-width="0.690544"
+          strokeWidth="0.690544"
         />
         <path
           d="M0.000131369 0C261.072 0 472.333 211.441 472.333 472.736V471.624C472.333 632.71 342.102 763.052 181.153 763.052C81.019 763.052 0.000131369 681.964 0.000131369 581.743V582.856C0.000131369 521.378 49.7117 471.624 111.137 471.624C149.835 471.624 181.153 502.969 181.153 541.7V540.588C181.153 563.946 162.26 582.856 138.921 582.856C123.562 582.856 111.137 570.42 111.137 555.048C111.137 547.673 117.594 541.7 125.585 541.7"
           stroke="white"
-          stroke-opacity="0.05"
-          stroke-width="2.07163"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeOpacity="0.05"
+          strokeWidth="2.07163"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -68,9 +68,9 @@ const Decoration = ({ className }: DecorationProps) => {
           width="514.395"
           height="523.249"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -104,11 +104,11 @@ const Decoration = ({ className }: DecorationProps) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(209.642 552.054) rotate(90) scale(213.378 208.951)"
         >
-          <stop offset="0.0677345" stop-color="#83D3F1" />
-          <stop offset="0.135469" stop-color="#1FC6E6" />
-          <stop offset="0.494333" stop-color="#0577B0" />
-          <stop offset="0.866587" stop-color="#0E1049" />
-          <stop offset="1" stop-color="#05061A" />
+          <stop offset="0.0677345" stopColor="#83D3F1" />
+          <stop offset="0.135469" stopColor="#1FC6E6" />
+          <stop offset="0.494333" stopColor="#0577B0" />
+          <stop offset="0.866587" stopColor="#0E1049" />
+          <stop offset="1" stopColor="#05061A" />
         </radialGradient>
         <linearGradient
           id="paint1_linear_414_227"
@@ -118,8 +118,8 @@ const Decoration = ({ className }: DecorationProps) => {
           y2="759.349"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_414_227"
@@ -129,8 +129,8 @@ const Decoration = ({ className }: DecorationProps) => {
           y2="578.083"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_414_227"
@@ -140,8 +140,8 @@ const Decoration = ({ className }: DecorationProps) => {
           y2="578.295"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_414_227"
@@ -151,8 +151,8 @@ const Decoration = ({ className }: DecorationProps) => {
           y2="467.117"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_414_227"
@@ -162,8 +162,8 @@ const Decoration = ({ className }: DecorationProps) => {
           y2="467.117"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint6_linear_414_227"
@@ -173,9 +173,9 @@ const Decoration = ({ className }: DecorationProps) => {
           y2="197.499"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" stop-opacity="0" />
-          <stop offset="0.400681" stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" stopOpacity="0" />
+          <stop offset="0.400681" stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
         <clipPath id="clip0_414_227">
           <rect width="472" height="765" fill="white" />

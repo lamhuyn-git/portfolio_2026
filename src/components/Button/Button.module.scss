@@ -61,6 +61,18 @@
 }
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
+@media (min-width: 1600px) {
+  .button {
+    p {
+      font-size: 1.5rem;
+    }
+    .arrow {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .button {
     border-radius: 40px;

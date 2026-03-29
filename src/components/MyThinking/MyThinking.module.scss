@@ -29,7 +29,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate(0, -12%);
+    transform: translate(0, 5%);
     z-index: 1;
   }
 
@@ -51,6 +51,7 @@
   flex-direction: column;
   gap: 5rem;
   margin: 0 auto;
+  margin-top: 7.5rem;
 }
 
 // ─── Top section: label + big quote ───────────────────────────────────────────
@@ -129,17 +130,38 @@
 // Large desktop (≥1600px)
 @media (min-width: 1600px) {
   .thinking {
+    height: 100vh;
     &__container {
-      width: 30%;
+      width: 32%;
       padding-top: 10rem;
-      padding-bottom: 18rem;
+      padding-bottom: 20rem;
+      img {
+        width: 11rem;
+      }
     }
     &__quote {
-      font-size: 1.8rem;
+      font-size: 3rem;
     }
-  }
-  .thinking__bottom .desc {
-    font-size: 0.75rem;
+    &__inner {
+      gap: 8rem;
+      margin-bottom: -1rem;
+    }
+    &__label {
+      font-size: 1rem;
+    }
+    &__top {
+      margin-left: 1rem;
+    }
+    &__image {
+      transform: translate(85%, -207%);
+    }
+    &__bottom {
+      gap: 0.5rem;
+      & .desc {
+        width: 50%;
+        font-size: 1.35rem;
+      }
+    }
   }
 }
 

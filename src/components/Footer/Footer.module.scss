@@ -27,16 +27,18 @@
       top: 0;
       left: 0;
       z-index: 50;
+      width: 100%;
       svg {
         width: 100%;
+        height: auto;
       }
     }
     & .circle {
       position: absolute;
-      top: -40%;
-      left: 0;
+      top: 50%;
+      left: 50%;
       z-index: 1;
-      transform: translateX(70%);
+      transform: translate(-50%, -50%);
     }
     &_content {
       position: relative;
@@ -56,7 +58,6 @@
     }
     svg {
       z-index: 200;
-      animation: float 2.4s ease-in-out infinite;
     }
   }
   &_bottom {
@@ -93,9 +94,15 @@
 
 // ─── Float animation for arrow SVG ───────────────────────────────────────────
 @keyframes float {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 // ─── Per-letter animation (same as Projects) ─────────────────────────────────
@@ -116,9 +123,39 @@
 // Large desktop (≥1600px)
 @media (min-width: 1600px) {
   .footer {
+    height: 110vh;
     padding-top: 18rem;
-    &_top_content p {
-      font-size: 5rem;
+    &_top_content {
+      margin-top: 4rem;
+      p {
+        font-size: 6rem;
+      }
+    }
+    &_top {
+      & .circle {
+        svg {
+          width: 64rem;
+          height: auto;
+        }
+      }
+      & .line {
+        width: 100%;
+      }
+      svg {
+        width: 2.5rem;
+        height: auto;
+      }
+    }
+    &_bottom {
+      padding-top: 16rem;
+      &_content {
+        & .title {
+          font-size: 1.25rem;
+        }
+        & .detail {
+          font-size: 1.25rem;
+        }
+      }
     }
   }
 }

@@ -27,9 +27,9 @@ const Circle = ({ classname }: CircleProps) => {
             width="694.734"
             height="694.734"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feBlend
               mode="normal"
               in="SourceGraphic"
@@ -63,11 +63,11 @@ const Circle = ({ classname }: CircleProps) => {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(347.367 347.367) rotate(90) scale(277.5)"
           >
-            <stop offset="0.0677345" stop-color="#83D3F1" />
-            <stop offset="0.135469" stop-color="#1FC6E6" />
-            <stop offset="0.494333" stop-color="#0577B0" />
-            <stop offset="0.866587" stop-color="#0E1049" />
-            <stop offset="1" stop-color="#05061A" />
+            <stop offset="0.0677345" stopColor="#83D3F1" />
+            <stop offset="0.135469" stopColor="#1FC6E6" />
+            <stop offset="0.494333" stopColor="#0577B0" />
+            <stop offset="0.866587" stopColor="#0E1049" />
+            <stop offset="1" stopColor="#05061A" />
           </radialGradient>
         </defs>
       </svg>

@@ -11,102 +11,102 @@ const Decorate = ({ className }: DecorateProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_499_225)">
+        <g clipPath="url(#clip0_499_225)">
           <path
             opacity="0.5"
             d="M412.573 415L412.573 0"
             stroke="url(#paint0_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M507.222 415L507.222 0"
             stroke="url(#paint1_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M1.52588e-05 5.98309e-05L684.386 0"
             stroke="url(#paint2_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M1.52588e-05 415L684.386 415"
             stroke="url(#paint3_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M412.573 99.5029L508.436 99.5029"
             stroke="url(#paint4_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M467.178 122.559L503.582 122.559"
             stroke="url(#paint5_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M467.178 99.5029L467.178 158.962"
             stroke="url(#paint6_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M406.506 158.962L661.33 158.962"
             stroke="url(#paint7_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M981.199 415L981.199 0"
             stroke="url(#paint8_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M886.55 415L886.55 0"
             stroke="url(#paint9_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M1393.77 5.98309e-05L709.386 0"
             stroke="url(#paint10_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M1393.77 415L709.386 415"
             stroke="url(#paint11_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M981.199 99.5029L885.336 99.5029"
             stroke="url(#paint12_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M926.593 122.559L890.19 122.559"
             stroke="url(#paint13_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M926.593 99.5029L926.593 158.962"
             stroke="url(#paint14_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
           <path
             opacity="0.5"
             d="M987.266 158.962L732.441 158.962"
             stroke="url(#paint15_linear_499_225)"
-            stroke-width="1.21345"
+            strokeWidth="1.21345"
           />
         </g>
         <defs>
@@ -118,9 +118,9 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="0.791995"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" stop-opacity="0" />
-            <stop offset="0.400681" stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" stopOpacity="0" />
+            <stop offset="0.400681" stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint1_linear_499_225"
@@ -130,9 +130,9 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="0.791995"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" stop-opacity="0" />
-            <stop offset="0.400681" stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" stopOpacity="0" />
+            <stop offset="0.400681" stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint2_linear_499_225"
@@ -142,8 +142,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="1.14202e-07"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint3_linear_499_225"
@@ -153,8 +153,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="415"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint4_linear_499_225"
@@ -164,8 +164,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="99.5029"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint5_linear_499_225"
@@ -175,8 +175,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="122.559"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint6_linear_499_225"
@@ -186,8 +186,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="158.848"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint7_linear_499_225"
@@ -197,8 +197,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="158.962"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint8_linear_499_225"
@@ -208,9 +208,9 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="0.791995"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" stop-opacity="0" />
-            <stop offset="0.400681" stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" stopOpacity="0" />
+            <stop offset="0.400681" stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint9_linear_499_225"
@@ -220,9 +220,9 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="0.791995"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" stop-opacity="0" />
-            <stop offset="0.400681" stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" stopOpacity="0" />
+            <stop offset="0.400681" stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint10_linear_499_225"
@@ -232,8 +232,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="1.14202e-07"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint11_linear_499_225"
@@ -243,8 +243,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="415"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint12_linear_499_225"
@@ -254,8 +254,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="99.5029"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint13_linear_499_225"
@@ -265,8 +265,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="122.559"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint14_linear_499_225"
@@ -276,8 +276,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="158.848"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
             id="paint15_linear_499_225"
@@ -287,8 +287,8 @@ const Decorate = ({ className }: DecorateProps) => {
             y2="158.962"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="white" />
-            <stop offset="1" stop-color="white" stop-opacity="0" />
+            <stop stopColor="white" />
+            <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <clipPath id="clip0_499_225">
             <rect width="1394" height="415" fill="white" />

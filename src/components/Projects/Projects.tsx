@@ -9,7 +9,7 @@ const projectsData = [
   {
     title: "Yup - A Food Delivery Application",
     desc: "A sleek and intuitive food delivery application designed to provide users with a seamless ordering experience.",
-    img: "https://ik.imagekit.io/mku5dcybr/Yup!%20Everything%20on%20Your%20Phone!%20(1).svg?updatedAt=1753927203711",
+    img: "https://i.pinimg.com/736x/01/97/b9/0197b9b70a912dc299c3a8913f0d0c26.jpg",
     tags: ["React", "TypeScript", "SCSS", "Application Design"],
   },
   {
