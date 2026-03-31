@@ -65,37 +65,59 @@ const AboutMe: React.FC = () => {
         `.${styles["about_content_item"]}`,
       );
 
+      const resetLines = () => {
+        textLines.forEach((el) => {
+          const elem = el as HTMLElement;
+          elem.style.transition = "none";
+          elem.style.transform = "translateY(40px)";
+          elem.style.opacity = "0";
+          elem.style.filter = "blur(8px)";
+        });
+        const firstItem = contentItems[0] as HTMLElement | undefined;
+        if (firstItem) {
+          firstItem.style.transition = "none";
+          firstItem.style.transform = "translateY(40px)";
+          firstItem.style.filter = "blur(8px)";
+        }
+      };
+
+      const animateIn = () => {
+        // Force reflow so the reset styles apply before transitioning
+        void header.offsetHeight;
+        textLines.forEach((el, i) => {
+          const elem = el as HTMLElement;
+          elem.style.transitionProperty = "transform, opacity, filter";
+          elem.style.transitionDuration = "1.3s";
+          elem.style.transitionTimingFunction =
+            "cubic-bezier(0.16, 1, 0.3, 1)";
+          elem.style.transitionDelay = `${0.4 + i * 0.09}s`;
+          elem.style.transform = "translateY(0)";
+          elem.style.opacity = "1";
+          elem.style.filter = "blur(0)";
+        });
+
+        const firstItem = contentItems[0] as HTMLElement | undefined;
+        if (firstItem) {
+          const baseDelay = 0.4 + textLines.length * 0.09;
+          firstItem.style.transitionProperty = "transform, filter";
+          firstItem.style.transitionDuration = "1.3s";
+          firstItem.style.transitionTimingFunction =
+            "cubic-bezier(0.16, 1, 0.3, 1)";
+          firstItem.style.transitionDelay = `${baseDelay}s`;
+          firstItem.style.transform = "translateY(0)";
+          firstItem.style.filter = "blur(0)";
+        }
+      };
+
       const observer = new IntersectionObserver(
         (entries) => {
-          if (!entries[0].isIntersecting) return;
-
-          textLines.forEach((el, i) => {
-            const elem = el as HTMLElement;
-            elem.style.transitionProperty = "transform, opacity, filter";
-            elem.style.transitionDuration = "1.3s";
-            elem.style.transitionTimingFunction =
-              "cubic-bezier(0.16, 1, 0.3, 1)";
-            elem.style.transitionDelay = `${0.4 + i * 0.09}s`;
-            elem.style.transform = "translateY(0)";
-            elem.style.opacity = "1";
-            elem.style.filter = "blur(0)";
-          });
-
-          const firstItem = contentItems[0] as HTMLElement | undefined;
-          if (firstItem) {
-            const baseDelay = 0.4 + textLines.length * 0.09;
-            firstItem.style.transitionProperty = "transform, filter";
-            firstItem.style.transitionDuration = "1.3s";
-            firstItem.style.transitionTimingFunction =
-              "cubic-bezier(0.16, 1, 0.3, 1)";
-            firstItem.style.transitionDelay = `${baseDelay}s`;
-            firstItem.style.transform = "translateY(0)";
-            firstItem.style.filter = "blur(0)";
+          if (entries[0].isIntersecting) {
+            animateIn();
+          } else {
+            resetLines();
           }
-
-          observer.disconnect();
         },
-        { threshold: 0, rootMargin: "0px 0px 0px 0px" },
+        { threshold: 0 },
       );
 
       observer.observe(header);

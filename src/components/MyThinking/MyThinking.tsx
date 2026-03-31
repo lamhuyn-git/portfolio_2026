@@ -58,10 +58,12 @@ const MyThinking: React.FC = () => {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
     update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll, { capture: true });
       cancelAnimationFrame(rafId);
     };
   }, []);
