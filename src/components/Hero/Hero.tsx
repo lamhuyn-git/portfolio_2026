@@ -14,8 +14,13 @@ export default function Hero() {
       setIsVisible(true);
     }, 300);
 
-    // iOS Safari: force play on first user interaction
+    // iOS Safari: set webkit-playsinline for older versions
     const video = videoRef.current;
+    if (video) {
+      video.setAttribute("webkit-playsinline", "");
+    }
+
+    // iOS Safari: force play on first user interaction
     const tryPlay = () => {
       if (video) {
         video.play().catch(() => {});
@@ -59,15 +64,12 @@ export default function Hero() {
   return (
     <section ref={heroRef} className={styles.hero}>
       {/*Background Video — parallaxes at 30% scroll speed */}
-      {/* eslint-disable-next-line react/no-unknown-property */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        // @ts-expect-error webkit-playsinline needed for older iOS
-        webkit-playsinline=""
         preload="auto"
         className={styles["hero-video"]}
       >
