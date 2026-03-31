@@ -445,11 +445,13 @@
 // Mobile (≤480px)
 @media (max-width: 480px) {
   .hero {
+    height: 100dvh;
     &-container {
       display: none;
     }
     &_mobile {
       display: flex;
+      padding-bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
     }
   }
 }

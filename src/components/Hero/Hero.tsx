@@ -14,6 +14,19 @@ export default function Hero() {
       setIsVisible(true);
     }, 300);
 
+    // iOS Safari: force play on first user interaction
+    const video = videoRef.current;
+    const tryPlay = () => {
+      if (video) {
+        video.play().catch(() => {});
+      }
+    };
+    // Attempt autoplay immediately
+    tryPlay();
+    // Fallback: play on first touch/click (iOS requirement)
+    document.addEventListener("touchstart", tryPlay, { once: true });
+    document.addEventListener("click", tryPlay, { once: true });
+
     // Fade out content as user scrolls down
     let rafId: number;
     const onScroll = () => {
@@ -36,6 +49,8 @@ export default function Hero() {
 
     return () => {
       clearTimeout(timer);
+      document.removeEventListener("touchstart", tryPlay);
+      document.removeEventListener("click", tryPlay);
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId);
     };
@@ -44,12 +59,16 @@ export default function Hero() {
   return (
     <section ref={heroRef} className={styles.hero}>
       {/*Background Video — parallaxes at 30% scroll speed */}
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        // @ts-expect-error webkit-playsinline needed for older iOS
+        webkit-playsinline=""
+        preload="auto"
         className={styles["hero-video"]}
       >
         <source src="video/video.mp4" type="video/mp4" />
