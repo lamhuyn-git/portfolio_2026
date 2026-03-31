@@ -237,41 +237,48 @@ const AboutMe: React.FC = () => {
     // ── Touch handler: intercept swipe for mobile ───────────────────────
     let touchStartY = 0;
     let touchCooldown = false;
+    let isSectionActive = false;
+
+    const checkSectionActive = () => {
+      const wrapperEl = wrapperRef.current;
+      if (!wrapperEl) return false;
+      const rect = wrapperEl.getBoundingClientRect();
+      return rect.top <= 0 && rect.bottom >= window.innerHeight;
+    };
 
     const onTouchStart = (e: TouchEvent) => {
-      const wrapperEl = wrapperRef.current;
-      if (!wrapperEl) return;
-      const rect = wrapperEl.getBoundingClientRect();
-      if (rect.top > 0 || rect.bottom < window.innerHeight) return;
+      isSectionActive = checkSectionActive();
+      if (!isSectionActive) return;
       touchStartY = e.touches[0].clientY;
     };
 
     const onTouchMove = (e: TouchEvent) => {
-      const wrapperEl = wrapperRef.current;
-      if (!wrapperEl) return;
-      const rect = wrapperEl.getBoundingClientRect();
-      if (rect.top > 0 || rect.bottom < window.innerHeight) return;
-
-      if (touchCooldown) {
-        e.preventDefault();
-        return;
-      }
+      if (!isSectionActive) return;
 
       const deltaY = touchStartY - e.touches[0].clientY;
-      if (Math.abs(deltaY) < 30) return; // minimum swipe threshold
 
+      // Always prevent scroll when section is active and not at boundaries
       const direction = deltaY > 0 ? 1 : -1;
       const nextStop = currentStop + direction;
+      const atBoundary =
+        (currentStop === 0 && direction === -1) ||
+        (currentStop === STOPS.length - 1 && direction === 1);
 
-      if (nextStop < 0 || nextStop >= STOPS.length) return;
+      if (!atBoundary) {
+        e.preventDefault();
+      }
 
-      e.preventDefault();
+      if (touchCooldown) return;
+      if (Math.abs(deltaY) < 30) return;
+
+      if (atBoundary) return;
+
       touchCooldown = true;
       setTimeout(() => {
         touchCooldown = false;
       }, 800);
 
-      touchStartY = e.touches[0].clientY; // reset for next swipe
+      touchStartY = e.touches[0].clientY;
       goToStop(nextStop);
     };
 

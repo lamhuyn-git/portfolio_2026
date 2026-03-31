@@ -26,7 +26,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    // không animate — background cố định tuyệt đối
+    pointer-events: none; // prevent iOS from opening fullscreen player on tap
   }
   &-overlay {
     position: absolute;

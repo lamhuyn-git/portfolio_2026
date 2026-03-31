@@ -14,15 +14,19 @@ export default function Hero() {
       setIsVisible(true);
     }, 300);
 
-    // iOS Safari: set webkit-playsinline for older versions
+    // iOS Safari: ensure inline playback attributes are set via DOM
     const video = videoRef.current;
     if (video) {
+      video.setAttribute("playsinline", "");
       video.setAttribute("webkit-playsinline", "");
+      video.muted = true;
+      video.defaultMuted = true;
     }
 
     // iOS Safari: force play on first user interaction
     const tryPlay = () => {
       if (video) {
+        video.muted = true;
         video.play().catch(() => {});
       }
     };
