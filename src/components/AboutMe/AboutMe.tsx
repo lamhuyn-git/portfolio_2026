@@ -234,13 +234,58 @@ const AboutMe: React.FC = () => {
       goToStop(nextStop);
     };
 
+    // ── Touch handler: intercept swipe for mobile ───────────────────────
+    let touchStartY = 0;
+    let touchCooldown = false;
+
+    const onTouchStart = (e: TouchEvent) => {
+      const wrapperEl = wrapperRef.current;
+      if (!wrapperEl) return;
+      const rect = wrapperEl.getBoundingClientRect();
+      if (rect.top > 0 || rect.bottom < window.innerHeight) return;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      const wrapperEl = wrapperRef.current;
+      if (!wrapperEl) return;
+      const rect = wrapperEl.getBoundingClientRect();
+      if (rect.top > 0 || rect.bottom < window.innerHeight) return;
+
+      if (touchCooldown) {
+        e.preventDefault();
+        return;
+      }
+
+      const deltaY = touchStartY - e.touches[0].clientY;
+      if (Math.abs(deltaY) < 30) return; // minimum swipe threshold
+
+      const direction = deltaY > 0 ? 1 : -1;
+      const nextStop = currentStop + direction;
+
+      if (nextStop < 0 || nextStop >= STOPS.length) return;
+
+      e.preventDefault();
+      touchCooldown = true;
+      setTimeout(() => {
+        touchCooldown = false;
+      }, 800);
+
+      touchStartY = e.touches[0].clientY; // reset for next swipe
+      goToStop(nextStop);
+    };
+
     // Initialize at first stop
     updateOrb(STOPS[0]);
 
     window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
 
     return () => {
       window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
       cancelAnimationFrame(animFrame);
     };
   }, []);
