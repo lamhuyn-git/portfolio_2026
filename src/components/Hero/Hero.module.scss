@@ -283,13 +283,16 @@
       gap: 0.5rem;
       & .left {
         width: 80%;
+        order: 2;
       }
       & .right {
         width: 80%;
+        order: 1;
       }
       & .circle {
         width: 4%;
         margin-bottom: 1rem;
+        order: 3;
       }
     }
     &-text {
@@ -311,24 +314,30 @@
 @media (max-width: 480px) {
   .hero {
     &-container {
-      padding-bottom: 1rem;
+      height: 100vh;
+      justify-content: center;
     }
     &-content {
       & .left {
-        width: 95%;
+        display: none;
       }
       & .right {
-        width: 95%;
+        width: 100%;
+        order: 1;
+        svg {
+          width: 70%;
+        }
       }
       & .circle {
-        width: 6%;
-        margin-bottom: 0.5rem;
+        display: none;
       }
     }
     &-text {
       padding-inline: 0.25rem;
       & .left,
-      & .right,
+      & .right {
+        display: none;
+      }
       & .mid {
         p {
           font-size: 0.6rem;

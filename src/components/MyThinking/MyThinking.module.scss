@@ -211,9 +211,7 @@
 @media (max-width: 480px) {
   .thinking {
     &__container {
-      width: 90%;
-      padding-top: 3rem;
-      padding-bottom: 6rem;
+      width: 100%;
 
       img {
         width: 4rem;
@@ -223,6 +221,7 @@
       font-size: 1rem;
     }
     &__decoration {
+      transform: scale(0.85);
       transform: translate(0, -5%);
     }
     &__image {
