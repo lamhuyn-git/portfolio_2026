@@ -35,6 +35,7 @@ const Projects = () => {
   const buttonRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const showcaseRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     // Shift-in animation — observe the text content, then animate all elements
@@ -106,6 +107,7 @@ const Projects = () => {
     const textPhase = 0.1;
     const cardPhase = 1 - textPhase;
     let rafId: number;
+    let bottomScrollControlled = false;
 
     const onScroll = () => {
       cancelAnimationFrame(rafId);
@@ -117,7 +119,7 @@ const Projects = () => {
         const scrollable = rect.height - wh;
         const rawProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
 
-        // Fade out projects_top synced with first card's scroll progress
+        // Fade out projects_top based on raw scroll (text fades back in on scroll-up)
         const topEl = topRef.current;
         if (topEl) {
           const firstCardStart = textPhase;
@@ -136,10 +138,10 @@ const Projects = () => {
           topEl.style.transform = `scale(${scale}) translateY(${pushDown}px)`;
         }
 
+        // Single pass: compute raw progress and apply styles directly (bidirectional)
         showcaseRefs.current.forEach((card, i) => {
           if (!card) return;
 
-          // Cards only start after text phase
           const cardStart = textPhase + (i / totalCards) * cardPhase;
           const cardEnd = textPhase + ((i + 1) / totalCards) * cardPhase;
           const cardProgress = Math.max(
@@ -147,35 +149,86 @@ const Projects = () => {
             Math.min(1, (rawProgress - cardStart) / (cardEnd - cardStart)),
           );
 
-          // All cards start fully offscreen below
           const translateY = (1 - cardProgress) * 100;
-
-          // top: 10% when not scrolled → -10% when fully scrolled in
           const top = 10 - cardProgress * 20;
           card.style.top = `${top}%`;
 
-          // Scale down when next card is coming in
-          let scale = 1;
-          if (i < totalCards - 1) {
-            const nextStart = textPhase + ((i + 1) / totalCards) * cardPhase;
-            const nextEnd = textPhase + ((i + 2) / totalCards) * cardPhase;
-            const nextProgress = Math.max(
-              0,
-              Math.min(1, (rawProgress - nextStart) / (nextEnd - nextStart)),
-            );
-            scale = 1 - nextProgress * 0.15;
-          }
+          const nextCardStart = textPhase + ((i + 1) / totalCards) * cardPhase;
+          const nextCardEnd = textPhase + ((i + 2) / totalCards) * cardPhase;
+          const nextCardProgress =
+            i < totalCards - 1
+              ? Math.max(
+                  0,
+                  Math.min(
+                    1,
+                    (rawProgress - nextCardStart) /
+                      (nextCardEnd - nextCardStart),
+                  ),
+                )
+              : 0;
 
+          const scale = i < totalCards - 1 ? 1 - nextCardProgress * 0.15 : 1;
           card.style.transform = `translateY(${translateY}%) scale(${scale})`;
         });
+
+        // Update active nav item based on which card is currently on top
+        let activeIndex = 0;
+        for (let i = totalCards - 1; i >= 0; i--) {
+          const cardStart = textPhase + (i / totalCards) * cardPhase;
+          const cardEnd = textPhase + ((i + 1) / totalCards) * cardPhase;
+          const p = Math.max(
+            0,
+            Math.min(1, (rawProgress - cardStart) / (cardEnd - cardStart)),
+          );
+          if (p > 0) {
+            activeIndex = i;
+            break;
+          }
+        }
+        itemRefs.current.forEach((item, i) => {
+          if (!item) return;
+          if (i === activeIndex) {
+            item.classList.add(styles["projects_item--active"]);
+          } else {
+            item.classList.remove(styles["projects_item--active"]);
+          }
+        });
+
+        // Scale down bottom bar as section wraps up
+        const bottomEl = bottomRef.current;
+        if (bottomEl) {
+          const scaleStart = 0.85;
+          const scaleProgress = Math.max(
+            0,
+            Math.min(1, (rawProgress - scaleStart) / (1 - scaleStart)),
+          );
+          if (scaleProgress > 0) {
+            bottomScrollControlled = true;
+            bottomEl.style.transition = "none";
+            bottomEl.style.transitionDelay = "0s";
+            bottomEl.style.transform = `scale(${1 - scaleProgress * 0.3})`;
+            bottomEl.style.opacity = `${1 - scaleProgress}`;
+          } else if (bottomScrollControlled) {
+            bottomScrollControlled = false;
+            bottomEl.style.transition = "none";
+            bottomEl.style.transitionDelay = "0s";
+            bottomEl.style.transform = "scale(1)";
+            bottomEl.style.opacity = "1";
+          }
+        }
       });
     };
 
+    // overflow-x:hidden on html/body promotes overflow-y to auto, making body
+    // the scroll container instead of window. Scroll events don't bubble, so
+    // listen on both — whichever one is actually scrolling will fire.
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.body.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      document.body.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId);
     };
   }, []);
@@ -275,6 +328,7 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
+                ref={(el) => { itemRefs.current[index] = el; }}
                 className={`${styles.projects_item} ${index === 0 ? styles["projects_item--active"] : ""}`}
               >
                 <p>{project.title}</p>
