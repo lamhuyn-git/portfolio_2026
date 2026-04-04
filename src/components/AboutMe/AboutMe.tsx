@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import styles from "./AboutMe.module.scss";
-import Circle from "../Footer/Circle";
 
 // ── 3 content sections that appear at each scroll stop ──────────────────────
 const sections = [
