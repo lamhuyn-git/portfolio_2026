@@ -47,7 +47,9 @@
       z-index: 200;
       width: 85%;
       overflow: hidden;
-
+      h3 {
+        display: none;
+      }
       p {
         text-align: center;
         width: 100%;
@@ -193,8 +195,6 @@
       padding-block: 3rem;
       gap: 1.5rem;
       & .circle {
-        top: -20%;
-        transform: translateX(50%);
       }
       &_content p {
         font-size: 2.2rem;
@@ -218,28 +218,64 @@
 // Mobile (≤480px)
 @media (max-width: 480px) {
   .footer {
-    padding-top: 4rem;
-    padding-bottom: 3rem;
+    height: 100dvh;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
     &_container {
       gap: 2rem;
     }
     &_top {
+      overflow: visible;
       padding-block: 2rem;
       gap: 1rem;
       & .circle {
-        top: -10%;
-        transform: translateX(30%) scale(0.7);
+        width: 100%;
+        svg {
+          width: 100%;
+        }
+
+        // top: -10%;
+        // transform: translateX(30%) scale(0.7);
       }
-      &_content p {
-        font-size: 1.5rem;
+      &_content {
+        p {
+          display: none;
+          font-size: 1.5rem;
+        }
+        svg {
+          width: 8%;
+          height: auto;
+        }
+        h3 {
+          margin-top: 3rem;
+          width: 85%;
+          display: block;
+          display: block;
+          margin: 1.5rem auto;
+          text-transform: uppercase;
+          text-align: center;
+          font-size: 1.6rem;
+        }
       }
-      svg {
-        width: 80%;
-        height: auto;
+
+      & .line {
+        top: 50%;
+        left: 50%;
+        width: auto;
+        transform: translate(-50%, -36%) rotate(180deg);
+        svg {
+          width: 100dvh;
+          height: auto;
+        }
+      }
+      & .circle {
+        scg {
+          width: 40rem !important;
+        }
       }
     }
     &_bottom {
-      padding-top: 2rem;
+      padding-top: 6rem;
       gap: 1rem;
       &_content {
         & .title {

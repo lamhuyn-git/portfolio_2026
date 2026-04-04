@@ -45,28 +45,57 @@ const Mobile = () => {
           <p>/</p>
           <p>GRAPHIC DESIGNER</p>
         </div>
-        <div className={styles.mobile_buttons}>
-          <button className={styles.mobile_btn_primary}>PROJECT NAME</button>
-          <div className={styles.mobile_btn_secondary}>
-            <span>PROJECT NAME</span>
-            <div className={styles.mobile_btn_arrow}>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3.33334 8H12.6667M12.6667 8L8.66668 4M12.6667 8L8.66668 12"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+        <div className={styles.mobile_group}>
+          <div className={styles.mobile_buttons}>
+            <div className={styles.mobile_btn_secondary}>
+              <span>contact me now</span>
+              <div className={styles.mobile_btn_arrow}>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 3.75L12 11.75M12 11.75V5.25M12 11.75H5.5"
+                    stroke="white"
+                    stroke-width="0.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
+          {/* <div className={styles.mobile_contact}>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 5.125C18 4.23125 17.28 3.5 16.4 3.5H3.6C2.72 3.5 2 4.23125 2 5.125V14.875C2 15.7688 2.72 16.5 3.6 16.5H16.4C17.28 16.5 18 15.7688 18 14.875V5.125ZM16.4 5.125L10 9.1875L3.6 5.125H16.4ZM16.4 14.875H3.6V6.75L10 10.8125L16.4 6.75V14.875Z"
+                fill="#CCCCCC"
+              />
+            </svg>
+          </div>
+          <div className={styles.mobile_contact}>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.2467 4.55556C14.2 5.24778 14.0833 5.92444 13.8967 6.57L14.83 7.50333C15.1489 6.57 15.3511 5.58222 15.4211 4.55556H14.2467V4.55556ZM6.57778 13.9044C5.91667 14.0911 5.24 14.2078 4.55556 14.2544V15.4133C5.58222 15.3433 6.57 15.1411 7.51111 14.83L6.57778 13.9044ZM13.5 3H16.2222C16.65 3 17 3.35 17 3.77778C17 11.0811 11.0811 17 3.77778 17C3.35 17 3 16.65 3 16.2222V13.5078C3 13.08 3.35 12.73 3.77778 12.73C4.74222 12.73 5.68333 12.5744 6.55444 12.2867C6.63222 12.2556 6.71778 12.2478 6.79556 12.2478C6.99778 12.2478 7.19222 12.3256 7.34778 12.4733L9.05889 14.1844C11.26 13.0567 13.0644 11.26 14.1844 9.05889L12.4733 7.34778C12.2556 7.13 12.1933 6.82667 12.2789 6.55444C12.5667 5.68333 12.7222 4.75 12.7222 3.77778C12.7222 3.35 13.0722 3 13.5 3Z"
+                fill="#CCCCCC"
+              />
+            </svg>
+          </div> */}
         </div>
       </div>
     </div>

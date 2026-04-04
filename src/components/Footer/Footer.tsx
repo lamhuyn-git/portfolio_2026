@@ -74,6 +74,9 @@ const Footer = () => {
                 })}
               </p>
             ))}
+            <h3>
+              Let's collaborate to bring impactful digital products to life!
+            </h3>
           </div>
 
           <svg

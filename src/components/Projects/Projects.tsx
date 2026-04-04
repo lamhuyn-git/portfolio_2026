@@ -150,7 +150,11 @@ const Projects = () => {
           );
 
           const translateY = (1 - cardProgress) * 100;
-          const top = 10 - cardProgress * 20;
+          // On mobile, card 0 starts at -60% so its top edge (~38% of vh)
+          // is close to the text block, reducing the visible empty gap.
+          const isMobile = window.innerWidth <= 480;
+          const topStart = i === 0 && isMobile ? -60 : 10;
+          const top = topStart + cardProgress * (-10 - topStart);
           card.style.top = `${top}%`;
 
           const nextCardStart = textPhase + ((i + 1) / totalCards) * cardPhase;

@@ -654,8 +654,11 @@
     height: 220dvh;
   }
   .projects {
-    padding-top: 3rem;
-    padding-bottom: 0.5rem;
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+    &_container {
+      width: 90%;
+    }
     &_top {
       width: 100%;
       &_content p {
@@ -693,6 +696,7 @@
       }
     }
     &_bottom {
+      display: none;
       border-radius: 1rem;
       padding: 0.15rem 0.25rem;
     }

@@ -328,6 +328,10 @@
   gap: 0.5rem;
 }
 
+.mobile_group {
+  display: flex;
+  gap: 0.5rem;
+}
 .mobile_header {
   position: relative;
 }
@@ -362,7 +366,7 @@
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.85rem;
   border-radius: 100rem;
   background: linear-gradient(
     135deg,
@@ -395,6 +399,27 @@
   }
 }
 
+.mobile_contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-radius: 100rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+  width: fit-content;
+}
 .mobile_btn_primary {
   background: #fff;
   color: #000;

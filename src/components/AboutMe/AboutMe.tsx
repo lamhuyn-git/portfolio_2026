@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import styles from "./AboutMe.module.scss";
+import Circle from "../Footer/Circle";
 
 // ── 3 content sections that appear at each scroll stop ──────────────────────
 const sections = [
@@ -48,6 +49,7 @@ const AboutMe: React.FC = () => {
   const decorateSvgRef = useRef<SVGSVGElement | null>(null);
   const infoRef = useRef<HTMLDivElement>(null);
   const contentListRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState(0);
 
   useEffect(() => {
@@ -79,6 +81,13 @@ const AboutMe: React.FC = () => {
           firstItem.style.transform = "translateY(40px)";
           firstItem.style.filter = "blur(8px)";
         }
+        // Reset circle
+        const circle = circleRef.current;
+        if (circle) {
+          circle.style.transition = "none";
+          circle.style.opacity = "0";
+          circle.style.transform = "translate(6%, -64%) scale(0.85)";
+        }
       };
 
       const animateIn = () => {
@@ -88,8 +97,7 @@ const AboutMe: React.FC = () => {
           const elem = el as HTMLElement;
           elem.style.transitionProperty = "transform, opacity, filter";
           elem.style.transitionDuration = "1.3s";
-          elem.style.transitionTimingFunction =
-            "cubic-bezier(0.16, 1, 0.3, 1)";
+          elem.style.transitionTimingFunction = "cubic-bezier(0.16, 1, 0.3, 1)";
           elem.style.transitionDelay = `${0.4 + i * 0.09}s`;
           elem.style.transform = "translateY(0)";
           elem.style.opacity = "1";
@@ -106,6 +114,19 @@ const AboutMe: React.FC = () => {
           firstItem.style.transitionDelay = `${baseDelay}s`;
           firstItem.style.transform = "translateY(0)";
           firstItem.style.filter = "blur(0)";
+        }
+
+        // Fade-in circle with a slight delay after text
+        const circle = circleRef.current;
+        if (circle) {
+          const circleDelay = 0.4 + textLines.length * 0.09 + 0.2;
+          circle.style.transitionProperty = "opacity, transform";
+          circle.style.transitionDuration = "1.6s";
+          circle.style.transitionTimingFunction =
+            "cubic-bezier(0.16, 1, 0.3, 1)";
+          circle.style.transitionDelay = `${circleDelay}s`;
+          circle.style.opacity = "1";
+          circle.style.transform = "translate(6%, -64%) scale(1)";
         }
       };
 
@@ -357,6 +378,9 @@ const AboutMe: React.FC = () => {
               ))}
             </div>
           </div>
+          {/* <div ref={circleRef} className={styles.about_circle}>
+            <Circle />
+          </div> */}
         </div>
       </section>
     </div>
