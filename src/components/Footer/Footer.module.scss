@@ -225,27 +225,34 @@
 @media (max-width: 480px) {
   .footer {
     height: 100dvh;
-    padding-top: 5rem;
-    padding-bottom: 4rem;
+    display: flex;
+    padding-top: 4rem;
+    flex-direction: column;
     &_container {
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      justify-content: space-between;
     }
     &_top {
       overflow: visible;
       gap: 1rem;
+      svg {
+        height: max-content;
+      }
       & .circle {
         width: 100%;
         svg {
-          width: 100%;
+          width: 100% !important;
         }
 
         // top: -10%;
         // transform: translateX(30%) scale(0.7);
       }
       &_content {
-        margin-top: 1.65rem;
+        margin-top: 1.5rem;
+        overflow: visible;
         p {
           display: none;
           font-size: 1.5rem;
@@ -265,25 +272,21 @@
           font-size: 1.6rem;
         }
       }
-
       & .line {
         top: 8rem;
         left: 50%;
         width: auto;
         transform: translate(-50%, -36%);
         svg {
-          width: 112dvh;
+          width: 56rem;
           height: auto;
-        }
-      }
-      & .circle {
-        scg {
-          width: 40rem !important;
         }
       }
     }
     &_bottom {
-      gap: 1rem;
+      gap: 2rem;
+      padding-bottom: 4rem;
+      padding-top: 0;
       &_content {
         /* Initial state — JS drives these via scroll progress */
         opacity: 0;
