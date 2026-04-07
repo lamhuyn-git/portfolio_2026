@@ -291,7 +291,7 @@
       &_content {
         /* Initial state — JS drives these via scroll progress */
         opacity: 0;
-        transform: translateY(56px);
+        transform: translateY(32px); /* reduced from 56px: prevents overflow past 100dvh container */
         filter: blur(8px);
         will-change: transform, opacity, filter;
 

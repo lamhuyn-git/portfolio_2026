@@ -19,41 +19,54 @@ const Footer = () => {
 
     let rafId: number;
 
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const footer = footerRef.current;
-        if (!footer) return;
+    // Extracted so both scroll handler and IntersectionObserver can call it.
+    // Called directly (no rAF) from IO to avoid 1-frame blank on iOS momentum scroll.
+    const updateProgress = () => {
+      const footer = footerRef.current;
+      if (!footer) return;
 
-        const rect = footer.getBoundingClientRect();
-        const wh = window.innerHeight;
+      const rect = footer.getBoundingClientRect();
+      const wh = window.innerHeight;
 
-        // 0 = footer bottom-edge just touching viewport-bottom
-        // 1 = footer top-edge at viewport-top (fully in view)
-        const progress = Math.max(0, Math.min(1, (wh - rect.top) / wh));
+      // 0 = footer bottom-edge just touching viewport-bottom
+      // 1 = footer top-edge at viewport-top (fully in view)
+      const progress = Math.max(0, Math.min(1, (wh - rect.top) / wh));
 
-        bottomItemRefs.current.forEach((item, i) => {
-          if (!item) return;
+      bottomItemRefs.current.forEach((item, i) => {
+        if (!item) return;
 
-          // Each item starts 0.2 apart, animates over 0.35 of total progress
-          const start = i * 0.2;
-          const p = Math.max(0, Math.min(1, (progress - start) / 0.35));
+        // Each item starts 0.2 apart, animates over 0.35 of total progress
+        const start = i * 0.2;
+        const p = Math.max(0, Math.min(1, (progress - start) / 0.35));
 
-          item.style.transform = `translateY(${(1 - p) * 56}px)`;
-          item.style.opacity = `${p}`;
-          item.style.filter = `blur(${(1 - p) * 8}px)`;
-        });
+        item.style.transform = `translateY(${(1 - p) * 32}px)`;
+        item.style.opacity = `${p}`;
+        item.style.filter = `blur(${(1 - p) * 8}px)`;
       });
     };
 
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateProgress);
+    };
+
+    // IntersectionObserver: fires sync when footer enters viewport at any threshold.
+    // This catches iOS momentum-scroll gaps where scroll events fire late — ensuring
+    // items are never stuck at opacity:0 / translateY(32px) after footer is visible.
+    const io = new IntersectionObserver(updateProgress, {
+      threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0],
+    });
+    if (footerRef.current) io.observe(footerRef.current);
+
     window.addEventListener("scroll", onScroll, { passive: true });
     document.body.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // set initial state
+    updateProgress(); // set initial state synchronously
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.body.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(rafId);
+      io.disconnect();
     };
   }, []);
 
