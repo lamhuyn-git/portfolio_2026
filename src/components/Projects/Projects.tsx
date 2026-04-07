@@ -45,16 +45,13 @@ const Projects = () => {
       buttonRef.current,
       bottomRef.current,
     ];
-    const totalLetters = LINES.join("").length;
 
     if (el) {
       const letters = el.querySelectorAll(`.${styles.letter}`);
 
       const letterObserver = new IntersectionObserver(
         (entries) => {
-          const lineEls = Array.from(
-            el.querySelectorAll("p"),
-          ) as HTMLElement[];
+          const lineEls = Array.from(el.querySelectorAll("p")) as HTMLElement[];
 
           if (entries[0].isIntersecting) {
             // ── All sizes: reveal letters instantly, animate lines + shift ─
@@ -67,10 +64,7 @@ const Projects = () => {
             });
 
             // lines → desc → button → bottom, each 0.09s apart
-            const allItems = [
-              ...lineEls,
-              ...shiftElements,
-            ] as HTMLElement[];
+            const allItems = [...lineEls, ...shiftElements] as HTMLElement[];
             allItems.forEach((elem, i) => {
               if (!elem) return;
               elem.style.transitionProperty = "transform, opacity, filter";
