@@ -226,7 +226,8 @@
   .footer {
     height: 100dvh;
     display: flex;
-    padding-top: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 6rem;
     flex-direction: column;
     &_container {
       width: 100%;
