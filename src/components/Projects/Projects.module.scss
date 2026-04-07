@@ -47,6 +47,18 @@
         font-weight: 600;
         line-height: normal;
         text-transform: uppercase;
+        /* Initial hidden state — JS slides each line up (line-by-line reveal) */
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(8px);
+        will-change: transform, opacity, filter;
+      }
+      /* Letters are instantly visible — parent <p> is the animated unit */
+      .letter {
+        opacity: 1;
+        transform: translateY(0);
+        filter: none;
+        transition: none;
       }
     }
     &_desc {
@@ -462,21 +474,21 @@
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 
-// Large desktop (≥1600px)
-@media (min-width: 1600px) {
+// Large desktop (≥1440.98px)
+@media (min-width: 1920.98px) {
   .projects {
-    padding-top: 12rem;
+    padding-top: 10rem;
     padding-bottom: 6rem;
     &_container {
       width: 85%;
     }
     &_top {
       &_content p {
-        font-size: 6rem;
+        font-size: 5.6rem;
       }
       &_desc {
-        width: 65%;
-        font-size: 1.5rem;
+        width: 55%;
+        font-size: 1.35rem;
       }
     }
     &_bottom {
@@ -486,7 +498,7 @@
     &_item {
       padding: 0.5rem 1.5rem;
       p {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
       }
     }
     &_showcase {
@@ -521,7 +533,7 @@
     &_contact {
       padding: 0.5rem 1rem 0.5rem 1.5rem;
       span {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
       }
       &_circle {
         width: 3rem;
@@ -661,8 +673,10 @@
     }
     &_top {
       width: 100%;
-      &_content p {
-        font-size: 1.6rem;
+      &_content {
+        p {
+          font-size: 1.6rem;
+        }
       }
       &_desc {
         width: 80%;
@@ -674,15 +688,43 @@
       }
     }
     &_showcase {
+      height: 65%;
       &.odd,
       &.even {
+        & .wrapper {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+        & .image {
+          width: 60%;
+          height: 85%;
+          flex: 1;
+          border-radius: 0 1rem 0 0;
+          padding: 4px 4px 0 0;
+          img {
+            border-radius: 0 0.75rem 0 0;
+            object-fit: cover;
+          }
+        }
         & .info {
-          padding: 1rem;
+          width: 40%;
+          height: 100%;
+          padding: 1.25rem 1rem 1rem 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          & .text {
+            gap: 0.35rem;
+          }
           h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
           }
           p {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
+          }
+          span {
+            font-size: 0.6rem;
+            width: 100%;
           }
           & .tags {
             gap: 0.3rem;

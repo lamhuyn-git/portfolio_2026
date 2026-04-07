@@ -127,8 +127,8 @@
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 
-// Large desktop (≥1600px)
-@media (min-width: 1600px) {
+// Large desktop (≥1440.98px)
+@media (min-width: 1920.98px) {
   .thinking {
     height: 100vh;
     &__container {
@@ -136,8 +136,11 @@
       padding-top: 10rem;
       padding-bottom: 20rem;
       img {
-        width: 11rem;
+        width: 12rem;
       }
+    }
+    &__decoration {
+      transform: translate(0, 3%);
     }
     &__quote {
       font-size: 3rem;
@@ -153,10 +156,10 @@
       margin-left: 1rem;
     }
     &__image {
-      transform: translate(85%, -207%);
+      transform: translate(76%, -182%);
     }
     &__bottom {
-      gap: 0.5rem;
+      gap: 0.45rem;
       & .desc {
         width: 50%;
         font-size: 1.35rem;

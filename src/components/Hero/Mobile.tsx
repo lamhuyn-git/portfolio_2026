@@ -58,7 +58,7 @@ const Mobile = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M4 3.75L12 11.75M12 11.75V5.25M12 11.75H5.5"
+                    d="M4 12.25L12 4.25M12 4.25V10.75M12 4.25H5.5"
                     stroke="white"
                     stroke-width="0.75"
                     stroke-linecap="round"

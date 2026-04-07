@@ -10,6 +10,52 @@ const LINES = [
 
 const Footer = () => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const bottomItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // ── Scroll-linked stagger for footer_bottom items (mobile only) ──────────
+  useEffect(() => {
+    if (window.innerWidth > 480) return;
+
+    let rafId: number;
+
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const footer = footerRef.current;
+        if (!footer) return;
+
+        const rect = footer.getBoundingClientRect();
+        const wh = window.innerHeight;
+
+        // 0 = footer bottom-edge just touching viewport-bottom
+        // 1 = footer top-edge at viewport-top (fully in view)
+        const progress = Math.max(0, Math.min(1, (wh - rect.top) / wh));
+
+        bottomItemRefs.current.forEach((item, i) => {
+          if (!item) return;
+
+          // Each item starts 0.2 apart, animates over 0.35 of total progress
+          const start = i * 0.2;
+          const p = Math.max(0, Math.min(1, (progress - start) / 0.35));
+
+          item.style.transform = `translateY(${(1 - p) * 56}px)`;
+          item.style.opacity = `${p}`;
+          item.style.filter = `blur(${(1 - p) * 8}px)`;
+        });
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.body.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // set initial state
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.body.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   useEffect(() => {
     const el = contentRef.current;
@@ -50,7 +96,7 @@ const Footer = () => {
   let globalIndex = 0;
 
   return (
-    <div className={styles.footer}>
+    <div ref={footerRef} className={styles.footer}>
       <div className={styles.footer_container}>
         <div className={styles.footer_top}>
           <Decorate className={styles.line} />
@@ -112,18 +158,26 @@ const Footer = () => {
           </svg>
         </div>
         <div className={styles.footer_bottom}>
-          <div className={styles.footer_bottom_content}>
+          <div
+            ref={(el) => { bottomItemRefs.current[0] = el; }}
+            className={styles.footer_bottom_content}
+          >
             <p className={styles.title}>send me e-mail</p>
             <p className={styles.detail}>lam.huynthi@gmail.com</p>
             <p></p>
           </div>
-          <div className={styles.footer_bottom_content}>
+          <div
+            ref={(el) => { bottomItemRefs.current[1] = el; }}
+            className={styles.footer_bottom_content}
+          >
             <p className={styles.title}>Call me</p>
             <p className={styles.detail}>+(84) 366 400 874</p>
             <p></p>
           </div>
-
-          <div className={styles.footer_bottom_content}>
+          <div
+            ref={(el) => { bottomItemRefs.current[2] = el; }}
+            className={styles.footer_bottom_content}
+          >
             <p className={styles.title}>Address</p>
             <p className={styles.detail}>Ho Chi Minh City, Vietnam</p>
             <p></p>

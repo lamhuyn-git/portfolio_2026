@@ -23,7 +23,6 @@
     padding-block: 6rem;
     position: relative;
     z-index: 100;
-    overflow: hidden;
     & .line {
       position: absolute;
       top: 8px;
@@ -124,18 +123,24 @@
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 
-// Large desktop (≥1600px)
-@media (min-width: 1600px) {
+// Large desktop (≥1440.98px)
+@media (min-width: 1920.98px) {
   .footer {
-    height: 110vh;
-    padding-top: 18rem;
+    height: 100vh;
+    padding-block: 12rem;
+    &_container {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
     &_top_content {
-      margin-top: 4rem;
+      margin-top: 8.5rem;
       p {
-        font-size: 6rem;
+        font-size: 5.6rem;
       }
     }
     &_top {
+      top: 0;
       & .circle {
         svg {
           width: 64rem;
@@ -144,6 +149,7 @@
       }
       & .line {
         width: 100%;
+        top: 8%;
       }
       svg {
         width: 2.5rem;
@@ -151,13 +157,13 @@
       }
     }
     &_bottom {
-      padding-top: 16rem;
+      padding-top: 12rem;
       &_content {
         & .title {
-          font-size: 1.25rem;
+          font-size: 1.35rem;
         }
         & .detail {
-          font-size: 1.25rem;
+          font-size: 1.35rem;
         }
       }
     }
@@ -222,11 +228,12 @@
     padding-top: 5rem;
     padding-bottom: 4rem;
     &_container {
+      display: flex;
+      flex-direction: column;
       gap: 2rem;
     }
     &_top {
       overflow: visible;
-      padding-block: 2rem;
       gap: 1rem;
       & .circle {
         width: 100%;
@@ -238,6 +245,7 @@
         // transform: translateX(30%) scale(0.7);
       }
       &_content {
+        margin-top: 1.65rem;
         p {
           display: none;
           font-size: 1.5rem;
@@ -259,12 +267,12 @@
       }
 
       & .line {
-        top: 50%;
+        top: 8rem;
         left: 50%;
         width: auto;
-        transform: translate(-50%, -36%) rotate(180deg);
+        transform: translate(-50%, -36%);
         svg {
-          width: 100dvh;
+          width: 112dvh;
           height: auto;
         }
       }
@@ -275,9 +283,14 @@
       }
     }
     &_bottom {
-      padding-top: 6rem;
       gap: 1rem;
       &_content {
+        /* Initial state — JS drives these via scroll progress */
+        opacity: 0;
+        transform: translateY(56px);
+        filter: blur(8px);
+        will-change: transform, opacity, filter;
+
         & .title {
           font-size: 0.65rem;
         }

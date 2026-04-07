@@ -9,7 +9,7 @@ const projectsData = [
   {
     title: "Yup - A Food Delivery Application",
     desc: "A sleek and intuitive food delivery application designed to provide users with a seamless ordering experience.",
-    img: "https://i.pinimg.com/736x/01/97/b9/0197b9b70a912dc299c3a8913f0d0c26.jpg",
+    img: "https://ik.imagekit.io/mku5dcybr/Yup!%20Everything%20on%20Your%20Phone!%20(1).svg?updatedAt=1753927203711",
     tags: ["React", "TypeScript", "SCSS", "Application Design"],
   },
   {
@@ -21,7 +21,7 @@ const projectsData = [
   {
     title: "Project Three",
     desc: "A sleek and intuitive music player application designed to provide users with a seamless listening experience.",
-    img: "https://zeyna.pethemes.com/wp-content/uploads/2026/01/showcase_webgl_carousel-scaled.webp",
+    img: "https://static.wixstatic.com/media/bb0466_b29ff5e5635748d8a412656cf9a09bc2~mv2.png/v1/fill/w_1310,h_754,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Noir.png",
     tags: ["Python", "Django", "PostgreSQL"],
   },
 ];
@@ -52,32 +52,38 @@ const Projects = () => {
 
       const letterObserver = new IntersectionObserver(
         (entries) => {
+          const lineEls = Array.from(
+            el.querySelectorAll("p"),
+          ) as HTMLElement[];
+
           if (entries[0].isIntersecting) {
-            // Animate letters in
+            // ── All sizes: reveal letters instantly, animate lines + shift ─
             letters.forEach((span) => {
               const s = span as HTMLElement;
-              s.style.transition = "";
+              s.style.transition = "none";
               s.style.transform = "translateY(0)";
               s.style.opacity = "1";
               s.style.filter = "blur(0)";
             });
 
-            // Animate shift elements with staggered delay after letters finish
-            const baseDelay = totalLetters * 0.03 + 0.1;
-            shiftElements.forEach((elem, i) => {
+            // lines → desc → button → bottom, each 0.09s apart
+            const allItems = [
+              ...lineEls,
+              ...shiftElements,
+            ] as HTMLElement[];
+            allItems.forEach((elem, i) => {
               if (!elem) return;
-              const delay = baseDelay + i * 0.12;
               elem.style.transitionProperty = "transform, opacity, filter";
               elem.style.transitionDuration = "1.3s";
               elem.style.transitionTimingFunction =
                 "cubic-bezier(0.16, 1, 0.3, 1)";
-              elem.style.transitionDelay = `${delay}s`;
+              elem.style.transitionDelay = `${i * 0.09}s`;
               elem.style.transform = "translateY(0)";
               elem.style.opacity = "1";
               elem.style.filter = "blur(0)";
             });
           } else {
-            // Reset instantly while out of view
+            // ── Reset ────────────────────────────────────────────────────
             letters.forEach((span) => {
               const s = span as HTMLElement;
               s.style.transition = "none";
@@ -85,6 +91,15 @@ const Projects = () => {
               s.style.opacity = "0";
               s.style.filter = "blur(8px)";
             });
+
+            lineEls.forEach((line) => {
+              line.style.transition = "none";
+              line.style.transitionDelay = "0s";
+              line.style.transform = "translateY(40px)";
+              line.style.opacity = "0";
+              line.style.filter = "blur(8px)";
+            });
+
             shiftElements.forEach((elem) => {
               if (!elem) return;
               elem.style.transition = "none";
@@ -332,7 +347,9 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
-                ref={(el) => { itemRefs.current[index] = el; }}
+                ref={(el) => {
+                  itemRefs.current[index] = el;
+                }}
                 className={`${styles.projects_item} ${index === 0 ? styles["projects_item--active"] : ""}`}
               >
                 <p>{project.title}</p>

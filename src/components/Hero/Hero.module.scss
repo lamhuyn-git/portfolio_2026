@@ -203,8 +203,8 @@
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 
-// Large desktop (≥1600px)
-@media (min-width: 1600px) {
+// Large desktop (≥1440.98px)
+@media (min-width: 1920.98px) {
   .hero {
     &-container {
       padding-bottom: 3rem;
@@ -224,7 +224,7 @@
       }
       & .right {
         height: 100%;
-        width: 40%;
+        width: 43%;
 
         & svg:first-child {
           width: 100%;
@@ -349,13 +349,14 @@
 .mobile_role {
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 0.25rem;
   padding-left: 0.5rem;
+  margin-top: -0.5rem;
   p {
     text-transform: uppercase;
     font-size: 0.7rem;
     font-weight: 500;
-    color: var(--grey-normal);
+    color: var(--grey-hover);
     letter-spacing: 0.05em;
   }
 }
