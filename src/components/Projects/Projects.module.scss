@@ -663,11 +663,10 @@
 // Mobile (≤480px)
 @media (max-width: 480px) {
   .projects-wrapper {
-    height: 220dvh;
+    height: 180dvh;
   }
   .projects {
-    padding-top: 6rem;
-    padding-bottom: 2rem;
+    padding-top: 8rem;
     &_container {
       width: 90%;
     }
@@ -675,28 +674,31 @@
       width: 100%;
       &_content {
         p {
-          font-size: 1.6rem;
+          font-size: 1.65rem;
         }
       }
       &_desc {
-        width: 80%;
-        font-size: 0.6rem;
+        width: 70%;
+        font-size: 0.65rem;
       }
       &_button {
         gap: 1rem;
         margin-top: 0.5rem;
       }
     }
+
     &_showcase {
-      height: 65%;
+      height: 75%;
+      top: -60%;
+      right: 0; // fix: was inheriting right: 5% from base, causing off-center on mobile
       &.odd,
       &.even {
         & .wrapper {
-          flex-direction: row;
-          align-items: flex-end;
+          flex-direction: column;
+          align-items: center;
         }
         & .image {
-          width: 60%;
+          width: 100%;
           height: 85%;
           flex: 1;
           border-radius: 0 1rem 0 0;
@@ -707,7 +709,7 @@
           }
         }
         & .info {
-          width: 40%;
+          width: 100%; // increased from 40% → more readable on narrow screens
           height: 100%;
           padding: 1.25rem 1rem 1rem 1rem;
           display: flex;
@@ -717,18 +719,18 @@
             gap: 0.35rem;
           }
           h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
           }
           p {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
           }
           span {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             width: 100%;
           }
           & .tags {
             gap: 0.3rem;
-            font-size: 0.55rem;
+            font-size: 0.65rem;
             & .tag {
               padding: 0.25rem 0.5rem;
               border-radius: 0.35rem;

@@ -159,10 +159,14 @@ const Projects = () => {
           );
 
           const translateY = (1 - cardProgress) * 100;
-          // On mobile, card 0 starts at -60% so its top edge (~38% of vh)
-          // is close to the text block, reducing the visible empty gap.
           const isMobile = window.innerWidth <= 480;
-          const topStart = i === 0 && isMobile ? -60 : 10;
+          // Mobile: cards are shorter (65vh vs 98vh desktop), so topStart must be staggered
+          // per card — otherwise cards 1 & 2 both sit at 75% of viewport (10+65) and
+          // card 2 (higher zIndex) renders on top of card 1 before card 1 ever animates.
+          const topStart = isMobile
+            ? i === 0 ? -30        // card 0: peeks at bottom on load
+              : 10 + i * 30        // card 1→40%, card 2→70% (both off-screen initially)
+            : 10;                  // desktop: 98vh card height puts all cards off-screen
           const top = topStart + cardProgress * (-10 - topStart);
           card.style.top = `${top}%`;
 
