@@ -202,8 +202,6 @@
 }
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
-
-// Large desktop (≥1440.98px)
 @media (min-width: 1920.98px) {
   .hero {
     &-container {
@@ -240,6 +238,48 @@
         width: max-content;
         p {
           font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440.98px) and (max-width: 1920px) {
+  .hero {
+    &-container {
+      padding-bottom: 3rem;
+    }
+    & .left {
+      width: 50%;
+      & svg:first-child {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &-content {
+      gap: 1.5rem;
+      & .circle {
+        margin-bottom: 4.5rem;
+      }
+      & .right {
+        height: 100%;
+        width: 40%;
+
+        & svg:first-child {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+    &-text {
+      padding-inline: 1.15rem;
+      & .left,
+      & .right,
+      & .mid {
+        width: max-content;
+        p {
+          font-size: 1.35rem;
         }
       }
     }

@@ -168,6 +168,46 @@
   }
 }
 
+@media (min-width: 1440.98px) and (max-width: 1920px) {
+  .thinking {
+    height: 100vh;
+    &__container {
+      width: 32%;
+      padding-top: 10rem;
+      padding-bottom: 15rem;
+      img {
+        width: 8.5rem;
+      }
+    }
+    &__decoration {
+      transform: translate(0, 3%);
+    }
+    &__quote {
+      font-size: 2rem;
+    }
+    &__inner {
+      gap: 8rem;
+      margin-bottom: -1rem;
+    }
+    &__label {
+      font-size: 1rem;
+    }
+    &__top {
+      margin-left: 1rem;
+    }
+    &__image {
+      transform: translate(80%, -213%);
+    }
+    &__bottom {
+      gap: 0.35rem;
+      & .desc {
+        width: 55%;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
 // Laptop (≤1024px)
 @media (max-width: 1024px) {
   .thinking {

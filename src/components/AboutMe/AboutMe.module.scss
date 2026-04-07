@@ -197,6 +197,39 @@
   }
 }
 
+@media (min-width: 1440.98px) and (max-width: 1920px) {
+  .about {
+    padding: 4rem;
+    &_header {
+      gap: 0.5rem;
+      & .text-line {
+        font-size: 1rem;
+      }
+    }
+
+    &_content {
+      max-height: 25rem;
+      &_item {
+        width: 40%;
+        & .left {
+          gap: 0.45rem;
+          & .title,
+          & .subtitle,
+          & .detail {
+            font-size: 1rem;
+          }
+        }
+        & .right {
+          & .start,
+          & .end {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
 // Laptop (≤1024px)
 @media (max-width: 1024px) {
   .about {

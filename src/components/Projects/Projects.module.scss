@@ -546,6 +546,51 @@
     }
   }
 }
+@media (min-width: 1440.98px) and (max-width: 1920px) {
+  .projects {
+    padding-bottom: 4rem;
+    &_top {
+      &_content p {
+        font-size: 4rem;
+      }
+      &_desc {
+        width: 55%;
+        font-size: 1rem;
+      }
+    }
+    &_item {
+      p {
+        font-size: 1rem;
+      }
+    }
+    &_showcase {
+      &.odd,
+      &.even {
+        & .info {
+          padding: 6rem 3rem 3rem 3rem;
+          h3 {
+            font-size: 3rem;
+            line-height: 1.25;
+          }
+          span {
+            width: 90%;
+            font-size: 1rem;
+          }
+          p {
+            font-size: 1rem;
+          }
+
+          & .tags {
+            font-size: 1rem;
+            & .tag {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 // Laptop (≤1024px)
 @media (max-width: 1024px) {
