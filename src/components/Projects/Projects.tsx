@@ -8,21 +8,24 @@ const LINES = ["I Design Solutions", "Not just interfaces"];
 const projectsData = [
   {
     title: "Yup - A Food Delivery Application",
-    desc: "A sleek and intuitive food delivery application designed to provide users with a seamless ordering experience.",
+    desc: "I designed the user interface for a food delivery application concept developed for a fast-food brand called YUP. As one of my first projects, the primary focus was on building a strong foundation in UI design by covering the essential features of a typical delivery app, including browsing menus, product details, cart management, and checkout flows. The project emphasizes clean layout structure, intuitive navigation, and visual consistency to ensure a smooth user experience. ",
     img: "https://ik.imagekit.io/mku5dcybr/Yup!%20Everything%20on%20Your%20Phone!%20(1).svg?updatedAt=1753927203711",
-    tags: ["React", "TypeScript", "SCSS", "Application Design"],
+    tags: ["UI Design", "Food Delivery", "Mobile Application Design"],
+    link: "https://www.figma.com/design/PQE6TnDsO6tFkvvtfbPBpu/Yup?node-id=2263-1862&t=3XC6jyIeuMLXEBlw-1",
+  },
+  {
+    title: "Noir E-commerce Website",
+    desc: "A sleek and intuitive music player application designed to provide users with a seamless listening experience.",
+    video: "https://ik.imagekit.io/ne86svrwu/noir.mp4",
+    tags: ["UI/UX Design", "TypeScript", "E-commerce Website"],
+    link: "https://www.figma.com/design/XCwQv9QA8ay80b9dWsfX3I/Noir---Web?node-id=0-1&t=uf3DI5l3u0NE6jZ5-1",
   },
   {
     title: "Melody - A Music Player Application",
-    desc: "A modern web application built with React and TypeScript, featuring a responsive design and a clean user interface",
-    img: "https://ik.imagekit.io/mku5dcybr/Me.png?updatedAt=1753894222146",
-    tags: ["JavaScript", "HTML", "CSS"],
-  },
-  {
-    title: "Project Three",
-    desc: "A sleek and intuitive music player application designed to provide users with a seamless listening experience.",
-    img: "https://static.wixstatic.com/media/bb0466_b29ff5e5635748d8a412656cf9a09bc2~mv2.png/v1/fill/w_1310,h_754,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Noir.png",
-    tags: ["Python", "Django", "PostgreSQL"],
+    desc: "I designed the UI for a music player app concept, focusing on core features such as browsing, playlist management, and playback interactions. The project emphasizes intuitive navigation, visual consistency, and a smooth user experience.Through this work, I demonstrate my ability to translate user needs into clean, scalable interfaces while applying strong UI/UX fundamentals.",
+    video: "https://ik.imagekit.io/ne86svrwu/Yup2.mp4", // TODO: replace with video URL
+    tags: ["UI/UX Design", "Music Player", "Mobile Application Design"],
+    link: "https://www.figma.com/design/1ZbA0tZ6xvl7DdpvZaBlCV/Music-Mobile-App--Android-?node-id=94-2888&t=yYuipVTDeMxFeZiX-1",
   },
 ];
 
@@ -164,9 +167,10 @@ const Projects = () => {
           // per card — otherwise cards 1 & 2 both sit at 75% of viewport (10+65) and
           // card 2 (higher zIndex) renders on top of card 1 before card 1 ever animates.
           const topStart = isMobile
-            ? i === 0 ? -30        // card 0: peeks at bottom on load
-              : 10 + i * 30        // card 1→40%, card 2→70% (both off-screen initially)
-            : 10;                  // desktop: 98vh card height puts all cards off-screen
+            ? i === 0
+              ? -30 // card 0: peeks at bottom on load
+              : 10 + i * 30 // card 1→40%, card 2→70% (both off-screen initially)
+            : 10; // desktop: 98vh card height puts all cards off-screen
           const top = topStart + cardProgress * (-10 - topStart);
           card.style.top = `${top}%`;
 
@@ -330,6 +334,7 @@ const Projects = () => {
               desc={project.desc}
               index={index}
               img={project.img}
+              video={project.video}
               tags={project.tags}
               showcaseRef={(el) => {
                 showcaseRefs.current[index] = el;

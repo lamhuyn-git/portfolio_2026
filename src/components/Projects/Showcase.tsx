@@ -4,7 +4,8 @@ import styles from "./Projects.module.scss";
 interface ShowcaseProps {
   title: string;
   desc: string;
-  img: string;
+  img?: string;
+  video?: string;
   index: number;
   tags?: string[];
   showcaseRef: (el: HTMLDivElement | null) => void;
@@ -14,6 +15,7 @@ const Showcase: React.FC<ShowcaseProps> = ({
   title,
   desc,
   img,
+  video,
   index,
   tags,
   showcaseRef,
@@ -72,7 +74,11 @@ const Showcase: React.FC<ShowcaseProps> = ({
 
       <div className={styles.wrapper}>
         <div className={styles.image}>
-          <img src={img} alt={title} />
+          {video ? (
+            <video src={video} autoPlay muted loop playsInline preload="metadata" />
+          ) : img ? (
+            <img src={img} alt={title} />
+          ) : null}
         </div>
         <div className={styles.info}>
           <div className={styles.text}>

@@ -130,6 +130,7 @@
         padding: 4px 4px 0 0;
         background: #1d1f21;
 
+        video,
         img {
           border-radius: 0 0.75rem 0 0;
           width: 100%;
@@ -141,7 +142,7 @@
       & .info {
         width: 40%;
         height: 100%;
-        padding: 4rem 3rem 3rem 3rem;
+        padding: 4rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -212,6 +213,7 @@
         padding: 4px 4px 0 0;
         background: #ececec;
 
+        video,
         img {
           border-radius: 0 0.75rem 0 0;
           width: 100%;
@@ -223,7 +225,7 @@
       & .info {
         width: 40%;
         height: 100%;
-        padding: 4rem 3rem 3rem 3rem;
+        padding: 4rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -666,6 +668,7 @@
           height: 50%;
           border-radius: 0.75rem 0.75rem 0 0;
           padding: 4px 4px 0 4px;
+          video,
           img {
             border-radius: 0.5rem 0.5rem 0 0;
           }
@@ -748,6 +751,7 @@
           flex: 1;
           border-radius: 0 1rem 0 0;
           padding: 4px 4px 0 0;
+          video,
           img {
             border-radius: 0 0.75rem 0 0;
             object-fit: cover;
