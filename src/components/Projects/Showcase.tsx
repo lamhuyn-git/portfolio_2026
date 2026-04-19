@@ -6,6 +6,7 @@ interface ShowcaseProps {
   desc: string;
   img?: string;
   video?: string;
+  link?: string;
   index: number;
   tags?: string[];
   showcaseRef: (el: HTMLDivElement | null) => void;
@@ -16,6 +17,7 @@ const Showcase: React.FC<ShowcaseProps> = ({
   desc,
   img,
   video,
+  link,
   index,
   tags,
   showcaseRef,
@@ -53,6 +55,10 @@ const Showcase: React.FC<ShowcaseProps> = ({
     labelRef.current.style.transform = "translate(-50%, -50%) scale(0)";
   };
 
+  const handleClick = () => {
+    if (link) window.open(link, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div
       ref={setRef}
@@ -61,6 +67,7 @@ const Showcase: React.FC<ShowcaseProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
       {/* Custom cursor follower */}
       <div ref={followerRef} className={styles.cursor_follower}>

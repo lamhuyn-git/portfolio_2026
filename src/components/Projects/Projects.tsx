@@ -7,6 +7,13 @@ const LINES = ["I Design Solutions", "Not just interfaces"];
 
 const projectsData = [
   {
+    title: "Melody - A Music Player Application",
+    desc: "I designed the UI for a music player app concept, focusing on core features such as browsing, playlist management, and playback interactions. The project emphasizes intuitive navigation, visual consistency, and a smooth user experience.Through this work, I demonstrate my ability to translate user needs into clean, scalable interfaces while applying strong UI/UX fundamentals.",
+    video: "https://ik.imagekit.io/ne86svrwu/Yup2.mp4", // TODO: replace with video URL
+    tags: ["UI/UX Design", "Music Player", "Mobile Application Design"],
+    link: "https://www.behance.net/gallery/247854737/Melody-Music-App-UIUX-Design",
+  },
+  {
     title: "Yup - A Food Delivery Application",
     desc: "I designed the user interface for a food delivery application concept developed for a fast-food brand called YUP. As one of my first projects, the primary focus was on building a strong foundation in UI design by covering the essential features of a typical delivery app, including browsing menus, product details, cart management, and checkout flows. The project emphasizes clean layout structure, intuitive navigation, and visual consistency to ensure a smooth user experience. ",
     img: "https://ik.imagekit.io/mku5dcybr/Yup!%20Everything%20on%20Your%20Phone!%20(1).svg?updatedAt=1753927203711",
@@ -19,13 +26,6 @@ const projectsData = [
     video: "https://ik.imagekit.io/ne86svrwu/noir.mp4",
     tags: ["UI/UX Design", "TypeScript", "E-commerce Website"],
     link: "https://www.figma.com/design/XCwQv9QA8ay80b9dWsfX3I/Noir---Web?node-id=0-1&t=uf3DI5l3u0NE6jZ5-1",
-  },
-  {
-    title: "Melody - A Music Player Application",
-    desc: "I designed the UI for a music player app concept, focusing on core features such as browsing, playlist management, and playback interactions. The project emphasizes intuitive navigation, visual consistency, and a smooth user experience.Through this work, I demonstrate my ability to translate user needs into clean, scalable interfaces while applying strong UI/UX fundamentals.",
-    video: "https://ik.imagekit.io/ne86svrwu/Yup2.mp4", // TODO: replace with video URL
-    tags: ["UI/UX Design", "Music Player", "Mobile Application Design"],
-    link: "https://www.figma.com/design/1ZbA0tZ6xvl7DdpvZaBlCV/Music-Mobile-App--Android-?node-id=94-2888&t=yYuipVTDeMxFeZiX-1",
   },
 ];
 
@@ -335,6 +335,7 @@ const Projects = () => {
               index={index}
               img={project.img}
               video={project.video}
+              link={project.link}
               tags={project.tags}
               showcaseRef={(el) => {
                 showcaseRefs.current[index] = el;
