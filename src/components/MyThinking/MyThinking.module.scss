@@ -208,6 +208,37 @@
   }
 }
 
+// Middle desktop (1440px → 1800px): keep the composition inside Safari's viewport.
+@media (min-width: 1440.98px) and (max-width: 1799.98px) {
+  .thinking {
+    min-height: 100dvh;
+    height: auto;
+
+    &__container {
+      width: clamp(30rem, 32vw, 34rem);
+      min-height: 100dvh;
+      height: auto;
+      justify-content: center;
+      padding-top: clamp(5rem, 7vh, 8rem);
+      padding-bottom: clamp(6rem, 10vh, 10rem);
+    }
+
+    &__inner {
+      gap: clamp(4rem, 8vh, 6rem);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    &__quote {
+      font-size: clamp(1.75rem, 2vw, 2rem);
+    }
+
+    &__image {
+      transform: translate(78%, -190%);
+    }
+  }
+}
+
 // Laptop (≤1024px)
 @media (max-width: 1024px) {
   .thinking {
