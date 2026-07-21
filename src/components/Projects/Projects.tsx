@@ -7,21 +7,34 @@ const LINES = ["I Design Solutions", "Not just interfaces"];
 
 const projectsData = [
   {
-    title: "Melody - A Music Player Application",
-    desc: "I designed the UI for a music player app concept, focusing on core features such as browsing, playlist management, and playback interactions. The project emphasizes intuitive navigation, visual consistency, and a smooth user experience.Through this work, I demonstrate my ability to translate user needs into clean, scalable interfaces while applying strong UI/UX fundamentals.",
+    title: "VExtract",
+    desc: "VExtract is an AI-powered GovTech concept designed to streamline administrative document processing. The system leverages OCR and intelligent validation to automatically extract information from government forms, helping officers review applications faster while reducing manual data entry.",
+    img: "https://res.cloudinary.com/ojnl7vfz/image/upload/v1784646666/Intro_Vextract_rwey9g.png", // TODO: replace with video URL
+    tags: [
+      "UI/UX Design",
+      "GovTech",
+      "AI Document Processing",
+      "OCR",
+      "Dashboard Design",
+    ],
+    link: "https://www.behance.net/gallery/252748339/VExtract-Intelligent-Document-Processing-Platform",
+  },
+  {
+    title: "Melody",
+    desc: "I designed the UI for a music player app concept, focusing on core features such as browsing, playlist management, and playback interactions. The project emphasizes intuitive navigation, visual consistency, and a smooth user experience.",
     video: "https://ik.imagekit.io/ne86svrwu/Yup2.mp4", // TODO: replace with video URL
     tags: ["UI/UX Design", "Music Player", "Mobile Application Design"],
     link: "https://www.behance.net/gallery/247854737/Melody-Music-App-UIUX-Design",
   },
   {
-    title: "Yup - A Food Delivery Application",
-    desc: "I designed the user interface for a food delivery application concept developed for a fast-food brand called YUP. As one of my first projects, the primary focus was on building a strong foundation in UI design by covering the essential features of a typical delivery app, including browsing menus, product details, cart management, and checkout flows. The project emphasizes clean layout structure, intuitive navigation, and visual consistency to ensure a smooth user experience. ",
+    title: "Yup ",
+    desc: "I designed the user interface for a food delivery application concept developed for a fast-food brand called YUP. As one of my first projects, the primary focus was on building a strong foundation in UI design by covering the essential features of a typical delivery app, including browsing menus, product details, cart management, and checkout flows.",
     img: "https://ik.imagekit.io/mku5dcybr/Yup!%20Everything%20on%20Your%20Phone!%20(1).svg?updatedAt=1753927203711",
     tags: ["UI Design", "Food Delivery", "Mobile Application Design"],
     link: "https://www.figma.com/design/PQE6TnDsO6tFkvvtfbPBpu/Yup?node-id=2263-1862&t=3XC6jyIeuMLXEBlw-1",
   },
   {
-    title: "Noir E-commerce Website",
+    title: "Noir",
     desc: "A sleek and intuitive music player application designed to provide users with a seamless listening experience.",
     video: "https://ik.imagekit.io/ne86svrwu/noir.mp4",
     tags: ["UI/UX Design", "TypeScript", "E-commerce Website"],

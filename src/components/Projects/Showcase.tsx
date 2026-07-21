@@ -25,6 +25,11 @@ const Showcase: React.FC<ShowcaseProps> = ({
   const localRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null); // moves with mouse (no transition)
   const labelRef = useRef<HTMLDivElement>(null);    // scales in/out (with transition)
+  const videoLooksLikeImage = Boolean(
+    video?.match(/\.(avif|gif|jpe?g|png|svg|webp)(?:[?#]|$)/i),
+  );
+  const videoSrc = videoLooksLikeImage ? undefined : video;
+  const imageSrc = img ?? (videoLooksLikeImage ? video : undefined);
 
   // Set both parent callback ref and local ref
   const setRef = useCallback(
@@ -81,10 +86,10 @@ const Showcase: React.FC<ShowcaseProps> = ({
 
       <div className={styles.wrapper}>
         <div className={styles.image}>
-          {video ? (
-            <video src={video} autoPlay muted loop playsInline preload="metadata" />
-          ) : img ? (
-            <img src={img} alt={title} />
+          {videoSrc ? (
+            <video src={videoSrc} autoPlay muted loop playsInline preload="metadata" />
+          ) : imageSrc ? (
+            <img src={imageSrc} alt={title} />
           ) : null}
         </div>
         <div className={styles.info}>
