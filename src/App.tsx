@@ -1,8 +1,9 @@
 import AboutMe from "./components/AboutMe/AboutMe";
 import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
+import MyProject from "./components/MyProject/MyProject";
 import MyThinking from "./components/MyThinking/MyThinking";
-import Projects from "./components/Projects/Projects";
+// import Projects from "./components/Projects/Projects";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Hero />
       <MyThinking />
       <AboutMe />
-      <Projects />
+      <MyProject />
+      {/* <Projects /> */}
       <Footer />
     </div>
   );
