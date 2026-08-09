@@ -380,7 +380,45 @@
         display: flex;
         flex-direction: row;
         gap: 0.5rem;
-        a {
+
+        > a {
+          position: relative;
+
+          &::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 0.65rem);
+            z-index: 2;
+            padding: 0.4rem 0.55rem;
+            border-radius: 4px;
+            background: #0b0b0d;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            line-height: 1;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, 0.25rem);
+            transition:
+              opacity 0.18s ease,
+              transform 0.18s ease;
+          }
+
+          &:hover::after,
+          &:focus-visible::after {
+            opacity: 1;
+            transform: translate(-50%, 0);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--blue-normal);
+            outline-offset: 3px;
+          }
+        }
+
+        > a {
           width: 2rem;
           height: 2rem;
           display: flex;
@@ -390,12 +428,20 @@
           border: 1px solid var(--blue-normal);
         }
         button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           padding: 0.5rem 1rem;
           border-radius: 2rem;
           background-color: var(--blue-normal);
+          text-align: center;
+
           a {
+            display: flex;
+            width: 100%;
             height: 100%;
-            width: max-content;
+            align-items: center;
+            justify-content: center;
             color: var(--black-light);
             font-size: 0.65rem;
             font-weight: 600;

@@ -46,6 +46,8 @@ const ProjectItem = (props: ProjectItemProps) => {
                 href={props.figmaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Open Figma file"
+                data-tooltip="Open Figma"
               >
                 <svg
                   width="10"
@@ -61,14 +63,35 @@ const ProjectItem = (props: ProjectItemProps) => {
                   />
                 </svg>
               </a>
+              {props.videoUrl && (
+                <a
+                  href={props.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Watch project video"
+                  data-tooltip="Watch video"
+                >
+                  <svg
+                    width="9"
+                    height="9"
+                    viewBox="0 0 9 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.04286 3.79284C8.65238 4.10713 8.65238 4.89287 8.04286 5.20716L1.87143 8.38938C1.2619 8.70368 0.5 8.31081 0.5 7.68222L0.5 1.31778C0.5 0.689189 1.26191 0.296322 1.87143 0.610616L8.04286 3.79284Z"
+                      stroke="#0E1049"
+                    />
+                  </svg>
+                </a>
+              )}
               <button className={styles.video_cta}>
                 <a
-                  href={props.videoUrl || props.showcaseUrl}
+                  href={props.showcaseUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {props.videoUrl && <span>Watch Video</span>}
-                  {props.showcaseUrl && <span>Watch Showcase</span>}
+                  Watch Showcase
                 </a>
               </button>
             </div>

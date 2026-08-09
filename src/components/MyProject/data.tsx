@@ -39,5 +39,7 @@ export const projectItems: ProjectItemType[] = [
       "https://res.cloudinary.com/ojnl7vfz/video/upload/v1786201206/Extract_ulg7jl.mp4",
     figmaUrl:
       "https://www.figma.com/design/7Hl6wHhAlOIDD5S7cHPy0N/OCR?node-id=2-5&t=S7rciGV41SZHxS5H-1",
+    showcaseUrl:
+      "https://res.cloudinary.com/ojnl7vfz/image/upload/v1786290158/vextract-research_lwwn7f.png",
   },
 ];
