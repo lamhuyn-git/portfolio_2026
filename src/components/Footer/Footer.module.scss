@@ -90,6 +90,15 @@
         font-weight: 600;
         line-height: 130%;
       }
+
+      & .email {
+        position: relative;
+        z-index: 201;
+        pointer-events: auto;
+        user-select: text;
+        -webkit-user-select: text;
+        cursor: text;
+      }
     }
   }
 }

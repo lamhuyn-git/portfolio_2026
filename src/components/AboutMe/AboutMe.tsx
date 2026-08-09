@@ -9,8 +9,8 @@ const sections = [
     title: "INFORMATION TECHNOLOGY",
     detail:
       "University of Transport and Communications\nCampus in Ho Chi Minh City",
-    startTime: "2023",
-    endTime: "Now",
+    startTime: "2022",
+    endTime: "2026 (Graduated)",
   },
   {
     type: "CERTIFICATIONS",
@@ -21,17 +21,17 @@ const sections = [
   },
   {
     type: "EXPERIENCE",
-    title: "UX & Operation Intern",
-    detail: "Website Administrator & Designer – Charm Inc",
-    startTime: "June 2024",
-    endTime: "September 2024",
-  },
-  {
-    type: "EXPERIENCE",
     title: "UX/UI Desisgner Intern",
     detail: "Design Intern - TMA Solutions",
     startTime: "September 2025",
     endTime: "February 2026",
+  },
+  {
+    type: "EXPERIENCE",
+    title: "UX & Operation Intern",
+    detail: "Website Administrator & Designer – Charm Inc",
+    startTime: "June 2024",
+    endTime: "September 2024",
   },
 ];
 

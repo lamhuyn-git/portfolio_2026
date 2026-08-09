@@ -8,9 +8,77 @@ import { projectItems, type ProjectItemType } from "./data";
 const MyProject = () => {
   const [projects, setProjects] = useState<ProjectItemType[]>([]);
   const projectItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const frontRef = useRef<HTMLDivElement | null>(null);
+  const [isFrontVisible, setIsFrontVisible] = useState(false);
+  const midRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const [isMidVisible, setIsMidVisible] = useState(false);
+  const [isListVisible, setIsListVisible] = useState(false);
 
   useEffect(() => {
     setProjects(projectItems);
+  }, []);
+
+  useEffect(() => {
+    const section = frontRef.current;
+
+    if (!section) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsFrontVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFrontVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -14% 0px" },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const section = midRef.current;
+
+    if (!section) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsMidVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsMidVisible(entry.isIntersecting),
+      { threshold: 0.2, rootMargin: "0px 0px -14% 0px" },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const list = listRef.current;
+
+    if (!list) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsListVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsListVisible(entry.isIntersecting),
+      { threshold: 0.18, rootMargin: "0px 0px -12% 0px" },
+    );
+
+    observer.observe(list);
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -40,7 +108,12 @@ const MyProject = () => {
   }, [projects.length]);
 
   return (
-    <div className={styles.MyProjects}>
+    <div
+      className={[
+        styles.MyProjects,
+        isFrontVisible ? styles.MyProjectsVisible : "",
+      ].join(" ")}
+    >
       <div className={styles.MyProjects__container}>
         <div className={styles.MyProjects__top}>
           <p>Portfolio</p>
@@ -50,7 +123,7 @@ const MyProject = () => {
           <p className={styles.text}>UX/UI Designer</p>
         </div>
         <div className={styles.MyProjects__bottom}>
-          <div className={styles.MyProjects__front}>
+          <div ref={frontRef} className={styles.MyProjects__front}>
             <div className={styles.MyProjects__front__text}>
               <p>
                 I’m a UX/UI Designer focused on creating clear, usable, and
@@ -66,8 +139,14 @@ const MyProject = () => {
               <Button text="See my project" className={styles["right"]} />
             </div>
           </div>
-          <div className={styles.MyProjects__mid}>
-            <h2>I Design Solutions Not just interfaces</h2>
+          <div
+            ref={midRef}
+            className={[
+              styles.MyProjects__mid,
+              isMidVisible ? styles.MyProjectsMidVisible : "",
+            ].join(" ")}
+          >
+            <h2>I Design Solutions Not just interfaces</h2>
             <div className={styles.MyProjects__mid__tags}>
               <div className={styles.tag}>
                 <p>Portfolio Highlight</p>
@@ -81,7 +160,13 @@ const MyProject = () => {
             </div>
           </div>
           <div className={styles.MyProjects__projects}>
-            <div className={styles.list}>
+            <div
+              ref={listRef}
+              className={[
+                styles.list,
+                isListVisible ? styles.ProjectListVisible : "",
+              ].join(" ")}
+            >
               {projects.map((project, index) => (
                 <ProjectItem
                   key={project.number}

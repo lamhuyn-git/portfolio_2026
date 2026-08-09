@@ -14,6 +14,26 @@ export default function Hero() {
       setIsVisible(true);
     }, 300);
 
+    const hero = heroRef.current;
+    let hasEnteredViewport = false;
+    const observer =
+      hero && "IntersectionObserver" in window
+        ? new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting) {
+                if (hasEnteredViewport) setIsVisible(true);
+                hasEnteredViewport = true;
+                return;
+              }
+
+              setIsVisible(false);
+            },
+            { threshold: 0.85 },
+          )
+        : null;
+
+    if (hero) observer?.observe(hero);
+
     // iOS Safari: ensure inline playback attributes are set via DOM
     const video = videoRef.current;
     if (video) {
@@ -58,6 +78,7 @@ export default function Hero() {
 
     return () => {
       clearTimeout(timer);
+      observer?.disconnect();
       document.removeEventListener("touchstart", tryPlay);
       document.removeEventListener("click", tryPlay);
       window.removeEventListener("scroll", onScroll);

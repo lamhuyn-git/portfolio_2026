@@ -62,6 +62,18 @@
     gap: 1rem;
     align-items: center;
 
+    &__text,
+    &__cta {
+      opacity: 0;
+      transform: translateY(44px);
+      filter: blur(10px);
+      transition:
+        transform 3s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 3s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 3s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity, filter;
+    }
+
     &__text {
       width: 100%;
       p {
@@ -72,6 +84,7 @@
     }
     &__cta {
       width: 100%;
+      transition-delay: 0.26s;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -86,12 +99,20 @@
     justify-content: space-between;
     align-items: end;
     h2 {
-      width: 18%;
+      width: 28%;
       color: var(--black-light);
       font-size: 2rem;
       line-height: 1.35;
       font-weight: 500;
       text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(40px);
+      filter: blur(8px);
+      transition:
+        transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity, filter;
     }
     &__tags {
       display: flex;
@@ -99,6 +120,29 @@
       justify-content: flex-end;
       gap: 0.5rem;
       width: 20%;
+
+      .tag {
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(8px);
+        transition:
+          transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+          filter 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform, opacity, filter;
+
+        &:nth-child(1) {
+          transition-delay: 0.1s;
+        }
+
+        &:nth-child(2) {
+          transition-delay: 0.18s;
+        }
+
+        &:nth-child(3) {
+          transition-delay: 0.26s;
+        }
+      }
     }
   }
   &__projects {
@@ -109,7 +153,118 @@
       flex-direction: column;
       width: 100%;
       padding: 4rem 2rem 2rem 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      filter: blur(8px);
+      transition:
+        transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity, filter;
     }
+  }
+}
+
+.MyProjectsMidVisible {
+  h2,
+  .MyProjects__mid__tags .tag {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.MyProjects__projects .list.ProjectListVisible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.HeaderVector {
+  width: min(62vw, 684px);
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.HeaderVectorTitle,
+.HeaderVectorSubtitle,
+.HeaderVectorReflection {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    transform 3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.HeaderVectorSubtitle {
+  transition-delay: 0.12s;
+}
+
+.HeaderVectorReflection {
+  transition-delay: 0.2s;
+}
+
+.HeaderVectorTag {
+  --burst-x: 0px;
+  --burst-y: 0px;
+  --burst-delay: 0.22s;
+  opacity: 0;
+  transform-box: view-box;
+  transform-origin: 342px 165px;
+  transform: translate3d(var(--burst-x), var(--burst-y), 0) scale(0.72);
+  transition:
+    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.85s ease;
+  transition-delay: var(--burst-delay);
+  will-change: transform, opacity;
+}
+
+.HeaderVectorTagTech {
+  --burst-x: -278px;
+  --burst-y: 96px;
+  --burst-delay: 0.24s;
+}
+
+.HeaderVectorTagCase {
+  --burst-x: 268px;
+  --burst-y: -88px;
+  --burst-delay: 0.3s;
+}
+
+.HeaderVectorTagDesign {
+  --burst-x: -26px;
+  --burst-y: 136px;
+  --burst-delay: 0.36s;
+}
+
+.HeaderVectorTagResearch {
+  --burst-x: 242px;
+  --burst-y: 112px;
+  --burst-delay: 0.42s;
+}
+
+.HeaderVectorTagPrototype {
+  --burst-x: -274px;
+  --burst-y: -98px;
+  --burst-delay: 0.48s;
+}
+
+.MyProjectsVisible {
+  .MyProjects__front__text,
+  .MyProjects__front__cta {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  .HeaderVectorTitle,
+  .HeaderVectorSubtitle,
+  .HeaderVectorReflection,
+  .HeaderVectorTag {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
@@ -259,10 +414,130 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .MyProjects__front__text,
+  .MyProjects__front__cta,
+  .HeaderVectorTitle,
+  .HeaderVectorSubtitle,
+  .HeaderVectorReflection,
+  .HeaderVectorTag,
+  .MyProjects__mid h2,
+  .MyProjects__mid__tags .tag,
+  .MyProjects__projects .list,
   .ProjectItem {
     opacity: 1;
     transform: none;
     filter: none;
     transition: none;
+  }
+}
+
+@media (min-width: 1920.98px) {
+  .MyProjects {
+    p {
+      font-size: 1.35rem;
+    }
+    &__top {
+      & .text {
+        width: 24rem !important;
+      }
+      span {
+        height: 1px;
+      }
+    }
+    &__front {
+      svg {
+        width: 72rem;
+        height: auto;
+      }
+    }
+    &__mid {
+      h2 {
+        width: 38%;
+        font-size: 4.8rem;
+        font-weight: 600;
+      }
+      &__tags {
+        width: 16%;
+      }
+    }
+    &__bottom {
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+  .ProjectItem {
+    height: 42rem;
+    &__right {
+      &__top {
+        p {
+          font-size: 1rem;
+        }
+
+        & .title {
+          font-size: 3.2rem;
+        }
+      }
+      &__bottom {
+        & .left {
+          p {
+            font-size: 1rem;
+            line-height: 1.2;
+          }
+        }
+        & .ctas {
+          a {
+            width: 4rem;
+            height: 4rem;
+            svg {
+              width: 2rem;
+              height: 2rem;
+            }
+          }
+          button {
+            padding: 1rem 1.5rem;
+            a {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+    &__left {
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 1727.98px) and (max-width: 1920px) {
+  .MyProjects {
+    p {
+      font-size: 1rem;
+    }
+    &__top {
+      & .text {
+        width: 18rem !important;
+      }
+    }
+    &__front {
+      svg:first {
+        width: 72rem;
+        height: auto;
+      }
+    }
+    &__mid {
+      h2 {
+        font-size: 3.35rem;
+        font-weight: 600;
+        width: 32%;
+      }
+      &__tags {
+        width: 16%;
+      }
+    }
+  }
+  .HeaderVector {
+    width: 56rem;
   }
 }

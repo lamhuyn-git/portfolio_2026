@@ -176,7 +176,9 @@ const Footer = () => {
             className={styles.footer_bottom_content}
           >
             <p className={styles.title}>send me e-mail</p>
-            <p className={styles.detail}>lam.huynthi@gmail.com</p>
+            <p className={[styles.detail, styles.email].join(" ")}>
+              lam.huynthi@gmail.com
+            </p>
             <p></p>
           </div>
           <div
