@@ -103,7 +103,7 @@
       color: var(--black-light);
       font-size: 2rem;
       line-height: 1.35;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
       opacity: 0;
       transform: translateY(40px);
@@ -539,5 +539,226 @@
   }
   .HeaderVector {
     width: 56rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .MyProjects {
+    padding: 4.5rem 0;
+
+    p {
+      font-size: 0.72rem;
+    }
+
+    &__container {
+      width: 92%;
+      gap: 1.5rem;
+    }
+
+    &__top {
+      gap: 0.65rem;
+
+      p {
+        flex: 0 0 auto;
+        font-size: 0.65rem;
+
+        &.text {
+          width: auto;
+          max-width: 8.75rem;
+          text-align: right;
+        }
+      }
+
+      span {
+        min-width: 1rem;
+      }
+    }
+
+    &__bottom {
+      width: 100%;
+    }
+
+    &__front {
+      height: auto;
+      min-height: 42rem;
+      padding: 1.5rem 1.25rem;
+      gap: 2.5rem;
+
+      &__text {
+        p {
+          width: 100%;
+          max-width: 26rem;
+          font-size: 0.8rem;
+          line-height: 1.5;
+        }
+      }
+
+      &__cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+        padding-bottom: 1.25rem;
+
+        .right {
+          width: 100%;
+          min-height: 2.75rem;
+        }
+      }
+    }
+
+    &__mid {
+      padding: 3.25rem 1.25rem 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+
+      h2 {
+        width: 100%;
+        max-width: 21rem;
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+
+      &__tags {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    &__projects {
+      padding: 1.25rem;
+
+      & .list {
+        padding: 2rem 1.25rem 1.25rem;
+      }
+    }
+  }
+
+  .HeaderVector {
+    width: 100%;
+  }
+
+  .ProjectItem {
+    height: auto;
+    gap: 0.75rem;
+
+    &__left {
+      width: 100%;
+      height: auto;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+
+      &.isEven {
+        justify-content: space-between;
+      }
+
+      p {
+        font-size: 0.68rem;
+        line-height: 1.2;
+
+        &.subDescription {
+          writing-mode: horizontal-tb;
+          text-align: right;
+        }
+      }
+    }
+
+    &__middle {
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+
+      &.isEven {
+        border-top: 0.5px solid var(--grey-normal-hover);
+      }
+    }
+
+    &__image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+    }
+
+    &__right {
+      width: 100%;
+      gap: 1.75rem;
+
+      &__top {
+        gap: 0.75rem;
+
+        .title {
+          font-size: 2rem;
+          line-height: 1.05;
+        }
+
+        p {
+          font-size: 0.78rem;
+          line-height: 1.5;
+        }
+      }
+
+      &__bottom {
+        align-items: flex-start;
+        gap: 1.25rem;
+
+        & .left {
+          gap: 0.35rem;
+
+          p {
+            font-size: 0.7rem;
+            line-height: 1.3;
+          }
+        }
+
+        & .ctas {
+          width: 100%;
+          justify-content: space-between;
+          gap: 0.75rem;
+
+          a {
+            width: 2.75rem;
+            height: 2.75rem;
+          }
+
+          button {
+            min-height: 2.75rem;
+            flex: 1;
+            padding: 0.5rem 0.85rem;
+
+            a {
+              width: 100%;
+              font-size: 0.7rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .MyProjects {
+    &__top {
+      .line {
+        display: none;
+      }
+
+      p.text {
+        max-width: 7.5rem;
+      }
+    }
+
+    &__front {
+      min-height: 38rem;
+    }
+
+    &__mid h2 {
+      font-size: 1.7rem;
+    }
   }
 }
