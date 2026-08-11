@@ -40,6 +40,20 @@ export const projectItems: ProjectItemType[] = [
     figmaUrl:
       "https://www.figma.com/design/7Hl6wHhAlOIDD5S7cHPy0N/OCR?node-id=2-5&t=S7rciGV41SZHxS5H-1",
     showcaseUrl:
-      "https://res.cloudinary.com/ojnl7vfz/image/upload/v1786290158/vextract-research_lwwn7f.png",
+      "https://res.cloudinary.com/ojnl7vfz/image/upload/v1786425648/Vextract_showcase_v4uxkm.pdf",
+  },
+  {
+    number: 3,
+    title: "Melody",
+    description: "Social Music Experience",
+    subDescription: "Discover, connect, and enjoy music together.",
+    main_tag: "Mobile App",
+    tags: ["Music", "Social", "Streaming"],
+    imageUrl:
+      "https://res.cloudinary.com/ojnl7vfz/image/upload/v1786365744/Melody_thumbnail_c8rox6.png",
+    figmaUrl:
+      "https://www.figma.com/design/1ZbA0tZ6xvl7DdpvZaBlCV/Music-Mobile-App--Android-?node-id=94-2888&t=T1H4rRkw23xD9KvH-1",
+    showcaseUrl:
+      "https://res.cloudinary.com/ojnl7vfz/image/upload/v1786424629/Melody_Showcase_uybnza.pdf",
   },
 ];
