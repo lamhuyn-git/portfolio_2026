@@ -259,7 +259,7 @@ export default function Hero() {
         </div>
         <div className={styles["hero-text"]}>
           <div className={styles["left"]}>
-            <p>HOCHIMINH</p>
+            <p>HO CHI MINH CITY</p>
             <p>
               {new Date().getHours()} :{" "}
               {new Date().getMinutes() < 10
@@ -270,10 +270,8 @@ export default function Hero() {
           </div>
           <div className={styles["mid"]}>
             <p>UX/UI DESIGNER</p>
-            <p>/</p>
-            <p>FRONTEND DEVELOPER</p>
           </div>
-          <Button text="See my project" className={styles["right"]} />
+          <Button text="See my projects" className={styles["right"]} />
         </div>
       </div>
       <Mobile />

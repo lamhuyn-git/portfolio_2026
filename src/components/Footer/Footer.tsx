@@ -172,17 +172,21 @@ const Footer = () => {
         </div>
         <div className={styles.footer_bottom}>
           <div
-            ref={(el) => { bottomItemRefs.current[0] = el; }}
+            ref={(el) => {
+              bottomItemRefs.current[0] = el;
+            }}
             className={styles.footer_bottom_content}
           >
-            <p className={styles.title}>send me e-mail</p>
+            <p className={styles.title}>SEND ME AN EMAIL</p>
             <p className={[styles.detail, styles.email].join(" ")}>
               lam.huynthi@gmail.com
             </p>
             <p></p>
           </div>
           <div
-            ref={(el) => { bottomItemRefs.current[1] = el; }}
+            ref={(el) => {
+              bottomItemRefs.current[1] = el;
+            }}
             className={styles.footer_bottom_content}
           >
             <p className={styles.title}>Call me</p>
@@ -190,7 +194,9 @@ const Footer = () => {
             <p></p>
           </div>
           <div
-            ref={(el) => { bottomItemRefs.current[2] = el; }}
+            ref={(el) => {
+              bottomItemRefs.current[2] = el;
+            }}
             className={styles.footer_bottom_content}
           >
             <p className={styles.title}>Address</p>

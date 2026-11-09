@@ -21,7 +21,7 @@ const sections = [
   },
   {
     type: "EXPERIENCE",
-    title: "UX/UI Desisgner Intern",
+    title: "UX/UI Designer Intern",
     detail: "Design Intern - TMA Solutions",
     startTime: "September 2025",
     endTime: "February 2026",

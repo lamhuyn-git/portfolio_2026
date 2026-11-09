@@ -136,7 +136,7 @@ const MyProject = () => {
               <div className={styles.tag}>
                 <p>Portfolio Highlight</p>
               </div>
-              <Button text="See my project" className={styles["right"]} />
+              <Button text="See my projects" className={styles["right"]} />
             </div>
           </div>
           <div
@@ -146,7 +146,7 @@ const MyProject = () => {
               isMidVisible ? styles.MyProjectsMidVisible : "",
             ].join(" ")}
           >
-            <h2>I Design Solutions Not just interfaces</h2>
+            <h2>I Design Solutions, Not just interfaces</h2>
             <div className={styles.MyProjects__mid__tags}>
               <div className={styles.tag}>
                 <p>Portfolio Highlight</p>
